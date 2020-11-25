@@ -6,163 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>801</width>
-    <height>566</height>
+    <width>810</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QComboBox" name="comboBox">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>61</y>
-      <width>78</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <item>
-     <property name="text">
-      <string>2011</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>2012</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>2013</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>2014</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>2015</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>2016</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>2017</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>2018</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>2019</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>2020</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>2021</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>2022</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QDateEdit" name="dateEdit">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>669</x>
-      <y>61</y>
-      <width>110</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <property name="wrapping">
-     <bool>false</bool>
-    </property>
-    <property name="frame">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="buttonSymbols">
-     <enum>QAbstractSpinBox::UpDownArrows</enum>
-    </property>
-    <property name="accelerated">
-     <bool>false</bool>
-    </property>
-    <property name="calendarPopup">
-     <bool>true</bool>
-    </property>
-    <property name="date">
-     <date>
-      <year>2021</year>
-      <month>1</month>
-      <day>1</day>
-     </date>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>315</x>
-      <y>66</y>
-      <width>91</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>DejaVu Sans</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Год выпуска:</string>
-    </property>
-    <property name="buddy">
-     <cstring>comboBox</cstring>
-    </property>
-   </widget>
    <widget class="QWidget" name="formLayoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>185</y>
+      <y>250</y>
       <width>261</width>
       <height>181</height>
      </rect>
@@ -329,7 +185,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>490</y>
+      <y>560</y>
       <width>801</width>
       <height>23</height>
      </rect>
@@ -338,70 +194,11 @@
      <number>24</number>
     </property>
    </widget>
-   <widget class="QLabel" name="label_7">
-    <property name="geometry">
-     <rect>
-      <x>161</x>
-      <y>66</y>
-      <width>31</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>DejaVu Sans</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Тип:</string>
-    </property>
-    <property name="buddy">
-     <cstring>comboBox_2</cstring>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox_2">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>61</y>
-      <width>101</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>101</width>
-      <height>16777215</height>
-     </size>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <property name="acceptDrops">
-     <bool>false</bool>
-    </property>
-    <item>
-     <property name="text">
-      <string>ИРТ 5920</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>ИРТ 5940</string>
-     </property>
-    </item>
-   </widget>
    <widget class="Line" name="line_up">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>36</y>
+      <y>60</y>
       <width>771</width>
       <height>20</height>
      </rect>
@@ -414,7 +211,7 @@
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>165</y>
+      <y>230</y>
       <width>141</width>
       <height>16</height>
      </rect>
@@ -431,188 +228,11 @@
      <string>Показания прибора</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_9">
-    <property name="geometry">
-     <rect>
-      <x>14</x>
-      <y>66</y>
-      <width>16</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>DejaVu Sans</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>№</string>
-    </property>
-    <property name="buddy">
-     <cstring>lineEdit_6</cstring>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_6">
-    <property name="geometry">
-     <rect>
-      <x>35</x>
-      <y>61</y>
-      <width>113</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <property name="focusPolicy">
-     <enum>Qt::ClickFocus</enum>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox_3">
-    <property name="geometry">
-     <rect>
-      <x>135</x>
-      <y>110</y>
-      <width>70</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <property name="editable">
-     <bool>false</bool>
-    </property>
-    <property name="sizeAdjustPolicy">
-     <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
-    </property>
-    <item>
-     <property name="text">
-      <string>mA</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>ТСМ</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>ТП</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QLabel" name="label_10">
-    <property name="geometry">
-     <rect>
-      <x>15</x>
-      <y>115</y>
-      <width>121</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>DejaVu Sans</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Входной сигнал:</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox_4">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>110</y>
-      <width>70</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <item>
-     <property name="text">
-      <string>0-5</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>0-20</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>4-20</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QLabel" name="label_11">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>66</y>
-      <width>131</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>DejaVu Sans</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Дата калибровки:</string>
-    </property>
-    <property name="buddy">
-     <cstring>dateEdit</cstring>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_12">
-    <property name="geometry">
-     <rect>
-      <x>500</x>
-      <y>115</y>
-      <width>131</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>DejaVu Sans</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Выходной сигнал:</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_13">
     <property name="geometry">
      <rect>
       <x>310</x>
-      <y>165</y>
+      <y>230</y>
       <width>141</width>
       <height>16</height>
      </rect>
@@ -633,7 +253,7 @@
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>185</y>
+      <y>250</y>
       <width>161</width>
       <height>181</height>
      </rect>
@@ -701,7 +321,7 @@
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>375</y>
+      <y>440</y>
       <width>71</width>
       <height>16</height>
      </rect>
@@ -722,7 +342,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>395</y>
+      <y>460</y>
       <width>261</width>
       <height>71</height>
      </rect>
@@ -780,74 +400,6 @@
      </item>
     </layout>
    </widget>
-   <widget class="QComboBox" name="comboBox_5">
-    <property name="geometry">
-     <rect>
-      <x>630</x>
-      <y>110</y>
-      <width>70</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <property name="editable">
-     <bool>false</bool>
-    </property>
-    <property name="sizeAdjustPolicy">
-     <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
-    </property>
-    <item>
-     <property name="text">
-      <string>mA</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>ТСМ</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>ТП</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QComboBox" name="comboBox_6">
-    <property name="geometry">
-     <rect>
-      <x>705</x>
-      <y>110</y>
-      <width>70</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <item>
-     <property name="text">
-      <string>0-5</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>0-20</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>4-20</string>
-     </property>
-    </item>
-   </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="enabled">
      <bool>true</bool>
@@ -855,7 +407,7 @@
     <property name="geometry">
      <rect>
       <x>690</x>
-      <y>450</y>
+      <y>530</y>
       <width>86</width>
       <height>30</height>
      </rect>
@@ -867,11 +419,607 @@
      <bool>false</bool>
     </property>
    </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>770</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhNone</set>
+    </property>
+    <property name="title">
+     <string>Средство калибровки</string>
+    </property>
+    <widget class="QLineEdit" name="lineEdit_14">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>25</y>
+       <width>240</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
+     </property>
+     <property name="inputMethodHints">
+      <set>Qt::ImhUppercaseOnly</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_17">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>111</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>DejaVu Sans</family>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+       <kerning>true</kerning>
+      </font>
+     </property>
+     <property name="text">
+      <string>Наименование:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_18">
+     <property name="geometry">
+      <rect>
+       <x>472</x>
+       <y>30</y>
+       <width>51</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>DejaVu Sans</family>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+       <kerning>true</kerning>
+      </font>
+     </property>
+     <property name="text">
+      <string>Номер:</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_15">
+     <property name="geometry">
+      <rect>
+       <x>527</x>
+       <y>25</y>
+       <width>240</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>80</y>
+      <width>770</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="title">
+     <string>Параметры прибора</string>
+    </property>
+    <widget class="QLabel" name="label_9">
+     <property name="geometry">
+      <rect>
+       <x>3</x>
+       <y>30</y>
+       <width>16</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>DejaVu Sans</family>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>№</string>
+     </property>
+     <property name="buddy">
+      <cstring>lineEdit_6</cstring>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_6">
+     <property name="geometry">
+      <rect>
+       <x>24</x>
+       <y>25</y>
+       <width>113</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>11</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_4">
+     <property name="geometry">
+      <rect>
+       <x>199</x>
+       <y>63</y>
+       <width>70</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>11</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <item>
+      <property name="text">
+       <string>0-5</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>0-20</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>4-20</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="label_10">
+     <property name="geometry">
+      <rect>
+       <x>4</x>
+       <y>68</y>
+       <width>121</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>DejaVu Sans</family>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Входной сигнал:</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_3">
+     <property name="geometry">
+      <rect>
+       <x>124</x>
+       <y>63</y>
+       <width>70</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>11</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="editable">
+      <bool>false</bool>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+     </property>
+     <item>
+      <property name="text">
+       <string>mA</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>ТСМ</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>ТП</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="label_11">
+     <property name="geometry">
+      <rect>
+       <x>527</x>
+       <y>30</y>
+       <width>131</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>DejaVu Sans</family>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Дата калибровки:</string>
+     </property>
+     <property name="buddy">
+      <cstring>dateEdit</cstring>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_12">
+     <property name="geometry">
+      <rect>
+       <x>491</x>
+       <y>68</y>
+       <width>131</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>DejaVu Sans</family>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Выходной сигнал:</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_6">
+     <property name="geometry">
+      <rect>
+       <x>696</x>
+       <y>63</y>
+       <width>70</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>11</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <item>
+      <property name="text">
+       <string>0-5</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>0-20</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>4-20</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QDateEdit" name="dateEdit">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>656</x>
+       <y>25</y>
+       <width>110</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>11</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
+     </property>
+     <property name="frame">
+      <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="buttonSymbols">
+      <enum>QAbstractSpinBox::UpDownArrows</enum>
+     </property>
+     <property name="accelerated">
+      <bool>false</bool>
+     </property>
+     <property name="calendarPopup">
+      <bool>true</bool>
+     </property>
+     <property name="date">
+      <date>
+       <year>2021</year>
+       <month>1</month>
+       <day>1</day>
+      </date>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox">
+     <property name="geometry">
+      <rect>
+       <x>399</x>
+       <y>25</y>
+       <width>78</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>11</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <item>
+      <property name="text">
+       <string>2011</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2012</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2013</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2014</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2015</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2016</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2017</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2018</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2019</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2020</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2021</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2022</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>304</x>
+       <y>30</y>
+       <width>91</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>DejaVu Sans</family>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Год выпуска:</string>
+     </property>
+     <property name="buddy">
+      <cstring>comboBox</cstring>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_2">
+     <property name="geometry">
+      <rect>
+       <x>189</x>
+       <y>25</y>
+       <width>101</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>101</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>11</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
+     </property>
+     <property name="acceptDrops">
+      <bool>false</bool>
+     </property>
+     <item>
+      <property name="text">
+       <string>ИРТ 5920</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>ИРТ 5940</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QComboBox" name="comboBox_5">
+     <property name="geometry">
+      <rect>
+       <x>621</x>
+       <y>63</y>
+       <width>70</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>11</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="editable">
+      <bool>false</bool>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+     </property>
+     <item>
+      <property name="text">
+       <string>mA</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>ТСМ</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>ТП</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>30</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>DejaVu Sans</family>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Тип:</string>
+     </property>
+     <property name="buddy">
+      <cstring>comboBox_2</cstring>
+     </property>
+    </widget>
+   </widget>
    <widget class="Line" name="line_up_2">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>90</y>
+      <y>170</y>
       <width>771</width>
       <height>20</height>
      </rect>
@@ -880,56 +1028,13 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QLabel" name="label_17">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>161</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>DejaVu Sans</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Средство калибровки:</string>
-    </property>
-    <property name="buddy">
-     <cstring>lineEdit_6</cstring>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_14">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>7</y>
-      <width>241</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <property name="focusPolicy">
-     <enum>Qt::ClickFocus</enum>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>801</width>
+     <width>810</width>
      <height>26</height>
     </rect>
    </property>
@@ -976,13 +1081,6 @@
   </action>
  </widget>
  <tabstops>
-  <tabstop>comboBox_2</tabstop>
-  <tabstop>comboBox</tabstop>
-  <tabstop>dateEdit</tabstop>
-  <tabstop>comboBox_3</tabstop>
-  <tabstop>comboBox_4</tabstop>
-  <tabstop>comboBox_5</tabstop>
-  <tabstop>comboBox_6</tabstop>
   <tabstop>lineEdit</tabstop>
   <tabstop>lineEdit_2</tabstop>
   <tabstop>lineEdit_3</tabstop>
