@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>801</width>
+    <width>800</width>
     <height>700</height>
    </rect>
   </property>
@@ -28,7 +28,7 @@
       <x>1</x>
       <y>-1</y>
       <width>798</width>
-      <height>645</height>
+      <height>650</height>
      </rect>
     </property>
     <property name="tabPosition">
@@ -69,7 +69,7 @@
       <property name="geometry">
        <rect>
         <x>682</x>
-        <y>560</y>
+        <y>570</y>
         <width>90</width>
         <height>30</height>
        </rect>
@@ -90,9 +90,9 @@
       <property name="geometry">
        <rect>
         <x>11</x>
-        <y>140</y>
+        <y>123</y>
         <width>770</width>
-        <height>111</height>
+        <height>145</height>
        </rect>
       </property>
       <property name="font">
@@ -108,8 +108,8 @@
       <widget class="QLabel" name="label_parametr_number">
        <property name="geometry">
         <rect>
-         <x>210</x>
-         <y>37</y>
+         <x>198</x>
+         <y>40</y>
          <width>16</width>
          <height>16</height>
         </rect>
@@ -135,8 +135,8 @@
       <widget class="QLineEdit" name="lineEdit_parametr_number">
        <property name="geometry">
         <rect>
-         <x>229</x>
-         <y>32</y>
+         <x>216</x>
+         <y>35</y>
          <width>113</width>
          <height>25</height>
         </rect>
@@ -156,29 +156,11 @@
         <string>04Н-000000</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_in_start_value">
-       <property name="geometry">
-        <rect>
-         <x>158</x>
-         <y>70</y>
-         <width>60</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Segoe UI</family>
-         <pointsize>11</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_in_signal">
        <property name="geometry">
         <rect>
-         <x>29</x>
-         <y>75</y>
+         <x>70</x>
+         <y>78</y>
          <width>50</width>
          <height>16</height>
         </rect>
@@ -201,9 +183,9 @@
       <widget class="QComboBox" name="comboBox_in_signal_type">
        <property name="geometry">
         <rect>
-         <x>81</x>
-         <y>70</y>
-         <width>70</width>
+         <x>122</x>
+         <y>73</y>
+         <width>100</width>
          <height>25</height>
         </rect>
        </property>
@@ -229,25 +211,45 @@
        </property>
        <item>
         <property name="text">
-         <string>mA</string>
+         <string>мА</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>ТСМ</string>
+         <string>ТП-ХА</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>ТП</string>
+         <string>ТП-ХК</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>ТСМ-50М</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>ТСМ-100М</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>ТСМ-50П</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>ТСМ-100П</string>
         </property>
        </item>
       </widget>
       <widget class="QLabel" name="label_out_signal">
        <property name="geometry">
         <rect>
-         <x>352</x>
-         <y>75</y>
+         <x>381</x>
+         <y>78</y>
          <width>50</width>
          <height>16</height>
         </rect>
@@ -267,29 +269,11 @@
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_out_start_value">
-       <property name="geometry">
-        <rect>
-         <x>482</x>
-         <y>70</y>
-         <width>60</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Segoe UI</family>
-         <pointsize>11</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-      </widget>
       <widget class="QComboBox" name="comboBox_parametr_year">
        <property name="geometry">
         <rect>
          <x>475</x>
-         <y>32</y>
+         <y>35</y>
          <width>78</width>
          <height>25</height>
         </rect>
@@ -366,8 +350,8 @@
       <widget class="QLabel" name="label_parametr_year">
        <property name="geometry">
         <rect>
-         <x>380</x>
-         <y>37</y>
+         <x>382</x>
+         <y>40</y>
          <width>91</width>
          <height>16</height>
         </rect>
@@ -394,7 +378,7 @@
        <property name="geometry">
         <rect>
          <x>44</x>
-         <y>32</y>
+         <y>35</y>
          <width>101</width>
          <height>25</height>
         </rect>
@@ -419,21 +403,21 @@
        </property>
        <item>
         <property name="text">
-         <string>ИРТ 5920Н</string>
+         <string>ИРТ 5920</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>ИРТ 5940М</string>
+         <string>ИРТ 5940</string>
         </property>
        </item>
       </widget>
       <widget class="QComboBox" name="comboBox_out_signal_type">
        <property name="geometry">
         <rect>
-         <x>404</x>
-         <y>70</y>
-         <width>70</width>
+         <x>433</x>
+         <y>73</y>
+         <width>100</width>
          <height>25</height>
         </rect>
        </property>
@@ -453,17 +437,32 @@
        </property>
        <item>
         <property name="text">
-         <string>mA</string>
+         <string>мА</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>ТСМ</string>
+         <string>°С</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>ТП</string>
+         <string>кгс/см²</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>см</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>мм</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>т/ч</string>
         </property>
        </item>
       </widget>
@@ -471,7 +470,7 @@
        <property name="geometry">
         <rect>
          <x>11</x>
-         <y>37</y>
+         <y>40</y>
          <width>31</width>
          <height>16</height>
         </rect>
@@ -494,32 +493,11 @@
         <cstring>comboBox_parametr_type</cstring>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_parametr_position">
-       <property name="geometry">
-        <rect>
-         <x>676</x>
-         <y>32</y>
-         <width>78</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Segoe UI</family>
-         <pointsize>11</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="toolTip">
-        <string/>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_parametr_position">
        <property name="geometry">
         <rect>
-         <x>601</x>
-         <y>37</y>
+         <x>597</x>
+         <y>40</y>
          <width>70</width>
          <height>16</height>
         </rect>
@@ -543,10 +521,13 @@
        </property>
       </widget>
       <widget class="QCheckBox" name="checkBox_pvi">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="geometry">
         <rect>
-         <x>670</x>
-         <y>70</y>
+         <x>96</x>
+         <y>109</y>
          <width>60</width>
          <height>25</height>
         </rect>
@@ -568,15 +549,267 @@
          <height>16</height>
         </size>
        </property>
-       <property name="checked">
+       <property name="checkable">
         <bool>true</bool>
        </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_out_end_value">
+      <widget class="QLineEdit" name="lineEdit_in_start_value">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="geometry">
         <rect>
-         <x>544</x>
-         <y>70</y>
+         <x>229</x>
+         <y>73</y>
+         <width>60</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="inputMethodHints">
+        <set>Qt::ImhNone</set>
+       </property>
+       <property name="maxLength">
+        <number>6</number>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_parametr_position">
+       <property name="geometry">
+        <rect>
+         <x>669</x>
+         <y>35</y>
+         <width>80</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>11</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
+       <property name="toolTip">
+        <string>04Н-000000</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_in_end_value">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>291</x>
+         <y>73</y>
+         <width>60</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="inputMethodHints">
+        <set>Qt::ImhNone</set>
+       </property>
+       <property name="maxLength">
+        <number>6</number>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_out_start_value">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>539</x>
+         <y>73</y>
+         <width>60</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="inputMethodHints">
+        <set>Qt::ImhNone</set>
+       </property>
+       <property name="maxLength">
+        <number>6</number>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_out_end_value">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>601</x>
+         <y>73</y>
+         <width>60</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="inputMethodHints">
+        <set>Qt::ImhNone</set>
+       </property>
+       <property name="maxLength">
+        <number>6</number>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_pvi_scale_start">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>257</x>
+         <y>108</y>
+         <width>60</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="inputMethodHints">
+        <set>Qt::ImhNone</set>
+       </property>
+       <property name="maxLength">
+        <number>6</number>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_pvi_scale_end">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>319</x>
+         <y>108</y>
+         <width>60</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="inputMethodHints">
+        <set>Qt::ImhNone</set>
+       </property>
+       <property name="maxLength">
+        <number>6</number>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_pvi_scale">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>113</y>
+         <width>85</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DejaVu Sans</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Шкала ПВИ:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_pvi_out">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>398</x>
+         <y>113</y>
+         <width>85</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DejaVu Sans</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Выход ПВИ:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBox_pvi_out">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>485</x>
+         <y>109</y>
          <width>60</width>
          <height>25</height>
         </rect>
@@ -589,23 +822,59 @@
          <bold>false</bold>
         </font>
        </property>
+       <property name="editable">
+        <bool>false</bool>
+       </property>
+       <property name="insertPolicy">
+        <enum>QComboBox::InsertAtBottom</enum>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+       </property>
+       <property name="duplicatesEnabled">
+        <bool>false</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>0-5</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>0-20</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4-20</string>
+        </property>
+       </item>
       </widget>
-      <widget class="QComboBox" name="comboBox_in_end_value">
+      <widget class="QLabel" name="label_pvi_out_r">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="geometry">
         <rect>
-         <x>220</x>
-         <y>70</y>
-         <width>60</width>
-         <height>25</height>
+         <x>550</x>
+         <y>114</y>
+         <width>100</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="font">
         <font>
-         <family>Segoe UI</family>
-         <pointsize>11</pointsize>
+         <family>DejaVu Sans</family>
+         <pointsize>10</pointsize>
          <weight>50</weight>
          <bold>false</bold>
         </font>
+       </property>
+       <property name="text">
+        <string>R=1.8кОм±5%</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
        </property>
       </widget>
      </widget>
@@ -613,7 +882,7 @@
       <property name="geometry">
        <rect>
         <x>530</x>
-        <y>530</y>
+        <y>540</y>
         <width>131</width>
         <height>16</height>
        </rect>
@@ -640,7 +909,7 @@
       <property name="geometry">
        <rect>
         <x>582</x>
-        <y>560</y>
+        <y>570</y>
         <width>90</width>
         <height>30</height>
        </rect>
@@ -661,7 +930,7 @@
       <property name="geometry">
        <rect>
         <x>14</x>
-        <y>560</y>
+        <y>570</y>
         <width>90</width>
         <height>30</height>
        </rect>
@@ -681,8 +950,8 @@
      <widget class="QGroupBox" name="groupBox_out_24">
       <property name="geometry">
        <rect>
-        <x>295</x>
-        <y>270</y>
+        <x>296</x>
+        <y>280</y>
         <width>200</width>
         <height>130</height>
        </rect>
@@ -861,7 +1130,7 @@
       <property name="geometry">
        <rect>
         <x>11</x>
-        <y>270</y>
+        <y>280</y>
         <width>250</width>
         <height>240</height>
        </rect>
@@ -1259,7 +1528,7 @@
       <property name="geometry">
        <rect>
         <x>662</x>
-        <y>525</y>
+        <y>535</y>
         <width>110</width>
         <height>25</height>
        </rect>
@@ -1304,7 +1573,7 @@
         <x>11</x>
         <y>50</y>
         <width>770</width>
-        <height>71</height>
+        <height>68</height>
        </rect>
       </property>
       <property name="autoFillBackground">
@@ -1443,8 +1712,8 @@
      <widget class="QGroupBox" name="groupBox_out_pvi">
       <property name="geometry">
        <rect>
-        <x>530</x>
-        <y>270</y>
+        <x>532</x>
+        <y>280</y>
         <width>250</width>
         <height>240</height>
        </rect>
@@ -1869,7 +2138,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>801</width>
+     <width>800</width>
      <height>29</height>
     </rect>
    </property>
@@ -1878,7 +2147,7 @@
      <rect>
       <x>273</x>
       <y>146</y>
-      <width>198</width>
+      <width>191</width>
       <height>135</height>
      </rect>
     </property>
