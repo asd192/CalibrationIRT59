@@ -108,7 +108,7 @@
       <widget class="QLabel" name="label_parametr_number">
        <property name="geometry">
         <rect>
-         <x>198</x>
+         <x>200</x>
          <y>40</y>
          <width>16</width>
          <height>16</height>
@@ -135,7 +135,7 @@
       <widget class="QLineEdit" name="lineEdit_parametr_number">
        <property name="geometry">
         <rect>
-         <x>216</x>
+         <x>218</x>
          <y>35</y>
          <width>113</width>
          <height>25</height>
@@ -155,11 +155,14 @@
        <property name="toolTip">
         <string>04Н-000000</string>
        </property>
+       <property name="text">
+        <string>04Н-22899</string>
+       </property>
       </widget>
       <widget class="QLabel" name="label_in_signal">
        <property name="geometry">
         <rect>
-         <x>70</x>
+         <x>82</x>
          <y>78</y>
          <width>50</width>
          <height>16</height>
@@ -183,7 +186,7 @@
       <widget class="QComboBox" name="comboBox_in_signal_type">
        <property name="geometry">
         <rect>
-         <x>122</x>
+         <x>134</x>
          <y>73</y>
          <width>100</width>
          <height>25</height>
@@ -211,7 +214,7 @@
        </property>
        <item>
         <property name="text">
-         <string>мА</string>
+         <string>ТП-ХК</string>
         </property>
        </item>
        <item>
@@ -221,7 +224,7 @@
        </item>
        <item>
         <property name="text">
-         <string>ТП-ХК</string>
+         <string>мА</string>
         </property>
        </item>
        <item>
@@ -248,7 +251,7 @@
       <widget class="QLabel" name="label_out_signal">
        <property name="geometry">
         <rect>
-         <x>381</x>
+         <x>393</x>
          <y>78</y>
          <width>50</width>
          <height>16</height>
@@ -272,7 +275,7 @@
       <widget class="QComboBox" name="comboBox_parametr_year">
        <property name="geometry">
         <rect>
-         <x>475</x>
+         <x>477</x>
          <y>35</y>
          <width>78</width>
          <height>25</height>
@@ -350,7 +353,7 @@
       <widget class="QLabel" name="label_parametr_year">
        <property name="geometry">
         <rect>
-         <x>382</x>
+         <x>384</x>
          <y>40</y>
          <width>91</width>
          <height>16</height>
@@ -377,7 +380,7 @@
       <widget class="QComboBox" name="comboBox_parametr_type">
        <property name="geometry">
         <rect>
-         <x>44</x>
+         <x>46</x>
          <y>35</y>
          <width>101</width>
          <height>25</height>
@@ -415,7 +418,7 @@
       <widget class="QComboBox" name="comboBox_out_signal_type">
        <property name="geometry">
         <rect>
-         <x>433</x>
+         <x>445</x>
          <y>73</y>
          <width>100</width>
          <height>25</height>
@@ -437,12 +440,12 @@
        </property>
        <item>
         <property name="text">
-         <string>мА</string>
+         <string>°С</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>°С</string>
+         <string>мА</string>
         </property>
        </item>
        <item>
@@ -469,7 +472,7 @@
       <widget class="QLabel" name="label_parametr_type">
        <property name="geometry">
         <rect>
-         <x>11</x>
+         <x>13</x>
          <y>40</y>
          <width>31</width>
          <height>16</height>
@@ -496,7 +499,7 @@
       <widget class="QLabel" name="label_parametr_position">
        <property name="geometry">
         <rect>
-         <x>597</x>
+         <x>599</x>
          <y>40</y>
          <width>70</width>
          <height>16</height>
@@ -526,7 +529,7 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>96</x>
+         <x>108</x>
          <y>109</y>
          <width>60</width>
          <height>25</height>
@@ -562,7 +565,7 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>229</x>
+         <x>241</x>
          <y>73</y>
          <width>60</width>
          <height>25</height>
@@ -577,6 +580,9 @@
        <property name="inputMethodHints">
         <set>Qt::ImhNone</set>
        </property>
+       <property name="text">
+        <string>-50</string>
+       </property>
        <property name="maxLength">
         <number>6</number>
        </property>
@@ -587,7 +593,7 @@
       <widget class="QLineEdit" name="lineEdit_parametr_position">
        <property name="geometry">
         <rect>
-         <x>669</x>
+         <x>671</x>
          <y>35</y>
          <width>80</width>
          <height>25</height>
@@ -607,6 +613,9 @@
        <property name="toolTip">
         <string>04Н-000000</string>
        </property>
+       <property name="text">
+        <string>3 ЗК-170</string>
+       </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_in_end_value">
        <property name="enabled">
@@ -614,7 +623,7 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>291</x>
+         <x>303</x>
          <y>73</y>
          <width>60</width>
          <height>25</height>
@@ -628,6 +637,9 @@
        </property>
        <property name="inputMethodHints">
         <set>Qt::ImhNone</set>
+       </property>
+       <property name="text">
+        <string>600</string>
        </property>
        <property name="maxLength">
         <number>6</number>
@@ -642,7 +654,7 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>539</x>
+         <x>551</x>
          <y>73</y>
          <width>60</width>
          <height>25</height>
@@ -656,6 +668,9 @@
        </property>
        <property name="inputMethodHints">
         <set>Qt::ImhNone</set>
+       </property>
+       <property name="text">
+        <string>-50</string>
        </property>
        <property name="maxLength">
         <number>6</number>
@@ -670,7 +685,7 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>601</x>
+         <x>613</x>
          <y>73</y>
          <width>60</width>
          <height>25</height>
@@ -685,6 +700,9 @@
        <property name="inputMethodHints">
         <set>Qt::ImhNone</set>
        </property>
+       <property name="text">
+        <string>600</string>
+       </property>
        <property name="maxLength">
         <number>6</number>
        </property>
@@ -698,7 +716,7 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>257</x>
+         <x>269</x>
          <y>108</y>
          <width>60</width>
          <height>25</height>
@@ -726,7 +744,7 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>319</x>
+         <x>331</x>
          <y>108</y>
          <width>60</width>
          <height>25</height>
@@ -754,7 +772,7 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>182</x>
          <y>113</y>
          <width>85</width>
          <height>16</height>
@@ -781,7 +799,7 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>398</x>
+         <x>410</x>
          <y>113</y>
          <width>85</width>
          <height>16</height>
@@ -808,7 +826,7 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>485</x>
+         <x>497</x>
          <y>109</y>
          <width>60</width>
          <height>25</height>
@@ -856,7 +874,7 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>550</x>
+         <x>562</x>
          <y>114</y>
          <width>100</width>
          <height>16</height>
@@ -1612,6 +1630,9 @@
        <property name="inputMethodHints">
         <set>Qt::ImhNone</set>
        </property>
+       <property name="text">
+        <string>ИКСУ-2000</string>
+       </property>
       </widget>
       <widget class="QLabel" name="label_calibr_name">
        <property name="geometry">
@@ -1684,7 +1705,7 @@
         <enum>Qt::ClickFocus</enum>
        </property>
        <property name="text">
-        <string/>
+        <string>00123</string>
        </property>
       </widget>
      </widget>
@@ -2130,6 +2151,236 @@
      <attribute name="title">
       <string>      База      </string>
      </attribute>
+     <widget class="QTableWidget" name="tableWidgetdb">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>791</width>
+        <height>611</height>
+       </rect>
+      </property>
+      <row>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </row>
+      <column>
+       <property name="text">
+        <string>Позиция</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Тип прибора</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Номер</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Год выпуска</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Тип входа</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Вход ОТ</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Вход ДО</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Мера входа</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Тип выхода</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Шкала ОТ</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Шкала ДО</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Мера выхода</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>ПВИ тип</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>ПВИ шкала ОТ</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>ПВИ шкала ДО</string>
+       </property>
+      </column>
+      <item row="0" column="0">
+       <property name="text">
+        <string>2 К-733</string>
+       </property>
+      </item>
+      <item row="0" column="1">
+       <property name="text">
+        <string>ИРТ 5920Н</string>
+       </property>
+      </item>
+      <item row="0" column="2">
+       <property name="text">
+        <string>04Н-20882</string>
+       </property>
+      </item>
+      <item row="0" column="3">
+       <property name="text">
+        <string>2009</string>
+       </property>
+      </item>
+      <item row="0" column="4">
+       <property name="text">
+        <string>мА</string>
+       </property>
+      </item>
+      <item row="0" column="5">
+       <property name="text">
+        <string>0</string>
+       </property>
+      </item>
+      <item row="0" column="6">
+       <property name="text">
+        <string>5</string>
+       </property>
+      </item>
+      <item row="0" column="7">
+       <property name="text">
+        <string>мА</string>
+       </property>
+      </item>
+      <item row="0" column="8">
+       <property name="text">
+        <string>0-20</string>
+       </property>
+      </item>
+      <item row="0" column="9">
+       <property name="text">
+        <string>0</string>
+       </property>
+      </item>
+      <item row="0" column="10">
+       <property name="text">
+        <string>10</string>
+       </property>
+      </item>
+      <item row="0" column="11">
+       <property name="text">
+        <string>мА</string>
+       </property>
+      </item>
+      <item row="0" column="12">
+       <property name="text">
+        <string>0-5</string>
+       </property>
+      </item>
+      <item row="0" column="13">
+       <property name="text">
+        <string>0</string>
+       </property>
+      </item>
+      <item row="0" column="14">
+       <property name="text">
+        <string>10</string>
+       </property>
+      </item>
+      <item row="1" column="0">
+       <property name="text">
+        <string>2 ОУ-72</string>
+       </property>
+      </item>
+      <item row="1" column="1">
+       <property name="text">
+        <string>ИРТ 5920Н</string>
+       </property>
+      </item>
+      <item row="1" column="2">
+       <property name="text">
+        <string>04Н-20944</string>
+       </property>
+      </item>
+      <item row="1" column="3">
+       <property name="text">
+        <string>2009</string>
+       </property>
+      </item>
+      <item row="1" column="4">
+       <property name="text">
+        <string>50М</string>
+       </property>
+      </item>
+      <item row="1" column="5">
+       <property name="text">
+        <string>-50</string>
+       </property>
+      </item>
+      <item row="1" column="6">
+       <property name="text">
+        <string>200</string>
+       </property>
+      </item>
+      <item row="1" column="7">
+       <property name="text">
+        <string>˚С</string>
+       </property>
+      </item>
+      <item row="1" column="8">
+       <property name="text">
+        <string>50М</string>
+       </property>
+      </item>
+      <item row="1" column="9">
+       <property name="text">
+        <string>-50</string>
+       </property>
+      </item>
+      <item row="1" column="10">
+       <property name="text">
+        <string>200</string>
+       </property>
+      </item>
+      <item row="1" column="11">
+       <property name="text">
+        <string>˚С</string>
+       </property>
+      </item>
+     </widget>
     </widget>
    </widget>
   </widget>
