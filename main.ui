@@ -1279,6 +1279,9 @@
        <property name="inputMethodHints">
         <set>Qt::ImhNone</set>
        </property>
+       <property name="text">
+        <string/>
+       </property>
        <property name="readOnly">
         <bool>false</bool>
        </property>

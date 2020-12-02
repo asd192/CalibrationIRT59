@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QDoubleValidator
 
 
 class Ui_MainWindow(object):
@@ -208,7 +209,6 @@ class Ui_MainWindow(object):
         font.setPointSize(10)
         self.lineEdit_in_start_value.setFont(font)
         self.lineEdit_in_start_value.setInputMethodHints(QtCore.Qt.ImhNone)
-        self.lineEdit_in_start_value.setMaxLength(6)
         self.lineEdit_in_start_value.setReadOnly(False)
         self.lineEdit_in_start_value.setObjectName("lineEdit_in_start_value")
         self.lineEdit_parametr_position = QtWidgets.QLineEdit(self.groupBox_parametrs)
@@ -431,13 +431,6 @@ class Ui_MainWindow(object):
         font.setFamily("Segoe UI")
         font.setPointSize(10)
         self.lineEdit_out_irt_value_5.setFont(font)
-        self.lineEdit_out_irt_value_5.setInputMask("")
-        self.lineEdit_out_irt_value_5.setText("")
-        self.lineEdit_out_irt_value_5.setMaxLength(32767)
-        self.lineEdit_out_irt_value_5.setFrame(True)
-        self.lineEdit_out_irt_value_5.setCursorPosition(0)
-        self.lineEdit_out_irt_value_5.setPlaceholderText("")
-        self.lineEdit_out_irt_value_5.setCursorMoveStyle(QtCore.Qt.LogicalMoveStyle)
         self.lineEdit_out_irt_value_5.setClearButtonEnabled(False)
         self.lineEdit_out_irt_value_5.setObjectName("lineEdit_out_irt_value_5")
         self.label_out_irt_5 = QtWidgets.QLabel(self.groupBox_out_irt)
