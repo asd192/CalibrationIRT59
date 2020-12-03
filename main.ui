@@ -874,6 +874,11 @@
        </property>
        <item>
         <property name="text">
+         <string/>
+        </property>
+       </item>
+       <item>
+        <property name="text">
          <string>0-5</string>
         </property>
        </item>
@@ -896,7 +901,7 @@
         <rect>
          <x>562</x>
          <y>114</y>
-         <width>100</width>
+         <width>110</width>
          <height>16</height>
         </rect>
        </property>
@@ -909,7 +914,7 @@
         </font>
        </property>
        <property name="text">
-        <string>R=     кОм±5%</string>
+        <string>R= ∞</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -1063,6 +1068,12 @@
          <pointsize>10</pointsize>
         </font>
        </property>
+       <property name="text">
+        <string>24В</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
       <widget class="QLabel" name="label_out_24_value_in">
        <property name="geometry">
@@ -1145,6 +1156,12 @@
          <family>Segoe UI</family>
          <pointsize>10</pointsize>
         </font>
+       </property>
+       <property name="text">
+        <string>24В</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_24_value_820">
@@ -1686,7 +1703,7 @@
       <widget class="QLabel" name="label_calibr_number">
        <property name="geometry">
         <rect>
-         <x>472</x>
+         <x>460</x>
          <y>38</y>
          <width>50</width>
          <height>16</height>
@@ -1712,7 +1729,7 @@
       <widget class="QLineEdit" name="lineEdit_calibr_number">
        <property name="geometry">
         <rect>
-         <x>524</x>
+         <x>512</x>
          <y>33</y>
          <width>240</width>
          <height>25</height>
@@ -2404,6 +2421,11 @@
        </property>
       </item>
      </widget>
+    </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string> Настройки </string>
+     </attribute>
     </widget>
    </widget>
   </widget>

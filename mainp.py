@@ -50,6 +50,21 @@ class window(QtWidgets.QMainWindow):
         # Установка параметров входа
         self.ui.comboBox_in_signal_type.activated.connect(self.parametr_in_signal)
 
+        # R ПВИ
+        self.ui.comboBox_pvi_out.activated.connect(self.parametr_pvi_out_signal)
+
+    def parametr_pvi_out_signal(self):
+        """ Определяет требуемое R ПВИ """
+        r_pvi = {
+            "0-5": "1.8 кОм",
+            "0-20": "470 Ом",
+            "4-20": "470 Ом"
+        }
+
+        r_pvi_key = self.ui.comboBox_pvi_out.currentText()
+        if r_pvi_key in r_pvi.keys():
+            self.ui.label_pvi_out_r.setText(f"R={str(r_pvi[r_pvi_key])}±5%")
+
     def parametr_in_signal(self):
         """ Устанавливает параметры прибора(входные значения) """
         sensor_type = {
@@ -62,12 +77,19 @@ class window(QtWidgets.QMainWindow):
         }
 
         sensor_type_key = self.ui.comboBox_in_signal_type.currentText()
-        if sensor_type_key == "мА":
-            self.ui.lineEdit_in_start_value.setText("")
-            self.ui.lineEdit_in_end_value.setText("")
-        else:
+        if sensor_type_key in sensor_type.keys():
             self.ui.lineEdit_in_start_value.setText(str(sensor_type.get(sensor_type_key)[0]))
             self.ui.lineEdit_in_end_value.setText(str(sensor_type.get(sensor_type_key)[1]))
+
+            self.ui.lineEdit_out_start_value.setText(str(sensor_type.get(sensor_type_key)[0]))
+            self.ui.lineEdit_out_end_value.setText(str(sensor_type.get(sensor_type_key)[1]))
+
+        else:
+            self.ui.lineEdit_in_start_value.setText("")
+            self.ui.lineEdit_in_end_value.setText("")
+
+            self.ui.lineEdit_out_start_value.setText("")
+            self.ui.lineEdit_out_end_value.setText("")
 
     def validat_param(self):
         """ Валидация полей Вход, Выход, Шкала ПВИ параметров прибора """
