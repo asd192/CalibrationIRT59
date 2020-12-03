@@ -156,7 +156,7 @@
         <string>04Н-000000</string>
        </property>
        <property name="text">
-        <string>04Н-22899</string>
+        <string/>
        </property>
       </widget>
       <widget class="QLabel" name="label_in_signal">
@@ -212,6 +212,11 @@
        <property name="duplicatesEnabled">
         <bool>false</bool>
        </property>
+       <item>
+        <property name="text">
+         <string/>
+        </property>
+       </item>
        <item>
         <property name="text">
          <string>ТП-ХК</string>
@@ -289,6 +294,11 @@
          <bold>false</bold>
         </font>
        </property>
+       <item>
+        <property name="text">
+         <string/>
+        </property>
+       </item>
        <item>
         <property name="text">
          <string>2011</string>
@@ -406,6 +416,11 @@
        </property>
        <item>
         <property name="text">
+         <string/>
+        </property>
+       </item>
+       <item>
+        <property name="text">
          <string>ИРТ 5920</string>
         </property>
        </item>
@@ -438,6 +453,11 @@
        <property name="sizeAdjustPolicy">
         <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
        </property>
+       <item>
+        <property name="text">
+         <string/>
+        </property>
+       </item>
        <item>
         <property name="text">
          <string>°С</string>
@@ -581,7 +601,7 @@
         <set>Qt::ImhNone</set>
        </property>
        <property name="text">
-        <string>-50</string>
+        <string/>
        </property>
        <property name="maxLength">
         <number>6</number>
@@ -614,7 +634,7 @@
         <string>04Н-000000</string>
        </property>
        <property name="text">
-        <string>3 ЗК-170</string>
+        <string/>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_in_end_value">
@@ -639,7 +659,7 @@
         <set>Qt::ImhNone</set>
        </property>
        <property name="text">
-        <string>600</string>
+        <string/>
        </property>
        <property name="maxLength">
         <number>6</number>
@@ -670,7 +690,7 @@
         <set>Qt::ImhNone</set>
        </property>
        <property name="text">
-        <string>-50</string>
+        <string/>
        </property>
        <property name="maxLength">
         <number>6</number>
@@ -701,7 +721,7 @@
         <set>Qt::ImhNone</set>
        </property>
        <property name="text">
-        <string>600</string>
+        <string/>
        </property>
        <property name="maxLength">
         <number>6</number>
@@ -889,7 +909,7 @@
         </font>
        </property>
        <property name="text">
-        <string>R=1.8кОм±5%</string>
+        <string>R=     кОм±5%</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -1634,7 +1654,7 @@
         <set>Qt::ImhNone</set>
        </property>
        <property name="text">
-        <string>ИКСУ-2000</string>
+        <string/>
        </property>
       </widget>
       <widget class="QLabel" name="label_calibr_name">
@@ -1708,7 +1728,7 @@
         <enum>Qt::ClickFocus</enum>
        </property>
        <property name="text">
-        <string>00123</string>
+        <string/>
        </property>
       </widget>
      </widget>
