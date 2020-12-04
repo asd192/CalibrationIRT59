@@ -1,13 +1,12 @@
+import sys, configparser
+
 from PyQt5 import QtWidgets, QtCore, QtGui
-from PyQt5.QtGui import QDoubleValidator
-
 from main import Ui_MainWindow
-import sys
 
 
-class window(QtWidgets.QMainWindow):
+class Window(QtWidgets.QMainWindow):
     def __init__(self):
-        super(window, self).__init__()
+        super(Window, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
@@ -52,6 +51,9 @@ class window(QtWidgets.QMainWindow):
 
         # R ПВИ
         self.ui.comboBox_pvi_out.activated.connect(self.parametr_pvi_out_signal)
+
+        # Сохранение настроек
+        self.ui.pushButton_save_custom.clicked.connect(self.save_param)
 
     def parametr_pvi_out_signal(self):
         """ Определяет требуемое R ПВИ """
@@ -164,9 +166,32 @@ class window(QtWidgets.QMainWindow):
             self.ui.lineEdit_out_pvi_in_75.setText(values[0])
             self.ui.lineEdit_out_pvi_in_95.setText(values[0])
 
+    def save_param(self):
+        """ Сохранение параметров """
+        table = self.ui.tableWidget_custom
+        config = configparser.ConfigParser()
+
+        for column in range(0, table.columnCount()):
+            column_name = table.horizontalHeaderItem(column).text()
+            config.add_section(column_name)
+            print(column_name)
+
+            for row in range(0, table.rowCount()):
+                try:
+                    value = table.item(row, column).text()
+                    config.set(column_name, str(row), value)
+                    print(value)
+                except:
+                    pass
+
+        with open("parameters.ini", "w") as config_file:
+            config.write(config_file)
+
+
+
 
 app = QtWidgets.QApplication([])
-application = window()
+application = Window()
 application.setWindowTitle("Создание протокола калибровки ИРТ 59хх")
 application.show()
 

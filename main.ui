@@ -35,7 +35,7 @@
      <enum>QTabWidget::North</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <property name="usesScrollButtons">
      <bool>true</bool>
@@ -2426,6 +2426,90 @@
      <attribute name="title">
       <string> Настройки </string>
      </attribute>
+     <widget class="QTableWidget" name="tableWidget_custom">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>790</width>
+        <height>571</height>
+       </rect>
+      </property>
+      <property name="rowCount">
+       <number>15</number>
+      </property>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>188</number>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>30</number>
+      </attribute>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <column>
+       <property name="text">
+        <string>Средства калибровки</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Выходные величины</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Сдал</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Принял</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </column>
+     </widget>
+     <widget class="QPushButton" name="pushButton_save_custom">
+      <property name="geometry">
+       <rect>
+        <x>690</x>
+        <y>580</y>
+        <width>90</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>DejaVu Sans</family>
+       </font>
+      </property>
+      <property name="text">
+       <string>Сохранить</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
