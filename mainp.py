@@ -1,6 +1,7 @@
-import sys, configparser
+import sys, os, configparser
 
 from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtWidgets import QMessageBox, QTableWidgetItem
 from main import Ui_MainWindow
 
 
@@ -52,8 +53,14 @@ class Window(QtWidgets.QMainWindow):
         # R ПВИ
         self.ui.comboBox_pvi_out.activated.connect(self.parametr_pvi_out_signal)
 
+        # Считывание настроек
+        self.load_param()
+
         # Сохранение настроек
         self.ui.pushButton_save_custom.clicked.connect(self.save_param)
+
+        # О программе
+        self.ui.action_about.triggered.connect(self.about)
 
     def parametr_pvi_out_signal(self):
         """ Определяет требуемое R ПВИ """
@@ -166,28 +173,47 @@ class Window(QtWidgets.QMainWindow):
             self.ui.lineEdit_out_pvi_in_75.setText(values[0])
             self.ui.lineEdit_out_pvi_in_95.setText(values[0])
 
+    def load_param(self):
+        try:
+            config = configparser.ConfigParser()
+            config.read("parameters.ini")
+            table = self.ui.tableWidget_param
+
+            for column in range(0, table.columnCount()):
+                column_name = table.horizontalHeaderItem(column).text()
+                param = config.items(column_name)
+
+                for row in range(0, len(param)):
+                    table.setItem(row, column, QTableWidgetItem(param[row][1]))
+        except:
+            QMessageBox.critical(self, "Ошибка", "Не удалось загрузить параметры из файла <parameters.ini>",
+                                 QMessageBox.Ok)
+
     def save_param(self):
         """ Сохранение параметров """
-        table = self.ui.tableWidget_custom
+        table = self.ui.tableWidget_param
         config = configparser.ConfigParser()
 
         for column in range(0, table.columnCount()):
             column_name = table.horizontalHeaderItem(column).text()
             config.add_section(column_name)
-            print(column_name)
 
             for row in range(0, table.rowCount()):
                 try:
                     value = table.item(row, column).text()
                     config.set(column_name, str(row), value)
-                    print(value)
                 except:
                     pass
 
-        with open("parameters.ini", "w") as config_file:
-            config.write(config_file)
+        try:
+            with open("parameters.ini", "w") as config_file:
+                config.write(config_file)
+            QMessageBox.information(self, "Успешно", "Параметры сохранены", QMessageBox.Ok)
+        except:
+            QMessageBox.critical(self, "Ошибка записи", "Не удалось сохранить параметры", QMessageBox.Ok)
 
-
+    def about(self):
+        QtWidgets.QMessageBox.aboutQt(application, title="О программе")
 
 
 app = QtWidgets.QApplication([])
