@@ -11,6 +11,15 @@ class Window(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        # Считывание настроек
+        self.load_param()
+
+        # Заполнение comboBox-ов
+        self.comboBox_load(0)  # средства калибровки
+        self.comboBox_load(1)  # выходные величины
+        self.comboBox_load(2)  # сдал
+        self.comboBox_load(3)  # принял
+
         # Валидация полей Вход, Выход, Шкала ПВИ параметров прибора
         self.ui.lineEdit_in_start_value.setValidator(self.validat_param())
         self.ui.lineEdit_in_end_value.setValidator(self.validat_param())
@@ -52,9 +61,6 @@ class Window(QtWidgets.QMainWindow):
 
         # R ПВИ
         self.ui.comboBox_pvi_out.activated.connect(self.parametr_pvi_out_signal)
-
-        # Считывание настроек
-        self.load_param()
 
         # Сохранение настроек
         self.ui.pushButton_save_custom.clicked.connect(self.save_param)
@@ -111,6 +117,42 @@ class Window(QtWidgets.QMainWindow):
     def valdat_24(self):
         """ Валидация полей Выход 24В """
         return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,2}(?:[\.,]\d{,3})?$"))
+
+    def comboBox_load(self, col=0):
+        """ Заполнение ComboBox из tableWidget """
+        _translate = QtCore.QCoreApplication.translate
+
+        table = self.ui.tableWidget_param
+        container = ['']
+
+        for row in range(0, table.rowCount()):
+            try:
+                device = table.item(row, col).text()
+                container.append(device)
+            except:
+                pass
+
+        if col == 0:
+            for n, i in enumerate(container):
+                self.ui.comboBox_calibr_name.addItem("")
+                self.ui.comboBox_calibr_name.setItemText(n, _translate("MainWindow", i))
+
+        if col == 1:
+            for n, i in enumerate(container):
+                self.ui.comboBox_out_signal_type.addItem("")
+                self.ui.comboBox_out_signal_type.setItemText(n, _translate("MainWindow", i))
+
+        if col == 2:
+            for n, i in enumerate(container):
+                self.ui.comboBox_passed.addItem("")
+                self.ui.comboBox_passed.setItemText(n, _translate("MainWindow", i))
+
+        if col == 3:
+            for n, i in enumerate(container):
+                self.ui.comboBox_adopted.addItem("")
+                self.ui.comboBox_adopted.setItemText(n, _translate("MainWindow", i))
+
+        container.clear()
 
     def select_pvi(self, pvi_on):
         """ Включение группы ПВИ """
@@ -174,6 +216,7 @@ class Window(QtWidgets.QMainWindow):
             self.ui.lineEdit_out_pvi_in_95.setText(values[0])
 
     def load_param(self):
+        """ загрузка параметров """
         try:
             config = configparser.ConfigParser()
             config.read("parameters.ini")
@@ -208,7 +251,8 @@ class Window(QtWidgets.QMainWindow):
         try:
             with open("parameters.ini", "w") as config_file:
                 config.write(config_file)
-            QMessageBox.information(self, "Успешно", "Параметры сохранены", QMessageBox.Ok)
+            QMessageBox.information(self, "Параметры сохранены",
+                                    "Необходимо перезагрузить программу для обновления парметров.", QMessageBox.Ok)
         except:
             QMessageBox.critical(self, "Ошибка записи", "Не удалось сохранить параметры", QMessageBox.Ok)
 

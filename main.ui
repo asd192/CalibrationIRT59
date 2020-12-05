@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>700</height>
+    <height>655</height>
    </rect>
   </property>
   <property name="font">
@@ -28,7 +28,7 @@
       <x>1</x>
       <y>-1</y>
       <width>798</width>
-      <height>650</height>
+      <height>601</height>
      </rect>
     </property>
     <property name="tabPosition">
@@ -44,32 +44,11 @@
      <attribute name="title">
       <string>Протокол</string>
      </attribute>
-     <widget class="QPushButton" name="pushButton_empty_ma">
-      <property name="geometry">
-       <rect>
-        <x>11</x>
-        <y>10</y>
-        <width>250</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>DejaVu Sans</family>
-       </font>
-      </property>
-      <property name="toolTip">
-       <string>Сохранить данные в эту позицию</string>
-      </property>
-      <property name="text">
-       <string>Чистый мА</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="pushButton_create">
       <property name="geometry">
        <rect>
         <x>682</x>
-        <y>570</y>
+        <y>528</y>
         <width>90</width>
         <height>30</height>
        </rect>
@@ -90,7 +69,7 @@
       <property name="geometry">
        <rect>
         <x>11</x>
-        <y>123</y>
+        <y>81</y>
         <width>770</width>
         <height>145</height>
        </rect>
@@ -453,41 +432,6 @@
        <property name="sizeAdjustPolicy">
         <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
        </property>
-       <item>
-        <property name="text">
-         <string/>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>°С</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>мА</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>кгс/см²</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>см</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>мм</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>т/ч</string>
-        </property>
-       </item>
       </widget>
       <widget class="QLabel" name="label_parametr_type">
        <property name="geometry">
@@ -925,7 +869,7 @@
       <property name="geometry">
        <rect>
         <x>530</x>
-        <y>540</y>
+        <y>488</y>
         <width>131</width>
         <height>16</height>
        </rect>
@@ -952,7 +896,7 @@
       <property name="geometry">
        <rect>
         <x>582</x>
-        <y>570</y>
+        <y>528</y>
         <width>90</width>
         <height>30</height>
        </rect>
@@ -973,7 +917,7 @@
       <property name="geometry">
        <rect>
         <x>14</x>
-        <y>570</y>
+        <y>528</y>
         <width>90</width>
         <height>30</height>
        </rect>
@@ -994,7 +938,7 @@
       <property name="geometry">
        <rect>
         <x>296</x>
-        <y>280</y>
+        <y>238</y>
         <width>200</width>
         <height>130</height>
        </rect>
@@ -1005,9 +949,9 @@
       <widget class="QLabel" name="label_24_820">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>3</x>
          <y>90</y>
-         <width>55</width>
+         <width>65</width>
          <height>29</height>
         </rect>
        </property>
@@ -1020,7 +964,7 @@
         </font>
        </property>
        <property name="text">
-        <string>R=820</string>
+        <string>R=820Ом</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1118,9 +1062,9 @@
       <widget class="QLabel" name="label_24_0">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>3</x>
          <y>55</y>
-         <width>55</width>
+         <width>65</width>
          <height>29</height>
         </rect>
        </property>
@@ -1133,7 +1077,7 @@
         </font>
        </property>
        <property name="text">
-        <string>R=0</string>
+        <string>R=0Ом</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1185,7 +1129,7 @@
       <property name="geometry">
        <rect>
         <x>11</x>
-        <y>280</y>
+        <y>238</y>
         <width>250</width>
         <height>240</height>
        </rect>
@@ -1586,7 +1530,7 @@
       <property name="geometry">
        <rect>
         <x>662</x>
-        <y>535</y>
+        <y>483</y>
         <width>110</width>
         <height>25</height>
        </rect>
@@ -1629,7 +1573,7 @@
       <property name="geometry">
        <rect>
         <x>11</x>
-        <y>50</y>
+        <y>8</y>
         <width>770</width>
         <height>68</height>
        </rect>
@@ -1646,40 +1590,12 @@
       <property name="title">
        <string>Средство калибровки</string>
       </property>
-      <widget class="QLineEdit" name="lineEdit_calibr_name">
-       <property name="geometry">
-        <rect>
-         <x>131</x>
-         <y>33</y>
-         <width>240</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Segoe UI</family>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::ClickFocus</enum>
-       </property>
-       <property name="toolTip">
-        <string>Например, ИКСУ-2000</string>
-       </property>
-       <property name="inputMethodHints">
-        <set>Qt::ImhNone</set>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_calibr_name">
        <property name="geometry">
         <rect>
-         <x>19</x>
+         <x>68</x>
          <y>38</y>
-         <width>110</width>
+         <width>160</width>
          <height>16</height>
         </rect>
        </property>
@@ -1694,87 +1610,28 @@
         </font>
        </property>
        <property name="text">
-        <string>Наименование:</string>
+        <string>Наименование, номер:</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="label_calibr_number">
+      <widget class="QComboBox" name="comboBox_calibr_name">
        <property name="geometry">
         <rect>
-         <x>460</x>
-         <y>38</y>
-         <width>50</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>DejaVu Sans</family>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <italic>false</italic>
-         <bold>false</bold>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>Номер:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_calibr_number">
-       <property name="geometry">
-        <rect>
-         <x>512</x>
+         <x>230</x>
          <y>33</y>
-         <width>240</width>
+         <width>451</width>
          <height>25</height>
         </rect>
        </property>
-       <property name="font">
-        <font>
-         <family>Segoe UI</family>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::ClickFocus</enum>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
       </widget>
-     </widget>
-     <widget class="QPushButton" name="pushButton_empty_tsm">
-      <property name="geometry">
-       <rect>
-        <x>529</x>
-        <y>10</y>
-        <width>250</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>DejaVu Sans</family>
-       </font>
-      </property>
-      <property name="toolTip">
-       <string>Сохранить данные в эту позицию</string>
-      </property>
-      <property name="text">
-       <string>Чистый ТСМ</string>
-      </property>
      </widget>
      <widget class="QGroupBox" name="groupBox_out_pvi">
       <property name="geometry">
        <rect>
         <x>532</x>
-        <y>280</y>
+        <y>238</y>
         <width>250</width>
         <height>240</height>
        </rect>
@@ -2165,25 +2022,78 @@
        </property>
       </widget>
      </widget>
-     <widget class="QPushButton" name="pushButton_empty_tp">
+     <widget class="QComboBox" name="comboBox_adopted">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>10</y>
-        <width>250</width>
-        <height>30</height>
+        <x>335</x>
+        <y>484</y>
+        <width>170</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_adopted">
+      <property name="geometry">
+       <rect>
+        <x>273</x>
+        <y>488</y>
+        <width>60</width>
+        <height>16</height>
        </rect>
       </property>
       <property name="font">
        <font>
         <family>DejaVu Sans</family>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
-      <property name="toolTip">
-       <string>Сохранить данные в эту позицию</string>
+      <property name="text">
+       <string>Принял:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="buddy">
+       <cstring>dateEdit_date_calibration</cstring>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_passed">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>488</y>
+        <width>60</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>DejaVu Sans</family>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
       </property>
       <property name="text">
-       <string>Чистый ТП</string>
+       <string>Сдал:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="buddy">
+       <cstring>dateEdit_date_calibration</cstring>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_passed">
+      <property name="geometry">
+       <rect>
+        <x>67</x>
+        <y>484</y>
+        <width>170</width>
+        <height>25</height>
+       </rect>
       </property>
      </widget>
     </widget>
@@ -2197,7 +2107,7 @@
         <x>0</x>
         <y>0</y>
         <width>790</width>
-        <height>571</height>
+        <height>570</height>
        </rect>
       </property>
       <property name="rowCount">
@@ -2260,8 +2170,8 @@
      <widget class="QPushButton" name="pushButton_save_custom">
       <property name="geometry">
        <rect>
-        <x>690</x>
-        <y>577</y>
+        <x>695</x>
+        <y>526</y>
         <width>90</width>
         <height>30</height>
        </rect>
@@ -2291,15 +2201,25 @@
     <property name="geometry">
      <rect>
       <x>273</x>
-      <y>146</y>
-      <width>191</width>
+      <y>148</y>
+      <width>198</width>
       <height>135</height>
      </rect>
     </property>
     <property name="title">
      <string>Файл</string>
     </property>
-    <addaction name="action_create"/>
+    <widget class="QMenu" name="menu_2">
+     <property name="title">
+      <string>Создать</string>
+     </property>
+     <addaction name="action_empty"/>
+     <addaction name="separator"/>
+     <addaction name="action_empty_ma"/>
+     <addaction name="action_empty_tp"/>
+     <addaction name="action_empty_tsm"/>
+    </widget>
+    <addaction name="menu_2"/>
     <addaction name="action_open"/>
     <addaction name="separator"/>
     <addaction name="action_exit"/>
@@ -2342,16 +2262,6 @@
     </font>
    </property>
   </action>
-  <action name="action_create">
-   <property name="text">
-    <string>Создать</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>DejaVu Sans</family>
-    </font>
-   </property>
-  </action>
   <action name="action_about">
    <property name="text">
     <string>О программе</string>
@@ -2360,6 +2270,26 @@
   <action name="action_error">
    <property name="text">
     <string>Сообщить о ошибке</string>
+   </property>
+  </action>
+  <action name="action_empty_ma">
+   <property name="text">
+    <string>Чистый мА</string>
+   </property>
+  </action>
+  <action name="action_empty_tp">
+   <property name="text">
+    <string>Чистый ТП</string>
+   </property>
+  </action>
+  <action name="action_empty_tsm">
+   <property name="text">
+    <string>Чистый ТСМ</string>
+   </property>
+  </action>
+  <action name="action_empty">
+   <property name="text">
+    <string>Новый</string>
    </property>
   </action>
  </widget>
