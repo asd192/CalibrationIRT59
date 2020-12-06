@@ -11,7 +11,7 @@ class Window(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        # Считывание настроек
+        # Загрузка настроек
         self.load_param()
 
         # Заполнение comboBox-ов
@@ -49,7 +49,8 @@ class Window(QtWidgets.QMainWindow):
         # Чекбокс ПВИ
         self.ui.checkBox_pvi.stateChanged.connect(lambda check=self.ui.checkBox_pvi.isChecked(): self.select_pvi(check))
 
-        # Установка входных значений выходов
+        # TODO рассчет погрешностей
+        # Установка входных значений выходов и рассчет допустимых погрешностей
         self.ui.lineEdit_in_start_value.textChanged.connect(self.out_irt_in)
         self.ui.lineEdit_in_end_value.textChanged.connect(self.out_irt_in)
 
@@ -311,7 +312,6 @@ class Window(QtWidgets.QMainWindow):
         print(self.ui.dateEdit_date_calibration.dateTime().toString('dd-MM-yyyy'))
         config.set("Сдал/Принял/Дата", "Дата калибровки(ГГГГ.ММ.ДД)", self.ui.dateEdit_date_calibration.dateTime().toString('yyyy.MM.dd'))
 
-
         try:
             if not os.path.isdir(file_path):
                 os.mkdir(file_path)
@@ -322,7 +322,6 @@ class Window(QtWidgets.QMainWindow):
             QMessageBox.information(self, "Сохранено", f"Конфигурация {file_name} успешно сохранена", QMessageBox.Ok)
 
         except Exception as exeption:
-            print(exeption)
             QMessageBox.critical(self, "Ошибка записи",
                                  f"Не удалось сохранить параметры. Ошибка - {type(exeption).__name__}", QMessageBox.Ok)
 

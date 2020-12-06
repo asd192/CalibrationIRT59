@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>655</height>
+    <height>670</height>
    </rect>
   </property>
   <property name="font">
@@ -28,7 +28,7 @@
       <x>1</x>
       <y>-1</y>
       <width>798</width>
-      <height>601</height>
+      <height>620</height>
      </rect>
     </property>
     <property name="tabPosition">
@@ -48,7 +48,7 @@
       <property name="geometry">
        <rect>
         <x>682</x>
-        <y>528</y>
+        <y>545</y>
         <width>90</width>
         <height>30</height>
        </rect>
@@ -869,7 +869,7 @@
       <property name="geometry">
        <rect>
         <x>530</x>
-        <y>488</y>
+        <y>508</y>
         <width>131</width>
         <height>16</height>
        </rect>
@@ -896,7 +896,7 @@
       <property name="geometry">
        <rect>
         <x>582</x>
-        <y>528</y>
+        <y>545</y>
         <width>90</width>
         <height>30</height>
        </rect>
@@ -916,8 +916,8 @@
      <widget class="QPushButton" name="pushButton_save_config">
       <property name="geometry">
        <rect>
-        <x>14</x>
-        <y>528</y>
+        <x>20</x>
+        <y>545</y>
         <width>90</width>
         <height>30</height>
        </rect>
@@ -940,7 +940,7 @@
         <x>296</x>
         <y>238</y>
         <width>200</width>
-        <height>130</height>
+        <height>150</height>
        </rect>
       </property>
       <property name="title">
@@ -959,8 +959,8 @@
         <font>
          <family>DejaVu Sans Mono</family>
          <pointsize>10</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
+         <weight>50</weight>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -996,7 +996,7 @@
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_24_in_820">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -1013,10 +1013,13 @@
         </font>
        </property>
        <property name="text">
-        <string>24В</string>
+        <string>24</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QLabel" name="label_out_24_value_in">
@@ -1072,8 +1075,8 @@
         <font>
          <family>DejaVu Sans Mono</family>
          <pointsize>10</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
+         <weight>50</weight>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -1085,7 +1088,7 @@
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_24_in_0">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -1102,10 +1105,13 @@
         </font>
        </property>
        <property name="text">
-        <string>24В</string>
+        <string>24</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_24_value_820">
@@ -1124,6 +1130,33 @@
         </font>
        </property>
       </widget>
+      <widget class="QLabel" name="label_passed_3">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>126</y>
+         <width>195</width>
+         <height>15</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DejaVu Sans</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Допуск ±0,48 В</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="buddy">
+        <cstring>dateEdit_date_calibration</cstring>
+       </property>
+      </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_out_irt">
       <property name="geometry">
@@ -1131,7 +1164,7 @@
         <x>11</x>
         <y>238</y>
         <width>250</width>
-        <height>240</height>
+        <height>250</height>
        </rect>
       </property>
       <property name="title">
@@ -1222,7 +1255,7 @@
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_irt_in_50">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -1238,10 +1271,13 @@
          <pointsize>10</pointsize>
         </font>
        </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_irt_in_5">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -1264,7 +1300,7 @@
         <string/>
        </property>
        <property name="readOnly">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_irt_value_50">
@@ -1427,7 +1463,7 @@
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_irt_in_25">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -1442,6 +1478,9 @@
          <family>Segoe UI</family>
          <pointsize>10</pointsize>
         </font>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_irt_value_75">
@@ -1462,7 +1501,7 @@
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_irt_in_75">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -1478,10 +1517,13 @@
          <pointsize>10</pointsize>
         </font>
        </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_irt_in_95">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -1496,6 +1538,9 @@
          <family>Segoe UI</family>
          <pointsize>10</pointsize>
         </font>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QLabel" name="label_out_irt_75">
@@ -1522,6 +1567,33 @@
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
+      <widget class="QLabel" name="label_passed_2">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>230</y>
+         <width>245</width>
+         <height>15</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DejaVu Sans</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Допуск ±0,48 В</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="buddy">
+        <cstring>dateEdit_date_calibration</cstring>
+       </property>
+      </widget>
      </widget>
      <widget class="QDateEdit" name="dateEdit_date_calibration">
       <property name="enabled">
@@ -1530,7 +1602,7 @@
       <property name="geometry">
        <rect>
         <x>662</x>
-        <y>483</y>
+        <y>503</y>
         <width>110</width>
         <height>25</height>
        </rect>
@@ -1633,7 +1705,7 @@
         <x>532</x>
         <y>238</y>
         <width>250</width>
-        <height>240</height>
+        <height>250</height>
        </rect>
       </property>
       <property name="title">
@@ -1724,7 +1796,7 @@
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_pvi_in_50">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -1740,10 +1812,13 @@
          <pointsize>10</pointsize>
         </font>
        </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_pvi_in_5">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -1763,7 +1838,7 @@
         <set>Qt::ImhNone</set>
        </property>
        <property name="readOnly">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_pvi_value_50">
@@ -1926,7 +2001,7 @@
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_pvi_in_25">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -1941,6 +2016,9 @@
          <family>Segoe UI</family>
          <pointsize>10</pointsize>
         </font>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_pvi_value_75">
@@ -1961,7 +2039,7 @@
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_pvi_in_75">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -1977,10 +2055,13 @@
          <pointsize>10</pointsize>
         </font>
        </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_pvi_in_95">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -1995,6 +2076,9 @@
          <family>Segoe UI</family>
          <pointsize>10</pointsize>
         </font>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QLabel" name="label_out_pvi_75">
@@ -2021,12 +2105,39 @@
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
+      <widget class="QLabel" name="label_passed_4">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>230</y>
+         <width>245</width>
+         <height>15</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DejaVu Sans</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Допуск ±0,48 В</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="buddy">
+        <cstring>dateEdit_date_calibration</cstring>
+       </property>
+      </widget>
      </widget>
      <widget class="QComboBox" name="comboBox_adopted">
       <property name="geometry">
        <rect>
         <x>335</x>
-        <y>484</y>
+        <y>504</y>
         <width>170</width>
         <height>25</height>
        </rect>
@@ -2036,7 +2147,7 @@
       <property name="geometry">
        <rect>
         <x>273</x>
-        <y>488</y>
+        <y>508</y>
         <width>60</width>
         <height>16</height>
        </rect>
@@ -2063,7 +2174,7 @@
       <property name="geometry">
        <rect>
         <x>5</x>
-        <y>488</y>
+        <y>508</y>
         <width>60</width>
         <height>16</height>
        </rect>
@@ -2090,7 +2201,7 @@
       <property name="geometry">
        <rect>
         <x>67</x>
-        <y>484</y>
+        <y>504</y>
         <width>170</width>
         <height>25</height>
        </rect>
