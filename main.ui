@@ -913,7 +913,7 @@
        <string>Проверить</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_save">
+     <widget class="QPushButton" name="pushButton_save_config">
       <property name="geometry">
        <rect>
         <x>14</x>
@@ -2202,8 +2202,8 @@
      <rect>
       <x>273</x>
       <y>148</y>
-      <width>198</width>
-      <height>135</height>
+      <width>223</width>
+      <height>160</height>
      </rect>
     </property>
     <property name="title">
@@ -2221,6 +2221,7 @@
     </widget>
     <addaction name="menu_2"/>
     <addaction name="action_open"/>
+    <addaction name="action_save_config"/>
     <addaction name="separator"/>
     <addaction name="action_exit"/>
    </widget>
@@ -2239,7 +2240,7 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action_open">
    <property name="text">
-    <string>Открыть</string>
+    <string>Открыть конфигурацию</string>
    </property>
    <property name="font">
     <font>
@@ -2290,6 +2291,11 @@
   <action name="action_empty">
    <property name="text">
     <string>Новый</string>
+   </property>
+  </action>
+  <action name="action_save_config">
+   <property name="text">
+    <string>Сохранить конфигурацию</string>
    </property>
   </action>
  </widget>

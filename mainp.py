@@ -65,6 +65,10 @@ class Window(QtWidgets.QMainWindow):
         # Сохранение настроек
         self.ui.pushButton_save_custom.clicked.connect(self.save_param)
 
+        # Сохранение файла конфигурации прибора
+        self.ui.pushButton_save_config.clicked.connect(self.save_config_file)
+        self.ui.action_save_config.triggered.connect(self.save_config_file)
+
         # О программе
         self.ui.action_about.triggered.connect(self.about)
 
@@ -228,8 +232,9 @@ class Window(QtWidgets.QMainWindow):
 
                 for row in range(0, len(param)):
                     table.setItem(row, column, QTableWidgetItem(param[row][1]))
-        except:
-            QMessageBox.critical(self, "Ошибка", "Не удалось загрузить параметры из файла <parameters.ini>",
+        except Exception as exeption:
+            QMessageBox.critical(self, "Ошибка",
+                                 f"Не удалось загрузить параметры из файла <parameters.ini>. Ошибка - {type(exeption).__name__}",
                                  QMessageBox.Ok)
 
     def save_param(self):
@@ -252,13 +257,33 @@ class Window(QtWidgets.QMainWindow):
             with open("parameters.ini", "w") as config_file:
                 config.write(config_file)
             QMessageBox.information(self, "Параметры сохранены",
-                                    "Необходимо перезагрузить программу для обновления парметров.", QMessageBox.Ok)
-        except:
-            QMessageBox.critical(self, "Ошибка записи", "Не удалось сохранить параметры", QMessageBox.Ok)
+                                    "Необходимо перезагрузить программу для обновления параметров.", QMessageBox.Ok)
+        except Exception as exeption:
+            QMessageBox.critical(self, "Ошибка записи",
+                                  f"Не удалось сохранить параметры. Ошибка - {type(exeption).__name__}", QMessageBox.Ok)
+
+    def save_config_file(self):
+        file_path = "configurations"
+        file_name = self.ui.lineEdit_parametr_position.text()
+
+        config = configparser.ConfigParser()
+        config.add_section("Средство калибровки")
+        config.set("Средство калибровки", "Калибратор", self.ui.comboBox_calibr_name.currentText())
+
+        try:
+            if not os.path.isdir(file_path):
+                os.mkdir(file_path)
+
+            with open(f"{file_path}/{file_name}.cl59", "w") as config_file:
+                config.write(config_file)
+
+            QMessageBox.information(self, "Сохранено", f"Конфигурация {file_name} успешно сохранена", QMessageBox.Ok)
+        except Exception as exeption:
+            QMessageBox.critical(self, "Ошибка записи",
+                                 f"Не удалось сохранить параметры. Ошибка - {type(exeption).__name__}", QMessageBox.Ok)
 
     def about(self):
         QtWidgets.QMessageBox.aboutQt(application, title="О программе")
-
 
 app = QtWidgets.QApplication([])
 application = Window()
