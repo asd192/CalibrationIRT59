@@ -254,7 +254,7 @@ class Window(QtWidgets.QMainWindow):
                     pass
 
         try:
-            with open("parameters.ini", "w") as config_file:
+            with open("parameters.ini", "w", "utf8") as config_file:
                 config.write(config_file)
             QMessageBox.information(self, "Параметры сохранены",
                                     "Необходимо перезагрузить программу для обновления параметров.", QMessageBox.Ok)
@@ -263,6 +263,7 @@ class Window(QtWidgets.QMainWindow):
                                   f"Не удалось сохранить параметры. Ошибка - {type(exeption).__name__}", QMessageBox.Ok)
 
     def save_config_file(self):
+        """ Сохраняет файл конфигурации прибора """
         file_path = "configurations"
         file_name = self.ui.lineEdit_parametr_position.text()
 
@@ -270,15 +271,58 @@ class Window(QtWidgets.QMainWindow):
         config.add_section("Средство калибровки")
         config.set("Средство калибровки", "Калибратор", self.ui.comboBox_calibr_name.currentText())
 
+        config.add_section("Параметры прибора")
+        config.set("Параметры прибора", "Тип", self.ui.comboBox_parametr_type.currentText())
+        config.set("Параметры прибора", "Номер", self.ui.lineEdit_parametr_number.text())
+        config.set("Параметры прибора", "Год выпуска", self.ui.comboBox_parametr_year.currentText())
+        config.set("Параметры прибора", "Позиция", self.ui.lineEdit_parametr_position.text())
+        config.set("Параметры прибора", "Тип входа", self.ui.comboBox_in_signal_type.currentText())
+        config.set("Параметры прибора", "Вход начало шкалы", self.ui.lineEdit_in_start_value.text())
+        config.set("Параметры прибора", "Вход конец шкалы", self.ui.lineEdit_in_end_value.text())
+        config.set("Параметры прибора", "Тип выхода", self.ui.comboBox_in_signal_type.currentText())
+        config.set("Параметры прибора", "Выход начало шкалы", self.ui.lineEdit_out_start_value.text())
+        config.set("Параметры прибора", "Выход конец шкалы", self.ui.lineEdit_out_end_value.text())
+        config.set("Параметры прибора", "Наличие ПВИ", str(self.ui.checkBox_pvi.isChecked()))
+        config.set("Параметры прибора", "ПВИ начало шкалы", self.ui.lineEdit_pvi_scale_start.text())
+        config.set("Параметры прибора", "ПВИ конец шкалы", self.ui.lineEdit_pvi_scale_end.text())
+        config.set("Параметры прибора", "ПВИ тип выхода", self.ui.comboBox_pvi_out.currentText())
+
+        config.add_section("Выход ИРТ")
+        config.set("Выход ИРТ", "Выход 5", self.ui.lineEdit_out_irt_value_5.text())
+        config.set("Выход ИРТ", "Выход 25", self.ui.lineEdit_out_irt_value_25.text())
+        config.set("Выход ИРТ", "Выход 50", self.ui.lineEdit_out_irt_value_50.text())
+        config.set("Выход ИРТ", "Выход 75", self.ui.lineEdit_out_irt_value_75.text())
+        config.set("Выход ИРТ", "Выход 95", self.ui.lineEdit_out_irt_value_95.text())
+
+        config.add_section("Выход 24В")
+        config.set("Выход 24В", "Выход R0", self.ui.lineEdit_out_24_value_0.text())
+        config.set("Выход 24В", "Выход R820", self.ui.lineEdit_out_24_value_820.text())
+
+        config.add_section("Выход ПВИ")
+        config.set("Выход ПВИ", "Выход ПВИ 5", self.ui.lineEdit_out_pvi_value_5.text())
+        config.set("Выход ПВИ", "Выход ПВИ 25", self.ui.lineEdit_out_pvi_value_25.text())
+        config.set("Выход ПВИ", "Выход ПВИ 50", self.ui.lineEdit_out_pvi_value_50.text())
+        config.set("Выход ПВИ", "Выход ПВИ 75", self.ui.lineEdit_out_pvi_value_75.text())
+        config.set("Выход ПВИ", "Выход ПВИ 95", self.ui.lineEdit_out_pvi_value_95.text())
+
+        config.add_section("Сдал/Принял/Дата")
+        config.set("Сдал/Принял/Дата", "Сдал", self.ui.comboBox_passed.currentText())
+        config.set("Сдал/Принял/Дата", "Принял", self.ui.comboBox_adopted.currentText())
+        print(self.ui.dateEdit_date_calibration.dateTime().toString('dd-MM-yyyy'))
+        config.set("Сдал/Принял/Дата", "Дата калибровки(ГГГГ.ММ.ДД)", self.ui.dateEdit_date_calibration.dateTime().toString('yyyy.MM.dd'))
+
+
         try:
             if not os.path.isdir(file_path):
                 os.mkdir(file_path)
 
-            with open(f"{file_path}/{file_name}.cl59", "w") as config_file:
+            with open(f"{file_path}/{file_name}.clbr59", "w") as config_file:
                 config.write(config_file)
 
             QMessageBox.information(self, "Сохранено", f"Конфигурация {file_name} успешно сохранена", QMessageBox.Ok)
+
         except Exception as exeption:
+            print(exeption)
             QMessageBox.critical(self, "Ошибка записи",
                                  f"Не удалось сохранить параметры. Ошибка - {type(exeption).__name__}", QMessageBox.Ok)
 
