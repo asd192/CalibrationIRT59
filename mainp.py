@@ -1,8 +1,8 @@
 import sys, os, configparser
 
-from PyQt5 import QtWidgets, QtCore, QtGui
-from PyQt5.QtWidgets import QMessageBox, QTableWidgetItem
 from main import Ui_MainWindow
+from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtWidgets import QTableWidgetItem
 
 
 class Window(QtWidgets.QMainWindow):
@@ -11,7 +11,7 @@ class Window(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        # Загрузка настроек
+        # Загрузка параметров
         self.load_param()
 
         # Заполнение comboBox-ов
@@ -20,7 +20,7 @@ class Window(QtWidgets.QMainWindow):
         self.comboBox_load(2)  # сдал
         self.comboBox_load(3)  # принял
 
-        # Валидация полей Вход, Выход, Шкала ПВИ параметров прибора
+    # Валидация полей Вход, Выход, Шкала ПВИ параметров прибора
         self.ui.lineEdit_in_start_value.setValidator(self.validat_param())
         self.ui.lineEdit_in_end_value.setValidator(self.validat_param())
         self.ui.lineEdit_out_start_value.setValidator(self.validat_param())
@@ -41,6 +41,9 @@ class Window(QtWidgets.QMainWindow):
         self.ui.lineEdit_out_pvi_value_50.setValidator(self.validat_in_out())
         self.ui.lineEdit_out_pvi_value_75.setValidator(self.validat_in_out())
         self.ui.lineEdit_out_pvi_value_95.setValidator(self.validat_in_out())
+
+        # Дата сегодня
+        self.ui.dateEdit_date_calibration.setDate(QtCore.QDate.currentDate())
 
         # Валидация полей Выход 24В
         self.ui.lineEdit_out_24_value_0.setValidator(self.valdat_24())
@@ -70,8 +73,14 @@ class Window(QtWidgets.QMainWindow):
         self.ui.pushButton_save_config.clicked.connect(self.save_config_file)
         self.ui.action_save_config.triggered.connect(self.save_config_file)
 
+        # Загрузка файла конфигурации прибора
+        self.ui.action_load_config.triggered.connect(self.load_config_file)
+
         # О программе
         self.ui.action_about.triggered.connect(self.about)
+
+        # Выход из программы
+        self.ui.action_exit.triggered.connect(self.exit)
 
     def parametr_pvi_out_signal(self):
         """ Определяет требуемое R ПВИ """
@@ -234,9 +243,9 @@ class Window(QtWidgets.QMainWindow):
                 for row in range(0, len(param)):
                     table.setItem(row, column, QTableWidgetItem(param[row][1]))
         except Exception as exeption:
-            QMessageBox.critical(self, "Ошибка",
-                                 f"Не удалось загрузить параметры из файла <parameters.ini>. Ошибка - {type(exeption).__name__}",
-                                 QMessageBox.Ok)
+            QtWidgets.QMessageBox.critical(self, "Ошибка",
+                                           f"Не удалось загрузить параметры из файла <parameters.ini>. Ошибка - {type(exeption).__name__}",
+                                           QtWidgets.QMessageBox.Ok)
 
     def save_param(self):
         """ Сохранение параметров """
@@ -257,11 +266,13 @@ class Window(QtWidgets.QMainWindow):
         try:
             with open("parameters.ini", "w", "utf8") as config_file:
                 config.write(config_file)
-            QMessageBox.information(self, "Параметры сохранены",
-                                    "Необходимо перезагрузить программу для обновления параметров.", QMessageBox.Ok)
+            QtWidgets.QMessageBox.information(self, "Параметры сохранены",
+                                              "Необходимо перезагрузить программу для обновления параметров.",
+                                              QtWidgets.QMessageBox.Ok)
         except Exception as exeption:
-            QMessageBox.critical(self, "Ошибка записи",
-                                  f"Не удалось сохранить параметры. Ошибка - {type(exeption).__name__}", QMessageBox.Ok)
+            QtWidgets.QMessageBox.critical(self, "Ошибка записи",
+                                           f"Не удалось сохранить параметры. Ошибка - {type(exeption).__name__}",
+                                           QtWidgets.QMessageBox.Ok)
 
     def save_config_file(self):
         """ Сохраняет файл конфигурации прибора """
@@ -280,7 +291,7 @@ class Window(QtWidgets.QMainWindow):
         config.set("Параметры прибора", "Тип входа", self.ui.comboBox_in_signal_type.currentText())
         config.set("Параметры прибора", "Вход начало шкалы", self.ui.lineEdit_in_start_value.text())
         config.set("Параметры прибора", "Вход конец шкалы", self.ui.lineEdit_in_end_value.text())
-        config.set("Параметры прибора", "Тип выхода", self.ui.comboBox_in_signal_type.currentText())
+        config.set("Параметры прибора", "Тип выхода", self.ui.comboBox_out_signal_type.currentText())
         config.set("Параметры прибора", "Выход начало шкалы", self.ui.lineEdit_out_start_value.text())
         config.set("Параметры прибора", "Выход конец шкалы", self.ui.lineEdit_out_end_value.text())
         config.set("Параметры прибора", "Наличие ПВИ", str(self.ui.checkBox_pvi.isChecked()))
@@ -309,8 +320,8 @@ class Window(QtWidgets.QMainWindow):
         config.add_section("Сдал/Принял/Дата")
         config.set("Сдал/Принял/Дата", "Сдал", self.ui.comboBox_passed.currentText())
         config.set("Сдал/Принял/Дата", "Принял", self.ui.comboBox_adopted.currentText())
-        print(self.ui.dateEdit_date_calibration.dateTime().toString('dd-MM-yyyy'))
-        config.set("Сдал/Принял/Дата", "Дата калибровки(ГГГГ.ММ.ДД)", self.ui.dateEdit_date_calibration.dateTime().toString('yyyy.MM.dd'))
+        config.set("Сдал/Принял/Дата", "Дата калибровки(ДД.ММ.ГГ)",
+                   self.ui.dateEdit_date_calibration.dateTime().toString('dd.MM.yyyy'))
 
         try:
             if not os.path.isdir(file_path):
@@ -319,18 +330,90 @@ class Window(QtWidgets.QMainWindow):
             with open(f"{file_path}/{file_name}.clbr59", "w") as config_file:
                 config.write(config_file)
 
-            QMessageBox.information(self, "Сохранено", f"Конфигурация {file_name} успешно сохранена", QMessageBox.Ok)
+            QtWidgets.QMessageBox.information(self, "Сохранено",
+                                              f"Конфигурация {file_name} успешно сохранена", QtWidgets.QMessageBox.Ok)
 
         except Exception as exeption:
-            QMessageBox.critical(self, "Ошибка записи",
-                                 f"Не удалось сохранить параметры. Ошибка - {type(exeption).__name__}", QMessageBox.Ok)
+            QtWidgets.QMessageBox.critical(self, "Ошибка записи",
+                                           f"Не удалось сохранить параметры. Ошибка - {type(exeption).__name__}",
+                                           QtWidgets.QMessageBox.Ok)
+
+    def load_config_file(self):
+        """ Загружает пользовательский файл конфигурации """
+        path = os.path.abspath(os.curdir)
+        file = QtWidgets.QFileDialog.getOpenFileName(parent=application,
+                                                     caption="Загрузить файл",
+                                                     directory=path,
+                                                     filter="All (*);;clbr59 (*.clbr59)",
+                                                     initialFilter="clbr59 (*.clbr59)",)
+
+        config = configparser.ConfigParser()
+        config.read(file[0])
+
+        _translate = QtCore.QCoreApplication.translate
+
+        self.ui.comboBox_calibr_name.setItemText(0, _translate("MainWindow", config.get("Средство калибровки", "калибратор")))
+
+        self.ui.comboBox_parametr_type.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "тип")))
+        self.ui.lineEdit_parametr_number.setText(config.get("Параметры прибора", "номер"))
+        self.ui.comboBox_parametr_year.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "год выпуска")))
+        self.ui.lineEdit_parametr_position.setText(config.get("Параметры прибора", "позиция"))
+        self.ui.comboBox_in_signal_type.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "тип входа")))
+        self.ui.lineEdit_in_start_value.setText(config.get("Параметры прибора", "вход начало шкалы"))
+        self.ui.lineEdit_in_end_value.setText(config.get("Параметры прибора", "вход конец шкалы"))
+        self.ui.comboBox_out_signal_type.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "тип выхода")))
+        self.ui.lineEdit_out_start_value.setText(config.get("Параметры прибора", "выход начало шкалы"))
+        self.ui.lineEdit_out_end_value.setText(config.get("Параметры прибора", "выход конец шкалы"))
+        if config.get("Параметры прибора", "наличие пви") == 'True':
+            self.ui.checkBox_pvi.setChecked(True)
+        else:
+            self.ui.checkBox_pvi.setChecked(False)
+        self.ui.lineEdit_pvi_scale_start.setText(config.get("Параметры прибора", "пви начало шкалы"))
+        self.ui.lineEdit_pvi_scale_end.setText(config.get("Параметры прибора", "пви конец шкалы"))
+        self.ui.comboBox_pvi_out.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "пви тип выхода")))
+
+        self.ui.lineEdit_out_irt_value_5.setText(config.get("Выход ИРТ", "выход 5"))
+        self.ui.lineEdit_out_irt_value_25.setText(config.get("Выход ИРТ", "выход 25"))
+        self.ui.lineEdit_out_irt_value_50.setText(config.get("Выход ИРТ", "выход 50"))
+        self.ui.lineEdit_out_irt_value_75.setText(config.get("Выход ИРТ", "выход 75"))
+        self.ui.lineEdit_out_irt_value_95.setText(config.get("Выход ИРТ", "выход 95"))
+
+        self.ui.lineEdit_out_24_value_0.setText(config.get("Выход 24В", "выход r0"))
+        self.ui.lineEdit_out_24_value_820.setText(config.get("Выход 24В", "выход r820"))
+
+        self.ui.lineEdit_out_pvi_value_5.setText(config.get("Выход ПВИ", "выход пви 5"))
+        self.ui.lineEdit_out_pvi_value_25.setText(config.get("Выход ПВИ", "выход пви 25"))
+        self.ui.lineEdit_out_pvi_value_50.setText(config.get("Выход ПВИ", "выход пви 50"))
+        self.ui.lineEdit_out_pvi_value_75.setText(config.get("Выход ПВИ", "выход пви 75"))
+        self.ui.lineEdit_out_pvi_value_95.setText(config.get("Выход ПВИ", "выход пви 95"))
+
+        self.ui.comboBox_passed.setText(config.get("Сдал/Принял/Дата", "сдал"))
+        self.ui.comboBox_adopted.setText(config.get("Сдал/Принял/Дата", "принял"))
+
+        # TODO дата
 
     def about(self):
         QtWidgets.QMessageBox.aboutQt(application, title="О программе")
 
+    def exit(self):
+        dialog = QtWidgets.QMessageBox.question(application, "Выход из программы",
+                                                "Сохранить файл конфигурации прибора?",
+                                                buttons=QtWidgets.QMessageBox.Cancel | QtWidgets.QMessageBox.No |
+                                                        QtWidgets.QMessageBox.Yes,
+                                                defaultButton=QtWidgets.QMessageBox.Yes)
+        if dialog == 65536:
+            sys.exit(app.exec())
+        if dialog == 16384:
+            self.save_config_file()
+            sys.exit(app.exec())
+        if dialog == 4194304:
+            pass
+
+
 app = QtWidgets.QApplication([])
 application = Window()
 application.setWindowTitle("Создание протокола калибровки ИРТ 59хх")
+application.setFixedSize(800, 670)
 application.show()
 
 sys.exit(app.exec())

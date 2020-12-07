@@ -137,6 +137,9 @@
        <property name="text">
         <string/>
        </property>
+       <property name="maxLength">
+        <number>12</number>
+       </property>
       </widget>
       <widget class="QLabel" name="label_in_signal">
        <property name="geometry">
@@ -2313,7 +2316,7 @@
      <rect>
       <x>273</x>
       <y>148</y>
-      <width>223</width>
+      <width>233</width>
       <height>160</height>
      </rect>
     </property>
@@ -2331,7 +2334,7 @@
      <addaction name="action_empty_tsm"/>
     </widget>
     <addaction name="menu_2"/>
-    <addaction name="action_open"/>
+    <addaction name="action_load_config"/>
     <addaction name="action_save_config"/>
     <addaction name="separator"/>
     <addaction name="action_exit"/>
@@ -2349,9 +2352,9 @@
    <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="action_open">
+  <action name="action_load_config">
    <property name="text">
-    <string>Открыть конфигурацию</string>
+    <string>Загрузить конфигурацию</string>
    </property>
    <property name="font">
     <font>
