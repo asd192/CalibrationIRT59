@@ -1,4 +1,4 @@
-import sys, os, configparser
+import sys, os, configparser, time
 
 from main import Ui_MainWindow
 from PyQt5 import QtWidgets, QtCore, QtGui
@@ -63,7 +63,7 @@ class Window(QtWidgets.QMainWindow):
         # Установка параметров входа
         self.ui.comboBox_in_signal_type.activated.connect(self.parametr_in_signal)
 
-        # R ПВИ
+        # Установка R ПВИ
         self.ui.comboBox_pvi_out.activated.connect(self.parametr_pvi_out_signal)
 
         # Сохранение настроек
@@ -99,6 +99,9 @@ class Window(QtWidgets.QMainWindow):
         sensor_type = {
             "ТП-ХК": (-50, 600),
             "ТП-ХА": (-50, 1300),
+            "0-5 мА": (0, 5),
+            "0-20 мА": (0, 20),
+            "4-20 мА": (4, 20),
             "ТСМ-50М": (-50, 200),
             "ТСМ-100М": (-50, 200),
             "ТСМ-50П": (-50, 600),
@@ -110,8 +113,12 @@ class Window(QtWidgets.QMainWindow):
             self.ui.lineEdit_in_start_value.setText(str(sensor_type.get(sensor_type_key)[0]))
             self.ui.lineEdit_in_end_value.setText(str(sensor_type.get(sensor_type_key)[1]))
 
-            self.ui.lineEdit_out_start_value.setText(str(sensor_type.get(sensor_type_key)[0]))
-            self.ui.lineEdit_out_end_value.setText(str(sensor_type.get(sensor_type_key)[1]))
+            if "Т" in sensor_type_key:
+                self.ui.lineEdit_out_start_value.setText(str(sensor_type.get(sensor_type_key)[0]))
+                self.ui.lineEdit_out_end_value.setText(str(sensor_type.get(sensor_type_key)[1]))
+            else:
+                self.ui.lineEdit_out_start_value.setText("")
+                self.ui.lineEdit_out_end_value.setText("")
 
         else:
             self.ui.lineEdit_in_start_value.setText("")
@@ -189,11 +196,12 @@ class Window(QtWidgets.QMainWindow):
         """ Расчет требуемых входных """
         values = ['']
         try:
-            in_start = self.ui.lineEdit_in_start_value.text().replace(',', '.')
-            in_end = self.ui.lineEdit_in_end_value.text().replace(',', '.')
+            in_start = float(self.ui.lineEdit_in_start_value.text().replace(',', '.'))
+            in_end = float(self.ui.lineEdit_in_end_value.text().replace(',', '.'))
 
             for i in (0.05, 0.25, 0.5, 0.75, 0.95):
-                values.append(str((abs(float(in_start)) + abs(float(in_end))) * i))
+                values.append(str((in_end - in_start) * i + in_start))
+            print(values)
 
             self.ui.lineEdit_out_irt_in_5.setText(values[1])
             self.ui.lineEdit_out_irt_in_25.setText(values[2])
@@ -211,11 +219,11 @@ class Window(QtWidgets.QMainWindow):
         """ Расчет требуемых входных ПВИ"""
         values = ['']
         try:
-            in_start = self.ui.lineEdit_pvi_scale_start.text().replace(',', '.')
-            in_end = self.ui.lineEdit_pvi_scale_end.text().replace(',', '.')
+            in_start = float(self.ui.lineEdit_pvi_scale_start.text().replace(',', '.'))
+            in_end = float(self.ui.lineEdit_pvi_scale_end.text().replace(',', '.'))
 
             for i in (0.05, 0.25, 0.5, 0.75, 0.95):
-                values.append(str((abs(float(in_start)) + abs(float(in_end))) * i))
+                values.append(str((in_end - in_start) * i + in_start))
 
             self.ui.lineEdit_out_pvi_in_5.setText(values[1])
             self.ui.lineEdit_out_pvi_in_25.setText(values[2])
@@ -228,6 +236,15 @@ class Window(QtWidgets.QMainWindow):
             self.ui.lineEdit_out_pvi_in_50.setText(values[0])
             self.ui.lineEdit_out_pvi_in_75.setText(values[0])
             self.ui.lineEdit_out_pvi_in_95.setText(values[0])
+
+    # TODO допуски
+    def acceptance_error_irt(self):
+        """ Рассчет допусков ИРТ """
+        pass
+
+    def acceptance_error_pvi(self):
+        """ Рассчет допусков ПВИ """
+        pass
 
     def load_param(self):
         """ загрузка параметров """
@@ -387,10 +404,11 @@ class Window(QtWidgets.QMainWindow):
         self.ui.lineEdit_out_pvi_value_75.setText(config.get("Выход ПВИ", "выход пви 75"))
         self.ui.lineEdit_out_pvi_value_95.setText(config.get("Выход ПВИ", "выход пви 95"))
 
-        self.ui.comboBox_passed.setText(config.get("Сдал/Принял/Дата", "сдал"))
-        self.ui.comboBox_adopted.setText(config.get("Сдал/Принял/Дата", "принял"))
+        self.ui.comboBox_passed.setItemText(0, _translate("MainWindow", config.get("Сдал/Принял/Дата", "сдал")))
+        self.ui.comboBox_adopted.setItemText(0, _translate("MainWindow", config.get("Сдал/Принял/Дата", "принял")))
 
-        # TODO дата
+        date_c = tuple(map(int, config.get("Сдал/Принял/Дата", "дата калибровки(гггг.мм.дд)").split('.')))
+        self.ui.dateEdit_date_calibration.setDate(QtCore.QDate(date_c[0], date_c[1], date_c[2]))
 
     def about(self):
         QtWidgets.QMessageBox.aboutQt(application, title="О программе")
@@ -412,7 +430,7 @@ class Window(QtWidgets.QMainWindow):
 
 app = QtWidgets.QApplication([])
 application = Window()
-application.setWindowTitle("Создание протокола калибровки ИРТ 59хх")
+application.setWindowTitle("Создание протокола калибровки ИРТ 5920Н, 5940М")
 application.setFixedSize(800, 670)
 application.show()
 

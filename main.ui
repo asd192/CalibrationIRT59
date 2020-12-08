@@ -107,39 +107,6 @@
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
-       <property name="buddy">
-        <cstring>lineEdit_parametr_number</cstring>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_parametr_number">
-       <property name="geometry">
-        <rect>
-         <x>218</x>
-         <y>35</y>
-         <width>113</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Segoe UI</family>
-         <pointsize>11</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::ClickFocus</enum>
-       </property>
-       <property name="toolTip">
-        <string>04Н-000000</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="maxLength">
-        <number>12</number>
-       </property>
       </widget>
       <widget class="QLabel" name="label_in_signal">
        <property name="geometry">
@@ -163,6 +130,9 @@
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="buddy">
+        <cstring>comboBox_in_signal_type</cstring>
        </property>
       </widget>
       <widget class="QComboBox" name="comboBox_in_signal_type">
@@ -211,7 +181,17 @@
        </item>
        <item>
         <property name="text">
-         <string>мА</string>
+         <string>0-5 мА</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>0-20 мА</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4-20 мА</string>
         </property>
        </item>
        <item>
@@ -258,6 +238,9 @@
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
+       <property name="buddy">
+        <cstring>comboBox_out_signal_type</cstring>
+       </property>
       </widget>
       <widget class="QComboBox" name="comboBox_parametr_year">
        <property name="geometry">
@@ -275,6 +258,9 @@
          <weight>50</weight>
          <bold>false</bold>
         </font>
+       </property>
+       <property name="currentIndex">
+        <number>4</number>
        </property>
        <item>
         <property name="text">
@@ -374,13 +360,13 @@
         <rect>
          <x>46</x>
          <y>35</y>
-         <width>101</width>
+         <width>110</width>
          <height>25</height>
         </rect>
        </property>
        <property name="maximumSize">
         <size>
-         <width>101</width>
+         <width>110</width>
          <height>16777215</height>
         </size>
        </property>
@@ -396,6 +382,9 @@
        <property name="acceptDrops">
         <bool>false</bool>
        </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
        <item>
         <property name="text">
          <string/>
@@ -403,12 +392,12 @@
        </item>
        <item>
         <property name="text">
-         <string>ИРТ 5920</string>
+         <string>ИРТ 5920Н</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>ИРТ 5940</string>
+         <string>ИРТ 5940М</string>
         </property>
        </item>
       </widget>
@@ -555,33 +544,6 @@
        </property>
        <property name="readOnly">
         <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_parametr_position">
-       <property name="geometry">
-        <rect>
-         <x>671</x>
-         <y>35</y>
-         <width>80</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Segoe UI</family>
-         <pointsize>11</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::ClickFocus</enum>
-       </property>
-       <property name="toolTip">
-        <string>04Н-000000</string>
-       </property>
-       <property name="text">
-        <string/>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_in_end_value">
@@ -786,6 +748,9 @@
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
+       <property name="buddy">
+        <cstring>comboBox_pvi_out</cstring>
+       </property>
       </widget>
       <widget class="QComboBox" name="comboBox_pvi_out">
        <property name="enabled">
@@ -865,6 +830,39 @@
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_parametr_number">
+       <property name="geometry">
+        <rect>
+         <x>218</x>
+         <y>35</y>
+         <width>113</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="maxLength">
+        <number>12</number>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_parametr_position">
+       <property name="geometry">
+        <rect>
+         <x>671</x>
+         <y>35</y>
+         <width>80</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
        </property>
       </widget>
      </widget>
@@ -972,6 +970,9 @@
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
+       <property name="buddy">
+        <cstring>lineEdit_out_24_value_820</cstring>
+       </property>
       </widget>
       <widget class="QLabel" name="label_out_24_value">
        <property name="geometry">
@@ -1064,6 +1065,9 @@
          <pointsize>10</pointsize>
         </font>
        </property>
+       <property name="maxLength">
+        <number>7</number>
+       </property>
       </widget>
       <widget class="QLabel" name="label_24_0">
        <property name="geometry">
@@ -1087,6 +1091,9 @@
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="buddy">
+        <cstring>lineEdit_out_24_value_0</cstring>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_24_in_0">
@@ -1132,8 +1139,11 @@
          <pointsize>10</pointsize>
         </font>
        </property>
+       <property name="maxLength">
+        <number>7</number>
+       </property>
       </widget>
-      <widget class="QLabel" name="label_passed_3">
+      <widget class="QLabel" name="label_acceptance_error_24">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -1155,9 +1165,6 @@
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-       <property name="buddy">
-        <cstring>dateEdit_date_calibration</cstring>
        </property>
       </widget>
      </widget>
@@ -1198,7 +1205,7 @@
         <string/>
        </property>
        <property name="maxLength">
-        <number>32767</number>
+        <number>10</number>
        </property>
        <property name="frame">
         <bool>true</bool>
@@ -1239,6 +1246,9 @@
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
+       <property name="buddy">
+        <cstring>lineEdit_out_irt_value_5</cstring>
+       </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_irt_value_95">
        <property name="geometry">
@@ -1254,6 +1264,9 @@
          <family>Segoe UI</family>
          <pointsize>10</pointsize>
         </font>
+       </property>
+       <property name="maxLength">
+        <number>10</number>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_irt_in_50">
@@ -1321,6 +1334,9 @@
          <pointsize>10</pointsize>
         </font>
        </property>
+       <property name="maxLength">
+        <number>10</number>
+       </property>
        <property name="clearButtonEnabled">
         <bool>false</bool>
        </property>
@@ -1348,6 +1364,9 @@
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
+       <property name="buddy">
+        <cstring>lineEdit_out_irt_value_95</cstring>
+       </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_irt_value_25">
        <property name="geometry">
@@ -1363,6 +1382,9 @@
          <family>Segoe UI</family>
          <pointsize>10</pointsize>
         </font>
+       </property>
+       <property name="maxLength">
+        <number>10</number>
        </property>
        <property name="clearButtonEnabled">
         <bool>false</bool>
@@ -1415,6 +1437,9 @@
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
+       <property name="buddy">
+        <cstring>lineEdit_out_irt_value_25</cstring>
+       </property>
       </widget>
       <widget class="QLabel" name="label_out_irt_50">
        <property name="geometry">
@@ -1438,6 +1463,9 @@
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="buddy">
+        <cstring>lineEdit_out_irt_value_50</cstring>
        </property>
       </widget>
       <widget class="QLabel" name="label_out_irt_value">
@@ -1500,6 +1528,9 @@
          <family>Segoe UI</family>
          <pointsize>10</pointsize>
         </font>
+       </property>
+       <property name="maxLength">
+        <number>10</number>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_irt_in_75">
@@ -1569,8 +1600,11 @@
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
+       <property name="buddy">
+        <cstring>lineEdit_out_irt_value_75</cstring>
+       </property>
       </widget>
-      <widget class="QLabel" name="label_passed_2">
+      <widget class="QLabel" name="label_acceptance_error_irt">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -1588,13 +1622,10 @@
         </font>
        </property>
        <property name="text">
-        <string>Допуск ±0,48 В</string>
+        <string>Допуск ±0,000</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-       <property name="buddy">
-        <cstring>dateEdit_date_calibration</cstring>
        </property>
       </widget>
      </widget>
@@ -1690,6 +1721,9 @@
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
+       <property name="buddy">
+        <cstring>comboBox_calibr_name</cstring>
+       </property>
       </widget>
       <widget class="QComboBox" name="comboBox_calibr_name">
        <property name="geometry">
@@ -1699,6 +1733,9 @@
          <width>451</width>
          <height>25</height>
         </rect>
+       </property>
+       <property name="currentIndex">
+        <number>-1</number>
        </property>
       </widget>
      </widget>
@@ -1739,7 +1776,7 @@
         <string/>
        </property>
        <property name="maxLength">
-        <number>32767</number>
+        <number>10</number>
        </property>
        <property name="frame">
         <bool>true</bool>
@@ -1780,6 +1817,9 @@
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
+       <property name="buddy">
+        <cstring>lineEdit_out_pvi_value_5</cstring>
+       </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_pvi_value_95">
        <property name="geometry">
@@ -1795,6 +1835,9 @@
          <family>Segoe UI</family>
          <pointsize>10</pointsize>
         </font>
+       </property>
+       <property name="maxLength">
+        <number>10</number>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_pvi_in_50">
@@ -1859,6 +1902,9 @@
          <pointsize>10</pointsize>
         </font>
        </property>
+       <property name="maxLength">
+        <number>10</number>
+       </property>
        <property name="clearButtonEnabled">
         <bool>false</bool>
        </property>
@@ -1886,6 +1932,9 @@
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
+       <property name="buddy">
+        <cstring>lineEdit_out_pvi_value_95</cstring>
+       </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_pvi_value_25">
        <property name="geometry">
@@ -1901,6 +1950,9 @@
          <family>Segoe UI</family>
          <pointsize>10</pointsize>
         </font>
+       </property>
+       <property name="maxLength">
+        <number>10</number>
        </property>
        <property name="clearButtonEnabled">
         <bool>false</bool>
@@ -1953,6 +2005,9 @@
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
+       <property name="buddy">
+        <cstring>lineEdit_out_pvi_value_25</cstring>
+       </property>
       </widget>
       <widget class="QLabel" name="label_out_pvi_50">
        <property name="geometry">
@@ -1976,6 +2031,9 @@
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="buddy">
+        <cstring>lineEdit_out_pvi_value_50</cstring>
        </property>
       </widget>
       <widget class="QLabel" name="label_out_pvi_value">
@@ -2038,6 +2096,9 @@
          <family>Segoe UI</family>
          <pointsize>10</pointsize>
         </font>
+       </property>
+       <property name="maxLength">
+        <number>10</number>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_pvi_in_75">
@@ -2107,8 +2168,11 @@
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
+       <property name="buddy">
+        <cstring>lineEdit_out_pvi_value_75</cstring>
+       </property>
       </widget>
-      <widget class="QLabel" name="label_passed_4">
+      <widget class="QLabel" name="label_acceptance_error_pvi">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -2126,13 +2190,10 @@
         </font>
        </property>
        <property name="text">
-        <string>Допуск ±0,48 В</string>
+        <string>Допуск ±0,000</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-       <property name="buddy">
-        <cstring>dateEdit_date_calibration</cstring>
        </property>
       </widget>
      </widget>
@@ -2170,7 +2231,7 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
       <property name="buddy">
-       <cstring>dateEdit_date_calibration</cstring>
+       <cstring>comboBox_adopted</cstring>
       </property>
      </widget>
      <widget class="QLabel" name="label_passed">
@@ -2197,7 +2258,7 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
       <property name="buddy">
-       <cstring>dateEdit_date_calibration</cstring>
+       <cstring>comboBox_passed</cstring>
       </property>
      </widget>
      <widget class="QComboBox" name="comboBox_passed">
@@ -2413,6 +2474,56 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>comboBox_calibr_name</tabstop>
+  <tabstop>comboBox_parametr_type</tabstop>
+  <tabstop>lineEdit_parametr_number</tabstop>
+  <tabstop>comboBox_parametr_year</tabstop>
+  <tabstop>lineEdit_parametr_position</tabstop>
+  <tabstop>comboBox_in_signal_type</tabstop>
+  <tabstop>lineEdit_in_start_value</tabstop>
+  <tabstop>lineEdit_in_end_value</tabstop>
+  <tabstop>comboBox_out_signal_type</tabstop>
+  <tabstop>lineEdit_out_start_value</tabstop>
+  <tabstop>lineEdit_out_end_value</tabstop>
+  <tabstop>checkBox_pvi</tabstop>
+  <tabstop>lineEdit_pvi_scale_start</tabstop>
+  <tabstop>lineEdit_pvi_scale_end</tabstop>
+  <tabstop>comboBox_pvi_out</tabstop>
+  <tabstop>lineEdit_out_irt_value_5</tabstop>
+  <tabstop>lineEdit_out_irt_value_25</tabstop>
+  <tabstop>lineEdit_out_irt_value_50</tabstop>
+  <tabstop>lineEdit_out_irt_value_75</tabstop>
+  <tabstop>lineEdit_out_irt_value_95</tabstop>
+  <tabstop>lineEdit_out_24_value_0</tabstop>
+  <tabstop>lineEdit_out_24_value_820</tabstop>
+  <tabstop>lineEdit_out_pvi_value_5</tabstop>
+  <tabstop>lineEdit_out_pvi_value_25</tabstop>
+  <tabstop>lineEdit_out_pvi_value_50</tabstop>
+  <tabstop>lineEdit_out_pvi_value_75</tabstop>
+  <tabstop>lineEdit_out_pvi_value_95</tabstop>
+  <tabstop>comboBox_passed</tabstop>
+  <tabstop>comboBox_adopted</tabstop>
+  <tabstop>dateEdit_date_calibration</tabstop>
+  <tabstop>pushButton_save_config</tabstop>
+  <tabstop>pushButton_check</tabstop>
+  <tabstop>pushButton_create</tabstop>
+  <tabstop>lineEdit_out_irt_in_5</tabstop>
+  <tabstop>lineEdit_out_irt_in_25</tabstop>
+  <tabstop>lineEdit_out_irt_in_50</tabstop>
+  <tabstop>lineEdit_out_irt_in_75</tabstop>
+  <tabstop>lineEdit_out_irt_in_95</tabstop>
+  <tabstop>lineEdit_out_24_in_0</tabstop>
+  <tabstop>lineEdit_out_24_in_820</tabstop>
+  <tabstop>lineEdit_out_pvi_in_5</tabstop>
+  <tabstop>lineEdit_out_pvi_in_25</tabstop>
+  <tabstop>lineEdit_out_pvi_in_50</tabstop>
+  <tabstop>lineEdit_out_pvi_in_75</tabstop>
+  <tabstop>lineEdit_out_pvi_in_95</tabstop>
+  <tabstop>pushButton_save_custom</tabstop>
+  <tabstop>tableWidget_param</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
