@@ -54,16 +54,15 @@ class Window(QtWidgets.QMainWindow):
         self.ui.checkBox_pvi.stateChanged.connect(lambda check=self.ui.checkBox_pvi.isChecked(): self.select_pvi(check))
 
 
-        # TODO рассчет погрешностей
-        # Установка входных значений выходов и допусков
+        # Установка входных значений выходов
         self.ui.lineEdit_in_start_value.textChanged.connect(self.out_irt_in)
         self.ui.lineEdit_in_end_value.textChanged.connect(self.out_irt_in)
 
         self.ui.lineEdit_pvi_scale_start.textChanged.connect(self.out_pvi_in)
         self.ui.lineEdit_pvi_scale_end.textChanged.connect(self.out_pvi_in)
 
-        # Установка допусков
-        self.ui.comboBox_in_signal_type.currentTextChanged.connect(self.acceptance_irt)
+        # Допуски
+        self.ui.lineEdit_out_irt_value_5.textChanged.connect(self.acceptance_error_irt)
 
         # Установка параметров входа
         self.ui.comboBox_in_signal_type.activated.connect(self.parametr_in_signal)
@@ -132,6 +131,10 @@ class Window(QtWidgets.QMainWindow):
             self.ui.lineEdit_out_start_value.setText("")
             self.ui.lineEdit_out_end_value.setText("")
 
+        # Допуск ИРТ
+        self.acceptance_irt()
+        self.acceptance_error_irt()
+
     def validat_param(self):
         """ Валидация полей Вход, Выход, Шкала ПВИ параметров прибора """
         return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,6}(?:[\.,]\d{,3})?$"))
@@ -198,22 +201,34 @@ class Window(QtWidgets.QMainWindow):
             self.ui.comboBox_pvi_out.setEnabled(False)
             self.ui.label_pvi_out_r.setEnabled(False)
 
+    def is_number(self, num):
+        """ Определяет тип числа """
+        try:
+            num = num.replace(',', '.')
+            if float(num) or float(num) == 0:
+                if num.isdigit():
+                    return int(num)
+                else:
+                    return float(num)
+        except:
+            pass
+
     def out_irt_in(self):
         """ Расчет требуемых входных """
         values = ['']
         try:
-            in_start = float(self.ui.lineEdit_in_start_value.text().replace(',', '.'))
-            in_end = float(self.ui.lineEdit_in_end_value.text().replace(',', '.'))
+            in_start = self.is_number(self.ui.lineEdit_in_start_value.text())
+            in_end = self.is_number(self.ui.lineEdit_in_end_value.text())
 
             for i in (0.05, 0.25, 0.5, 0.75, 0.95):
-                values.append(str((in_end - in_start) * i + in_start))
-            print(values)
+                values.append(str(round((in_end - in_start) * i + in_start, 3)))
 
             self.ui.lineEdit_out_irt_in_5.setText(values[1])
             self.ui.lineEdit_out_irt_in_25.setText(values[2])
             self.ui.lineEdit_out_irt_in_50.setText(values[3])
             self.ui.lineEdit_out_irt_in_75.setText(values[4])
             self.ui.lineEdit_out_irt_in_95.setText(values[5])
+
         except:
             self.ui.lineEdit_out_irt_in_5.setText(values[0])
             self.ui.lineEdit_out_irt_in_25.setText(values[0])
@@ -246,7 +261,7 @@ class Window(QtWidgets.QMainWindow):
     def acceptance_irt(self):
         """ Устанавливает допуск ИРТ """
         in_signal_type = self.ui.comboBox_in_signal_type.currentText().lower()
-        in_signal_text = ''
+
         if 'м' in in_signal_type:
             in_signal_text = "Допуск ±(0,2 + *)"
         elif 'тп' in in_signal_type:
@@ -259,8 +274,19 @@ class Window(QtWidgets.QMainWindow):
     # TODO допуски
     def acceptance_error_irt(self):
         """ Рассчет допусков ИРТ """
-        Ai = self.ui.lineEdit_out_irt_value_5.text()
-        print(Ai)
+        in_start = self.is_number(self.ui.lineEdit_in_start_value.text())
+        in_end = self.is_number(self.ui.lineEdit_in_end_value.text())
+
+        print(in_start, in_end)
+        range_scale = str(in_end - in_start)
+        print(range_scale)
+
+        val5 = self.ui.lineEdit_out_irt_value_5.text()
+        print(val5)
+
+        dig = abs(val5.find('.') - len(val5)) - 1 if '.' in val5 else 0
+        print(dig)
+    pass
 
     def acceptance_error_pvi(self):
         """ Рассчет допусков ПВИ """
