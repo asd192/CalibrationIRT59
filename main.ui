@@ -1622,7 +1622,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Допуск ±0,000</string>
+        <string>Допуск ±(0,0 + *)</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1740,6 +1740,9 @@
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_out_pvi">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>532</x>
@@ -1822,6 +1825,9 @@
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_pvi_value_95">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>40</x>
@@ -1888,6 +1894,9 @@
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_pvi_value_50">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>40</x>
@@ -1937,6 +1946,9 @@
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_pvi_value_25">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>40</x>
@@ -2083,6 +2095,9 @@
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_out_pvi_value_75">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>40</x>
@@ -2173,6 +2188,9 @@
        </property>
       </widget>
       <widget class="QLabel" name="label_acceptance_error_pvi">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -2190,7 +2208,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Допуск ±0,000</string>
+        <string>Допуск ±(k γ0+0,2)%</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

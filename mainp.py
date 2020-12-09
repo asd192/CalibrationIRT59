@@ -49,16 +49,21 @@ class Window(QtWidgets.QMainWindow):
         self.ui.lineEdit_out_24_value_0.setValidator(self.valdat_24())
         self.ui.lineEdit_out_24_value_820.setValidator(self.valdat_24())
 
-        # Чекбокс ПВИ
+        # Группа ПВИ(чекбокс)
+        self.ui.groupBox_out_pvi.setEnabled(False)
         self.ui.checkBox_pvi.stateChanged.connect(lambda check=self.ui.checkBox_pvi.isChecked(): self.select_pvi(check))
 
+
         # TODO рассчет погрешностей
-        # Установка входных значений выходов и рассчет допустимых погрешностей
+        # Установка входных значений выходов и допусков
         self.ui.lineEdit_in_start_value.textChanged.connect(self.out_irt_in)
         self.ui.lineEdit_in_end_value.textChanged.connect(self.out_irt_in)
 
         self.ui.lineEdit_pvi_scale_start.textChanged.connect(self.out_pvi_in)
         self.ui.lineEdit_pvi_scale_end.textChanged.connect(self.out_pvi_in)
+
+        # Установка допусков
+        self.ui.comboBox_in_signal_type.currentTextChanged.connect(self.acceptance_irt)
 
         # Установка параметров входа
         self.ui.comboBox_in_signal_type.activated.connect(self.parametr_in_signal)
@@ -158,17 +163,17 @@ class Window(QtWidgets.QMainWindow):
                 self.ui.comboBox_calibr_name.addItem("")
                 self.ui.comboBox_calibr_name.setItemText(n, _translate("MainWindow", i))
 
-        if col == 1:
+        elif col == 1:
             for n, i in enumerate(container):
                 self.ui.comboBox_out_signal_type.addItem("")
                 self.ui.comboBox_out_signal_type.setItemText(n, _translate("MainWindow", i))
 
-        if col == 2:
+        elif col == 2:
             for n, i in enumerate(container):
                 self.ui.comboBox_passed.addItem("")
                 self.ui.comboBox_passed.setItemText(n, _translate("MainWindow", i))
 
-        if col == 3:
+        elif col == 3:
             for n, i in enumerate(container):
                 self.ui.comboBox_adopted.addItem("")
                 self.ui.comboBox_adopted.setItemText(n, _translate("MainWindow", i))
@@ -177,6 +182,7 @@ class Window(QtWidgets.QMainWindow):
 
     def select_pvi(self, pvi_on):
         """ Включение группы ПВИ """
+        self.ui.groupBox_out_pvi.setEnabled(pvi_on)
         if pvi_on == QtCore.Qt.Checked:
             self.ui.label_pvi_scale.setEnabled(True)
             self.ui.lineEdit_pvi_scale_start.setEnabled(True)
@@ -237,10 +243,24 @@ class Window(QtWidgets.QMainWindow):
             self.ui.lineEdit_out_pvi_in_75.setText(values[0])
             self.ui.lineEdit_out_pvi_in_95.setText(values[0])
 
+    def acceptance_irt(self):
+        """ Устанавливает допуск ИРТ """
+        in_signal_type = self.ui.comboBox_in_signal_type.currentText().lower()
+        in_signal_text = ''
+        if 'м' in in_signal_type:
+            in_signal_text = "Допуск ±(0,2 + *)"
+        elif 'тп' in in_signal_type:
+            in_signal_text = "Допуск ±(0,5 + *)"
+        else:
+            in_signal_text = "Допуск ±(0,0 + *)"
+
+        self.ui.label_acceptance_error_irt.setText(in_signal_text)
+
     # TODO допуски
     def acceptance_error_irt(self):
         """ Рассчет допусков ИРТ """
-        pass
+        Ai = self.ui.lineEdit_out_irt_value_5.text()
+        print(Ai)
 
     def acceptance_error_pvi(self):
         """ Рассчет допусков ПВИ """
