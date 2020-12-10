@@ -1173,7 +1173,7 @@
        <rect>
         <x>11</x>
         <y>238</y>
-        <width>250</width>
+        <width>270</width>
         <height>250</height>
        </rect>
       </property>
@@ -1188,7 +1188,7 @@
         <rect>
          <x>40</x>
          <y>55</y>
-         <width>120</width>
+         <width>80</width>
          <height>30</height>
         </rect>
        </property>
@@ -1255,7 +1255,7 @@
         <rect>
          <x>40</x>
          <y>195</y>
-         <width>120</width>
+         <width>80</width>
          <height>30</height>
         </rect>
        </property>
@@ -1275,9 +1275,9 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>200</x>
          <y>125</y>
-         <width>70</width>
+         <width>60</width>
          <height>30</height>
         </rect>
        </property>
@@ -1297,9 +1297,9 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>200</x>
          <y>55</y>
-         <width>70</width>
+         <width>60</width>
          <height>30</height>
         </rect>
        </property>
@@ -1324,7 +1324,7 @@
         <rect>
          <x>40</x>
          <y>125</y>
-         <width>120</width>
+         <width>80</width>
          <height>30</height>
         </rect>
        </property>
@@ -1373,7 +1373,7 @@
         <rect>
          <x>40</x>
          <y>90</y>
-         <width>120</width>
+         <width>80</width>
          <height>30</height>
         </rect>
        </property>
@@ -1393,9 +1393,9 @@
       <widget class="QLabel" name="label_out_irt_input">
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>200</x>
          <y>32</y>
-         <width>70</width>
+         <width>60</width>
          <height>17</height>
         </rect>
        </property>
@@ -1473,7 +1473,7 @@
         <rect>
          <x>40</x>
          <y>32</y>
-         <width>120</width>
+         <width>80</width>
          <height>17</height>
         </rect>
        </property>
@@ -1498,9 +1498,9 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>200</x>
          <y>90</y>
-         <width>70</width>
+         <width>60</width>
          <height>30</height>
         </rect>
        </property>
@@ -1519,7 +1519,7 @@
         <rect>
          <x>40</x>
          <y>160</y>
-         <width>120</width>
+         <width>80</width>
          <height>30</height>
         </rect>
        </property>
@@ -1539,9 +1539,9 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>200</x>
          <y>160</y>
-         <width>70</width>
+         <width>60</width>
          <height>30</height>
         </rect>
        </property>
@@ -1561,9 +1561,9 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>200</x>
          <y>195</y>
-         <width>70</width>
+         <width>60</width>
          <height>30</height>
         </rect>
        </property>
@@ -1622,13 +1622,153 @@
         </font>
        </property>
        <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;* это одна единица последнего разряда, выраженная в процентах от диапазона измерений&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;* - одна единица последнего разряда, выраженная в процентах от диапазона измерений&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="text">
         <string>Допуск ±(0,0 + *)</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_out_irt_output">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>32</y>
+         <width>60</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DejaVu Sans</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Выход</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_out_irt_output_50">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>125</y>
+         <width>60</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_out_irt_output_5">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>55</y>
+         <width>60</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="inputMethodHints">
+        <set>Qt::ImhNone</set>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_out_irt_output_25">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>90</y>
+         <width>60</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_out_irt_output_75">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>160</y>
+         <width>60</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_out_irt_output_95">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>195</y>
+         <width>60</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
      </widget>
@@ -1748,9 +1888,9 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>532</x>
+        <x>511</x>
         <y>238</y>
-        <width>250</width>
+        <width>270</width>
         <height>250</height>
        </rect>
       </property>
@@ -1765,7 +1905,7 @@
         <rect>
          <x>40</x>
          <y>55</y>
-         <width>120</width>
+         <width>80</width>
          <height>30</height>
         </rect>
        </property>
@@ -1835,7 +1975,7 @@
         <rect>
          <x>40</x>
          <y>195</y>
-         <width>120</width>
+         <width>80</width>
          <height>30</height>
         </rect>
        </property>
@@ -1855,9 +1995,9 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>200</x>
          <y>125</y>
-         <width>70</width>
+         <width>60</width>
          <height>30</height>
         </rect>
        </property>
@@ -1877,9 +2017,9 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>200</x>
          <y>55</y>
-         <width>70</width>
+         <width>60</width>
          <height>30</height>
         </rect>
        </property>
@@ -1904,7 +2044,7 @@
         <rect>
          <x>40</x>
          <y>125</y>
-         <width>120</width>
+         <width>80</width>
          <height>30</height>
         </rect>
        </property>
@@ -1956,7 +2096,7 @@
         <rect>
          <x>40</x>
          <y>90</y>
-         <width>120</width>
+         <width>80</width>
          <height>30</height>
         </rect>
        </property>
@@ -1973,12 +2113,12 @@
         <bool>false</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="label_31">
+      <widget class="QLabel" name="label_out_pvi_input">
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>200</x>
          <y>32</y>
-         <width>70</width>
+         <width>60</width>
          <height>17</height>
         </rect>
        </property>
@@ -2056,7 +2196,7 @@
         <rect>
          <x>40</x>
          <y>32</y>
-         <width>120</width>
+         <width>80</width>
          <height>17</height>
         </rect>
        </property>
@@ -2081,9 +2221,9 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>200</x>
          <y>90</y>
-         <width>70</width>
+         <width>60</width>
          <height>30</height>
         </rect>
        </property>
@@ -2105,7 +2245,7 @@
         <rect>
          <x>40</x>
          <y>160</y>
-         <width>120</width>
+         <width>80</width>
          <height>30</height>
         </rect>
        </property>
@@ -2125,9 +2265,9 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>200</x>
          <y>160</y>
-         <width>70</width>
+         <width>60</width>
          <height>30</height>
         </rect>
        </property>
@@ -2147,9 +2287,9 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>200</x>
          <y>195</y>
-         <width>70</width>
+         <width>60</width>
          <height>30</height>
         </rect>
        </property>
@@ -2215,6 +2355,143 @@
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="label_out_pvi_output_95">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>195</y>
+         <width>60</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="label_out_pvi_output_5">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>55</y>
+         <width>60</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="inputMethodHints">
+        <set>Qt::ImhNone</set>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="label_out_pvi_output_50">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>125</y>
+         <width>60</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_out_pvi_output">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>32</y>
+         <width>60</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DejaVu Sans</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Выход</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="label_out_pvi_output_25">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>90</y>
+         <width>60</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="label_out_pvi_output_75">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>160</y>
+         <width>60</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
      </widget>

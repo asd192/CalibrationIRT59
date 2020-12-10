@@ -281,13 +281,13 @@ class Window(QtWidgets.QMainWindow):
         except:
             pass
 
-        k_thrm, k_resist = 0.5, 0.2 # допуски
+        _K_THRM, _K_RESIST = 0.5, 0.2 # допуски(табличные данные), не трогать
 
         in_signal_type = self.ui.comboBox_in_signal_type.currentText().lower()
         if 'м' in in_signal_type:
-            in_signal_text = f"Допуск ±({k_resist} + {one_unit_last_number:.3f})"
+            in_signal_text = f"Допуск ±({_K_RESIST} + {one_unit_last_number:.3f})"
         elif 'тп' in in_signal_type:
-            in_signal_text = f"Допуск ±({k_thrm} + {one_unit_last_number:.3f})"
+            in_signal_text = f"Допуск ±({_K_THRM} + {one_unit_last_number:.3f})"
         else:
             in_signal_text = f"Допуск ±(0,0 + *)"
 
@@ -298,7 +298,7 @@ class Window(QtWidgets.QMainWindow):
         pass
 
     def load_param(self):
-        """ загрузка параметров """
+        """ Загрузка параметров """
         try:
             config = configparser.ConfigParser()
             config.read("parameters.ini")
@@ -388,7 +388,7 @@ class Window(QtWidgets.QMainWindow):
         config.add_section("Сдал/Принял/Дата")
         config.set("Сдал/Принял/Дата", "Сдал", self.ui.comboBox_passed.currentText())
         config.set("Сдал/Принял/Дата", "Принял", self.ui.comboBox_adopted.currentText())
-        config.set("Сдал/Принял/Дата", "Дата калибровки(ДД.ММ.ГГ)",
+        config.set("Сдал/Принял/Дата", "дата калибровки(ДД.ММ.ГГГГ)",
                    self.ui.dateEdit_date_calibration.dateTime().toString('dd.MM.yyyy'))
 
         try:
@@ -458,7 +458,7 @@ class Window(QtWidgets.QMainWindow):
         self.ui.comboBox_passed.setItemText(0, _translate("MainWindow", config.get("Сдал/Принял/Дата", "сдал")))
         self.ui.comboBox_adopted.setItemText(0, _translate("MainWindow", config.get("Сдал/Принял/Дата", "принял")))
 
-        date_c = tuple(map(int, config.get("Сдал/Принял/Дата", "дата калибровки(гггг.мм.дд)").split('.')))
+        date_c = tuple(map(int, config.get("Сдал/Принял/Дата", "дата калибровки(ДД.ММ.ГГГГ)").split('.')))
         self.ui.dateEdit_date_calibration.setDate(QtCore.QDate(date_c[0], date_c[1], date_c[2]))
 
     def about(self):
