@@ -1088,6 +1088,7 @@ class Ui_MainWindow(object):
         self.label_out_irt_50.setText(_translate("MainWindow", "50%"))
         self.label_out_irt_value.setText(_translate("MainWindow", "Показания"))
         self.label_out_irt_75.setText(_translate("MainWindow", "75%"))
+        self.label_acceptance_error_irt.setToolTip(_translate("MainWindow", "<html><head/><body><p>* это одна единица последнего разряда, выраженная в процентах от диапазона измерений</p></body></html>"))
         self.label_acceptance_error_irt.setText(_translate("MainWindow", "Допуск ±(0,0 + *)"))
         self.groupBox_calibration.setTitle(_translate("MainWindow", "Средство калибровки"))
         self.label_calibr_name.setText(_translate("MainWindow", "Наименование, номер:"))

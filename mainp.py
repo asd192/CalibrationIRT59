@@ -1,4 +1,5 @@
-import sys, os, configparser, time
+import sys, os, configparser
+from decimal import Decimal
 
 from main import Ui_MainWindow
 from PyQt5 import QtWidgets, QtCore, QtGui
@@ -61,8 +62,9 @@ class Window(QtWidgets.QMainWindow):
         self.ui.lineEdit_pvi_scale_start.textChanged.connect(self.out_pvi_in)
         self.ui.lineEdit_pvi_scale_end.textChanged.connect(self.out_pvi_in)
 
-        # Допуски
-        self.ui.lineEdit_out_irt_value_5.textChanged.connect(self.acceptance_error_irt)
+        # Установка допуска ПВИ
+        self.ui.lineEdit_out_start_value.textChanged.connect(self.acceptance_irt)
+        self.ui.lineEdit_out_end_value.textChanged.connect(self.acceptance_irt)
 
         # Установка параметров входа
         self.ui.comboBox_in_signal_type.activated.connect(self.parametr_in_signal)
@@ -133,7 +135,6 @@ class Window(QtWidgets.QMainWindow):
 
         # Допуск ИРТ
         self.acceptance_irt()
-        self.acceptance_error_irt()
 
     def validat_param(self):
         """ Валидация полей Вход, Выход, Шкала ПВИ параметров прибора """
@@ -202,14 +203,11 @@ class Window(QtWidgets.QMainWindow):
             self.ui.label_pvi_out_r.setEnabled(False)
 
     def is_number(self, num):
-        """ Определяет тип числа """
+        """ Преобразует в Decimal """
         try:
             num = num.replace(',', '.')
             if float(num) or float(num) == 0:
-                if num.isdigit():
-                    return int(num)
-                else:
-                    return float(num)
+                return Decimal(num)
         except:
             pass
 
@@ -217,11 +215,12 @@ class Window(QtWidgets.QMainWindow):
         """ Расчет требуемых входных """
         values = ['']
         try:
-            in_start = self.is_number(self.ui.lineEdit_in_start_value.text())
-            in_end = self.is_number(self.ui.lineEdit_in_end_value.text())
+            # Установка входных
+            in_start = float(self.ui.lineEdit_in_start_value.text().replace(',', '.'))
+            in_end = float(self.ui.lineEdit_in_end_value.text().replace(',', '.'))
 
             for i in (0.05, 0.25, 0.5, 0.75, 0.95):
-                values.append(str(round((in_end - in_start) * i + in_start, 3)))
+                values.append(str(round((float(in_end) - float(in_start)) * i + float(in_start), 3)))
 
             self.ui.lineEdit_out_irt_in_5.setText(values[1])
             self.ui.lineEdit_out_irt_in_25.setText(values[2])
@@ -260,33 +259,39 @@ class Window(QtWidgets.QMainWindow):
 
     def acceptance_irt(self):
         """ Устанавливает допуск ИРТ """
-        in_signal_type = self.ui.comboBox_in_signal_type.currentText().lower()
+        out_start = self.is_number(self.ui.lineEdit_out_start_value.text())
+        out_end = self.is_number(self.ui.lineEdit_out_end_value.text())
 
+        one_unit_last_number = 0
+        try:
+            range_scale = str(out_end - out_start)
+
+            dig = abs(range_scale.find('.') - len(range_scale)) - 1 if '.' in range_scale else 0
+            if dig == 0:
+                one_unit_last_number = 1
+            if dig == 1:
+                one_unit_last_number = 0.1
+            if dig == 2:
+                one_unit_last_number = 0.01
+            if dig == 3:
+                one_unit_last_number = 0.001
+
+            # одна единица последнего разряда, выраженная в процентах от диапазона измерений
+            one_unit_last_number = abs(one_unit_last_number / float(range_scale) * 100)
+        except:
+            pass
+
+        k_thrm, k_resist = 0.5, 0.2 # допуски
+
+        in_signal_type = self.ui.comboBox_in_signal_type.currentText().lower()
         if 'м' in in_signal_type:
-            in_signal_text = "Допуск ±(0,2 + *)"
+            in_signal_text = f"Допуск ±({k_resist} + {one_unit_last_number:.3f})"
         elif 'тп' in in_signal_type:
-            in_signal_text = "Допуск ±(0,5 + *)"
+            in_signal_text = f"Допуск ±({k_thrm} + {one_unit_last_number:.3f})"
         else:
-            in_signal_text = "Допуск ±(0,0 + *)"
+            in_signal_text = f"Допуск ±(0,0 + *)"
 
         self.ui.label_acceptance_error_irt.setText(in_signal_text)
-
-    # TODO допуски
-    def acceptance_error_irt(self):
-        """ Рассчет допусков ИРТ """
-        in_start = self.is_number(self.ui.lineEdit_in_start_value.text())
-        in_end = self.is_number(self.ui.lineEdit_in_end_value.text())
-
-        print(in_start, in_end)
-        range_scale = str(in_end - in_start)
-        print(range_scale)
-
-        val5 = self.ui.lineEdit_out_irt_value_5.text()
-        print(val5)
-
-        dig = abs(val5.find('.') - len(val5)) - 1 if '.' in val5 else 0
-        print(dig)
-    pass
 
     def acceptance_error_pvi(self):
         """ Рассчет допусков ПВИ """

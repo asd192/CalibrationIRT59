@@ -1621,6 +1621,9 @@
          <bold>false</bold>
         </font>
        </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;* это одна единица последнего разряда, выраженная в процентах от диапазона измерений&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="text">
         <string>Допуск ±(0,0 + *)</string>
        </property>
