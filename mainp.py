@@ -301,7 +301,7 @@ class Window(QtWidgets.QMainWindow):
         """ Загрузка параметров """
         try:
             config = configparser.ConfigParser()
-            config.read("parameters.ini")
+            config.read("parameters.ini", encoding="utf-8")
             table = self.ui.tableWidget_param
 
             for column in range(0, table.columnCount()):
@@ -395,7 +395,7 @@ class Window(QtWidgets.QMainWindow):
             if not os.path.isdir(file_path):
                 os.mkdir(file_path)
 
-            with open(f"{file_path}/{file_name}.clbr59", "w") as config_file:
+            with open(f"{file_path}/{file_name}.clbr59", "w", encoding="UTF-8") as config_file:
                 config.write(config_file)
 
             QtWidgets.QMessageBox.information(self, "Сохранено",
@@ -416,7 +416,7 @@ class Window(QtWidgets.QMainWindow):
                                                      initialFilter="clbr59 (*.clbr59)",)
 
         config = configparser.ConfigParser()
-        config.read(file[0])
+        config.read(file[0], encoding="UTF-8")
 
         _translate = QtCore.QCoreApplication.translate
 
