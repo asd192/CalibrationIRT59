@@ -31,6 +31,12 @@
       <height>620</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="tabPosition">
      <enum>QTabWidget::North</enum>
     </property>
@@ -56,6 +62,7 @@
       <property name="font">
        <font>
         <family>DejaVu Sans</family>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="toolTip">
@@ -77,6 +84,7 @@
       <property name="font">
        <font>
         <family>Segoe UI</family>
+        <pointsize>11</pointsize>
         <weight>50</weight>
         <bold>false</bold>
        </font>
@@ -260,11 +268,36 @@
         </font>
        </property>
        <property name="currentIndex">
-        <number>4</number>
+        <number>0</number>
        </property>
        <item>
         <property name="text">
          <string/>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2006</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2007</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2008</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2009</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2010</string>
         </property>
        </item>
        <item>
@@ -494,6 +527,9 @@
        <property name="font">
         <font>
          <family>DejaVu Sans</family>
+         <pointsize>11</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
         </font>
        </property>
        <property name="toolTip">
@@ -530,7 +566,9 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
         </font>
        </property>
        <property name="inputMethodHints">
@@ -561,7 +599,9 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
         </font>
        </property>
        <property name="inputMethodHints">
@@ -592,7 +632,9 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
         </font>
        </property>
        <property name="inputMethodHints">
@@ -623,7 +665,9 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
         </font>
        </property>
        <property name="inputMethodHints">
@@ -654,7 +698,9 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
         </font>
        </property>
        <property name="inputMethodHints">
@@ -682,7 +728,9 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
         </font>
        </property>
        <property name="inputMethodHints">
@@ -843,7 +891,10 @@
        </property>
        <property name="font">
         <font>
+         <family>Segoe UI</family>
          <pointsize>11</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
         </font>
        </property>
        <property name="maxLength">
@@ -861,7 +912,10 @@
        </property>
        <property name="font">
         <font>
+         <family>Segoe UI</family>
          <pointsize>11</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
         </font>
        </property>
       </widget>
@@ -905,6 +959,7 @@
       <property name="font">
        <font>
         <family>DejaVu Sans</family>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="toolTip">
@@ -926,6 +981,7 @@
       <property name="font">
        <font>
         <family>DejaVu Sans</family>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="toolTip">
@@ -1013,7 +1069,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="text">
@@ -1062,7 +1118,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="maxLength">
@@ -1111,7 +1167,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="text">
@@ -1136,7 +1192,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="maxLength">
@@ -1195,7 +1251,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="inputMask">
@@ -1262,7 +1318,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="maxLength">
@@ -1284,7 +1340,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="readOnly">
@@ -1306,7 +1362,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="inputMethodHints">
@@ -1331,7 +1387,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="maxLength">
@@ -1380,7 +1436,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="maxLength">
@@ -1507,7 +1563,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="readOnly">
@@ -1526,7 +1582,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="maxLength">
@@ -1548,7 +1604,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="readOnly">
@@ -1570,7 +1626,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="readOnly">
@@ -1670,7 +1726,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="readOnly">
@@ -1692,7 +1748,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="inputMethodHints">
@@ -1720,7 +1776,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="readOnly">
@@ -1742,7 +1798,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="readOnly">
@@ -1764,7 +1820,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="readOnly">
@@ -1912,7 +1968,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="inputMask">
@@ -1982,7 +2038,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="maxLength">
@@ -2004,7 +2060,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="readOnly">
@@ -2026,7 +2082,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="inputMethodHints">
@@ -2051,7 +2107,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="maxLength">
@@ -2103,7 +2159,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="maxLength">
@@ -2230,7 +2286,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="readOnly">
@@ -2252,7 +2308,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="maxLength">
@@ -2274,7 +2330,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="readOnly">
@@ -2296,7 +2352,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="readOnly">
@@ -2357,7 +2413,7 @@
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="QLineEdit" name="label_out_pvi_output_95">
+      <widget class="QLineEdit" name="lineEdit_out_pvi_output_95">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -2372,14 +2428,14 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="readOnly">
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLineEdit" name="label_out_pvi_output_5">
+      <widget class="QLineEdit" name="lineEdit_out_pvi_output_5">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -2394,7 +2450,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="inputMethodHints">
@@ -2404,7 +2460,7 @@
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLineEdit" name="label_out_pvi_output_50">
+      <widget class="QLineEdit" name="lineEdit_out_pvi_output_50">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -2419,7 +2475,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="readOnly">
@@ -2450,7 +2506,7 @@
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLineEdit" name="label_out_pvi_output_25">
+      <widget class="QLineEdit" name="lineEdit_out_pvi_output_25">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -2465,14 +2521,14 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="readOnly">
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLineEdit" name="label_out_pvi_output_75">
+      <widget class="QLineEdit" name="lineEdit_out_pvi_output_75">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -2487,7 +2543,7 @@
        <property name="font">
         <font>
          <family>Segoe UI</family>
-         <pointsize>10</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="readOnly">
@@ -2652,6 +2708,7 @@
       <property name="font">
        <font>
         <family>DejaVu Sans</family>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="text">
@@ -2667,22 +2724,33 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>29</height>
+     <height>26</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <widget class="QMenu" name="menu1">
     <property name="geometry">
      <rect>
-      <x>273</x>
-      <y>148</y>
-      <width>233</width>
-      <height>160</height>
+      <x>370</x>
+      <y>163</y>
+      <width>242</width>
+      <height>153</height>
      </rect>
     </property>
     <property name="title">
      <string>Файл</string>
     </property>
     <widget class="QMenu" name="menu_2">
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
      <property name="title">
       <string>Создать</string>
      </property>
@@ -2699,6 +2767,12 @@
     <addaction name="action_exit"/>
    </widget>
    <widget class="QMenu" name="menu">
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="title">
      <string>Помощь</string>
     </property>
@@ -2717,13 +2791,20 @@
    </property>
    <property name="font">
     <font>
-     <family>DejaVu Sans</family>
+     <family>Segoe UI</family>
+     <pointsize>11</pointsize>
     </font>
    </property>
   </action>
   <action name="action_exit">
    <property name="text">
     <string>Выйти</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>11</pointsize>
+    </font>
    </property>
   </action>
   <action name="action_help">
@@ -2732,7 +2813,8 @@
    </property>
    <property name="font">
     <font>
-     <family>DejaVu Sans</family>
+     <family>Segoe UI</family>
+     <pointsize>11</pointsize>
     </font>
    </property>
   </action>
@@ -2740,35 +2822,77 @@
    <property name="text">
     <string>О программе</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
   </action>
   <action name="action_error">
    <property name="text">
     <string>Сообщить о ошибке</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>11</pointsize>
+    </font>
    </property>
   </action>
   <action name="action_empty_ma">
    <property name="text">
     <string>Чистый мА</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
   </action>
   <action name="action_empty_tp">
    <property name="text">
     <string>Чистый ТП</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>11</pointsize>
+    </font>
    </property>
   </action>
   <action name="action_empty_tsm">
    <property name="text">
     <string>Чистый ТСМ</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
   </action>
   <action name="action_empty">
    <property name="text">
     <string>Новый</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
   </action>
   <action name="action_save_config">
    <property name="text">
     <string>Сохранить конфигурацию</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>11</pointsize>
+    </font>
    </property>
   </action>
  </widget>
