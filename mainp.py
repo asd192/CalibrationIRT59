@@ -77,6 +77,22 @@ class Window(QtWidgets.QMainWindow):
         # Установка параметров входа
         self.ui.comboBox_in_signal_type.activated.connect(self.parametr_in_signal)
 
+        # Рассчет основной приведенной погрешности
+        self.ui.lineEdit_out_irt_value_5.textChanged.connect(self.error_irt_5)
+        self.ui.lineEdit_out_irt_output_5.textChanged.connect(self.error_irt_5)
+
+        self.ui.lineEdit_out_irt_value_25.textChanged.connect(self.error_irt_25)
+        self.ui.lineEdit_out_irt_output_25.textChanged.connect(self.error_irt_25)
+
+        self.ui.lineEdit_out_irt_value_50.textChanged.connect(self.error_irt_50)
+        self.ui.lineEdit_out_irt_output_50.textChanged.connect(self.error_irt_50)
+
+        self.ui.lineEdit_out_irt_value_75.textChanged.connect(self.error_irt_75)
+        self.ui.lineEdit_out_irt_output_75.textChanged.connect(self.error_irt_75)
+
+        self.ui.lineEdit_out_irt_value_95.textChanged.connect(self.error_irt_95)
+        self.ui.lineEdit_out_irt_output_95.textChanged.connect(self.error_irt_95)
+
         # Сохранение настроек
         self.ui.pushButton_save_custom.clicked.connect(self.save_param)
 
@@ -310,14 +326,14 @@ class Window(QtWidgets.QMainWindow):
         if r_pvi_key in r_pvi.keys():
             self.ui.label_pvi_out_r.setText(f"R={str(r_pvi[r_pvi_key])}±5%")
 
-    def acceptance_irt(self):
+    def acceptance_irt(self, acceptance_error_pvi=False):
         """ Устанавливает допуск ИРТ """
         out_start = self.is_number(self.ui.lineEdit_out_start_value.text())
         out_end = self.is_number(self.ui.lineEdit_out_end_value.text())
 
         one_unit_last_number = 0
         try:
-            range_scale = str(out_end - out_start)
+            range_scale = str(out_end - out_start) # TODO проверить ABS?
 
             dig = abs(range_scale.find('.') - len(range_scale)) - 1 if '.' in range_scale else 0
             if dig == 0:
@@ -330,21 +346,79 @@ class Window(QtWidgets.QMainWindow):
                 one_unit_last_number = 0.001
 
             # одна единица последнего разряда, выраженная в процентах от диапазона измерений
-            one_unit_last_number = abs(one_unit_last_number / float(range_scale) * 100)
+            one_unit_last_number = abs(round(one_unit_last_number / float(range_scale) * 100, 3))
         except:
             pass
 
-        _K_THRM, _K_RESIST = 0.5, 0.2 # допуски(табличные данные), не трогать
-
-        in_signal_type = self.ui.comboBox_in_signal_type.currentText().lower()
-        if 'м' in in_signal_type:
-            in_signal_text = f"Допуск ±({_K_RESIST} + {one_unit_last_number:.3f})"
-        elif 'тп' in in_signal_type:
-            in_signal_text = f"Допуск ±({_K_THRM} + {one_unit_last_number:.3f})"
+        in_signal_type = self.ui.comboBox_in_signal_type.currentText()
+        if 'мА' in in_signal_type:
+            _K = 0.2
+        elif 'ТП' in in_signal_type:
+            _K = 0.5
+        elif 'ТСМ' in in_signal_type:
+            _K = 0.2
         else:
-            in_signal_text = f"Допуск ±(0,0 + *)"
+            _K = "0.0"
+            one_unit_last_number = "*"
 
+        K = _K + one_unit_last_number
+
+        # TODO править на nix
+        acceptance = '*'
+        try:
+            acceptance = str((K / (out_end - out_start)) * 100)
+        except:
+            pass
+        in_signal_text = f"Допуск ±({_K} + {one_unit_last_number})% {'-> ' + acceptance}"
         self.ui.label_acceptance_error_irt.setText(in_signal_text)
+
+        if acceptance_error_pvi:
+            return K
+
+    def error_irt_5(self):
+        Ai = self.ui.lineEdit_out_irt_value_5.text()
+        Ad = self.ui.lineEdit_out_irt_output_5.text()
+        self.ui.lineEdit_out_irt_value_5.setStyleSheet(self.acceptance_error_irt(Ai, Ad))
+
+    def error_irt_25(self):
+        Ai = self.ui.lineEdit_out_irt_value_25.text()
+        Ad = self.ui.lineEdit_out_irt_output_25.text()
+        self.ui.lineEdit_out_irt_value_25.setStyleSheet(self.acceptance_error_irt(Ai, Ad))
+
+    def error_irt_50(self):
+        Ai = self.ui.lineEdit_out_irt_value_50.text()
+        Ad = self.ui.lineEdit_out_irt_output_50.text()
+        self.ui.lineEdit_out_irt_value_50.setStyleSheet(self.acceptance_error_irt(Ai, Ad))
+
+    def error_irt_75(self):
+        Ai = self.ui.lineEdit_out_irt_value_75.text()
+        Ad = self.ui.lineEdit_out_irt_output_75.text()
+        self.ui.lineEdit_out_irt_value_75.setStyleSheet(self.acceptance_error_irt(Ai, Ad))
+
+    def error_irt_95(self):
+        Ai = self.ui.lineEdit_out_irt_value_95.text()
+        Ad = self.ui.lineEdit_out_irt_output_95.text()
+        self.ui.lineEdit_out_irt_value_95.setStyleSheet(self.acceptance_error_irt(Ai, Ad))
+
+    def acceptance_error_irt(self, Ai, Ad):
+        """ Рассчет допусков ИРТ """
+        A_r_min = self.ui.lineEdit_out_start_value.text()
+        A_r_max = self.ui.lineEdit_out_end_value.text()
+        try:
+            Ai, Ad, A_r_min, A_r_max = float(Ai), float(Ad), float(A_r_min), float(A_r_max)
+
+            k = self.acceptance_irt(True)  # запрос допуска
+            y = round(abs(((Ai - Ad) / (A_r_max - A_r_min)) * 100), 3)
+
+            if y > k:
+                color = u"color: red"
+            else:
+                color = u"color: black"
+
+            return color
+
+        except ValueError:
+            pass
 
     def acceptance_error_pvi(self):
         """ Рассчет допусков ПВИ """
