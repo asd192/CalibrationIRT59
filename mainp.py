@@ -55,12 +55,20 @@ class Window(QtWidgets.QMainWindow):
         self.ui.checkBox_pvi.stateChanged.connect(lambda check=self.ui.checkBox_pvi.isChecked(): self.select_pvi(check))
 
 
-        # Установка входных значений выходов
+        # Установка входных значений выходов ИРТ
         self.ui.lineEdit_in_start_value.textChanged.connect(self.out_irt_in)
         self.ui.lineEdit_in_end_value.textChanged.connect(self.out_irt_in)
 
+        # Установка выходных значений выходов ИРТ
+        self.ui.lineEdit_out_start_value.textChanged.connect(self.out_irt_out)
+        self.ui.lineEdit_out_end_value.textChanged.connect(self.out_irt_out)
+
+        # Установка входных значений выходов ПВИ
         self.ui.lineEdit_pvi_scale_start.textChanged.connect(self.out_pvi_in)
         self.ui.lineEdit_pvi_scale_end.textChanged.connect(self.out_pvi_in)
+
+        # Установка выходных значений выходов ПВИ и R ПВИ
+        self.ui.comboBox_pvi_out.activated.connect(self.out_pvi_out)
 
         # Установка допуска ПВИ
         self.ui.lineEdit_out_start_value.textChanged.connect(self.acceptance_irt)
@@ -68,9 +76,6 @@ class Window(QtWidgets.QMainWindow):
 
         # Установка параметров входа
         self.ui.comboBox_in_signal_type.activated.connect(self.parametr_in_signal)
-
-        # Установка R ПВИ
-        self.ui.comboBox_pvi_out.activated.connect(self.parametr_pvi_out_signal)
 
         # Сохранение настроек
         self.ui.pushButton_save_custom.clicked.connect(self.save_param)
@@ -87,18 +92,6 @@ class Window(QtWidgets.QMainWindow):
 
         # Выход из программы
         self.ui.action_exit.triggered.connect(self.exit)
-
-    def parametr_pvi_out_signal(self):
-        """ Определяет требуемое R ПВИ """
-        r_pvi = {
-            "0-5": "1.8 кОм",
-            "0-20": "470 Ом",
-            "4-20": "470 Ом"
-        }
-
-        r_pvi_key = self.ui.comboBox_pvi_out.currentText()
-        if r_pvi_key in r_pvi.keys():
-            self.ui.label_pvi_out_r.setText(f"R={str(r_pvi[r_pvi_key])}±5%")
 
     def parametr_in_signal(self):
         """ Устанавливает параметры прибора(входные значения) """
@@ -227,13 +220,36 @@ class Window(QtWidgets.QMainWindow):
             self.ui.lineEdit_out_irt_in_50.setText(values[3])
             self.ui.lineEdit_out_irt_in_75.setText(values[4])
             self.ui.lineEdit_out_irt_in_95.setText(values[5])
-
         except:
             self.ui.lineEdit_out_irt_in_5.setText(values[0])
             self.ui.lineEdit_out_irt_in_25.setText(values[0])
             self.ui.lineEdit_out_irt_in_50.setText(values[0])
             self.ui.lineEdit_out_irt_in_75.setText(values[0])
             self.ui.lineEdit_out_irt_in_95.setText(values[0])
+
+    def out_irt_out(self):
+        """ Расчет требуемых выходных """
+        values = ['']
+        try:
+            # Установка выходных
+            in_start = float(self.ui.lineEdit_out_start_value.text().replace(',', '.'))
+            in_end = float(self.ui.lineEdit_out_end_value.text().replace(',', '.'))
+
+            for i in (0.05, 0.25, 0.5, 0.75, 0.95):
+                values.append(str(round((float(in_end) - float(in_start)) * i + float(in_start), 3)))
+
+            self.ui.lineEdit_out_irt_output_5.setText(values[1])
+            self.ui.lineEdit_out_irt_output_25.setText(values[2])
+            self.ui.lineEdit_out_irt_output_50.setText(values[3])
+            self.ui.lineEdit_out_irt_output_75.setText(values[4])
+            self.ui.lineEdit_out_irt_output_95.setText(values[5])
+        except:
+            self.ui.lineEdit_out_irt_output_5.setText(values[0])
+            self.ui.lineEdit_out_irt_output_25.setText(values[0])
+            self.ui.lineEdit_out_irt_output_50.setText(values[0])
+            self.ui.lineEdit_out_irt_output_75.setText(values[0])
+            self.ui.lineEdit_out_irt_output_95.setText(values[0])
+
 
     def out_pvi_in(self):
         """ Расчет требуемых входных ПВИ"""
@@ -256,6 +272,43 @@ class Window(QtWidgets.QMainWindow):
             self.ui.lineEdit_out_pvi_in_50.setText(values[0])
             self.ui.lineEdit_out_pvi_in_75.setText(values[0])
             self.ui.lineEdit_out_pvi_in_95.setText(values[0])
+
+    def out_pvi_out(self):
+        """ Расчет требуемых выходных ПВИ"""
+        values = ['']
+        try:
+            type_out = self.ui.comboBox_pvi_out.currentText().split('-')
+
+            in_start = int(type_out[0])
+            in_end = int(type_out[1])
+
+            print(in_start, in_end)
+            for i in (0.05, 0.25, 0.5, 0.75, 0.95):
+                values.append(str((in_end - in_start) * i + in_start))
+
+            print(values)
+            self.ui.lineEdit_out_pvi_output_5.setText(values[1])
+            self.ui.lineEdit_out_pvi_output_25.setText(values[2])
+            self.ui.lineEdit_out_pvi_output_50.setText(values[3])
+            self.ui.lineEdit_out_pvi_output_75.setText(values[4])
+            self.ui.lineEdit_out_pvi_output_95.setText(values[5])
+        except:
+            self.ui.lineEdit_out_pvi_output_5.setText(values[0])
+            self.ui.lineEdit_out_pvi_output_25.setText(values[0])
+            self.ui.lineEdit_out_pvi_output_50.setText(values[0])
+            self.ui.lineEdit_out_pvi_output_75.setText(values[0])
+            self.ui.lineEdit_out_pvi_output_95.setText(values[0])
+
+        # R ПВИ
+        r_pvi = {
+            "0-5": "1.8 кОм",
+            "0-20": "470 Ом",
+            "4-20": "470 Ом"
+        }
+
+        r_pvi_key = self.ui.comboBox_pvi_out.currentText()
+        if r_pvi_key in r_pvi.keys():
+            self.ui.label_pvi_out_r.setText(f"R={str(r_pvi[r_pvi_key])}±5%")
 
     def acceptance_irt(self):
         """ Устанавливает допуск ИРТ """
@@ -368,22 +421,29 @@ class Window(QtWidgets.QMainWindow):
         config.set("Параметры прибора", "ПВИ тип выхода", self.ui.comboBox_pvi_out.currentText())
 
         config.add_section("Выход ИРТ")
-        config.set("Выход ИРТ", "Выход 5", self.ui.lineEdit_out_irt_value_5.text())
-        config.set("Выход ИРТ", "Выход 25", self.ui.lineEdit_out_irt_value_25.text())
-        config.set("Выход ИРТ", "Выход 50", self.ui.lineEdit_out_irt_value_50.text())
-        config.set("Выход ИРТ", "Выход 75", self.ui.lineEdit_out_irt_value_75.text())
-        config.set("Выход ИРТ", "Выход 95", self.ui.lineEdit_out_irt_value_95.text())
+        config.set("Выход ИРТ", "Показания 5", self.ui.lineEdit_out_irt_value_5.text())
+        config.set("Выход ИРТ", "Показания 25", self.ui.lineEdit_out_irt_value_25.text())
+        config.set("Выход ИРТ", "Показания 50", self.ui.lineEdit_out_irt_value_50.text())
+        config.set("Выход ИРТ", "Показания 75", self.ui.lineEdit_out_irt_value_75.text())
+        config.set("Выход ИРТ", "Показания 95", self.ui.lineEdit_out_irt_value_95.text())
+
 
         config.add_section("Выход 24В")
         config.set("Выход 24В", "Выход R0", self.ui.lineEdit_out_24_value_0.text())
         config.set("Выход 24В", "Выход R820", self.ui.lineEdit_out_24_value_820.text())
 
         config.add_section("Выход ПВИ")
-        config.set("Выход ПВИ", "Выход ПВИ 5", self.ui.lineEdit_out_pvi_value_5.text())
-        config.set("Выход ПВИ", "Выход ПВИ 25", self.ui.lineEdit_out_pvi_value_25.text())
-        config.set("Выход ПВИ", "Выход ПВИ 50", self.ui.lineEdit_out_pvi_value_50.text())
-        config.set("Выход ПВИ", "Выход ПВИ 75", self.ui.lineEdit_out_pvi_value_75.text())
-        config.set("Выход ПВИ", "Выход ПВИ 95", self.ui.lineEdit_out_pvi_value_95.text())
+        config.set("Выход ПВИ", "Показания 5", self.ui.lineEdit_out_pvi_value_5.text())
+        config.set("Выход ПВИ", "Показания 25", self.ui.lineEdit_out_pvi_value_25.text())
+        config.set("Выход ПВИ", "Показания 50", self.ui.lineEdit_out_pvi_value_50.text())
+        config.set("Выход ПВИ", "Показания 75", self.ui.lineEdit_out_pvi_value_75.text())
+        config.set("Выход ПВИ", "Показания 95", self.ui.lineEdit_out_pvi_value_95.text())
+
+        config.set("Выход ПВИ", "Выход 5", self.ui.lineEdit_out_pvi_output_5.text())
+        config.set("Выход ПВИ", "Выход 25", self.ui.lineEdit_out_pvi_output_25.text())
+        config.set("Выход ПВИ", "Выход 50", self.ui.lineEdit_out_pvi_output_50.text())
+        config.set("Выход ПВИ", "Выход 75", self.ui.lineEdit_out_pvi_output_75.text())
+        config.set("Выход ПВИ", "Выход 95", self.ui.lineEdit_out_pvi_output_95.text())
 
         config.add_section("Сдал/Принял/Дата")
         config.set("Сдал/Принял/Дата", "Сдал", self.ui.comboBox_passed.currentText())
@@ -408,7 +468,7 @@ class Window(QtWidgets.QMainWindow):
 
     def load_config_file(self):
         """ Загружает пользовательский файл конфигурации """
-        path = os.path.abspath(os.curdir)
+        path = f"{os.path.abspath(os.curdir)}\configurations"
         file = QtWidgets.QFileDialog.getOpenFileName(parent=application,
                                                      caption="Загрузить файл",
                                                      directory=path,
@@ -440,20 +500,26 @@ class Window(QtWidgets.QMainWindow):
         self.ui.lineEdit_pvi_scale_end.setText(config.get("Параметры прибора", "пви конец шкалы"))
         self.ui.comboBox_pvi_out.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "пви тип выхода")))
 
-        self.ui.lineEdit_out_irt_value_5.setText(config.get("Выход ИРТ", "выход 5"))
-        self.ui.lineEdit_out_irt_value_25.setText(config.get("Выход ИРТ", "выход 25"))
-        self.ui.lineEdit_out_irt_value_50.setText(config.get("Выход ИРТ", "выход 50"))
-        self.ui.lineEdit_out_irt_value_75.setText(config.get("Выход ИРТ", "выход 75"))
-        self.ui.lineEdit_out_irt_value_95.setText(config.get("Выход ИРТ", "выход 95"))
+        self.ui.lineEdit_out_irt_value_5.setText(config.get("Выход ИРТ", "показания 5"))
+        self.ui.lineEdit_out_irt_value_25.setText(config.get("Выход ИРТ", "показания 25"))
+        self.ui.lineEdit_out_irt_value_50.setText(config.get("Выход ИРТ", "показания 50"))
+        self.ui.lineEdit_out_irt_value_75.setText(config.get("Выход ИРТ", "показания 75"))
+        self.ui.lineEdit_out_irt_value_95.setText(config.get("Выход ИРТ", "показания 95"))
 
         self.ui.lineEdit_out_24_value_0.setText(config.get("Выход 24В", "выход r0"))
         self.ui.lineEdit_out_24_value_820.setText(config.get("Выход 24В", "выход r820"))
 
-        self.ui.lineEdit_out_pvi_value_5.setText(config.get("Выход ПВИ", "выход пви 5"))
-        self.ui.lineEdit_out_pvi_value_25.setText(config.get("Выход ПВИ", "выход пви 25"))
-        self.ui.lineEdit_out_pvi_value_50.setText(config.get("Выход ПВИ", "выход пви 50"))
-        self.ui.lineEdit_out_pvi_value_75.setText(config.get("Выход ПВИ", "выход пви 75"))
-        self.ui.lineEdit_out_pvi_value_95.setText(config.get("Выход ПВИ", "выход пви 95"))
+        self.ui.lineEdit_out_pvi_value_5.setText(config.get("Выход ПВИ", "показания 5"))
+        self.ui.lineEdit_out_pvi_value_25.setText(config.get("Выход ПВИ", "показания 25"))
+        self.ui.lineEdit_out_pvi_value_50.setText(config.get("Выход ПВИ", "показания 50"))
+        self.ui.lineEdit_out_pvi_value_75.setText(config.get("Выход ПВИ", "показания 75"))
+        self.ui.lineEdit_out_pvi_value_95.setText(config.get("Выход ПВИ", "показания 95"))
+
+        self.ui.lineEdit_out_pvi_output_5.setText(config.get("Выход ПВИ", "выход 5"))
+        self.ui.lineEdit_out_pvi_output_25.setText(config.get("Выход ПВИ", "выход 25"))
+        self.ui.lineEdit_out_pvi_output_50.setText(config.get("Выход ПВИ", "выход 50"))
+        self.ui.lineEdit_out_pvi_output_75.setText(config.get("Выход ПВИ", "выход 75"))
+        self.ui.lineEdit_out_pvi_output_95.setText(config.get("Выход ПВИ", "выход 95"))
 
         self.ui.comboBox_passed.setItemText(0, _translate("MainWindow", config.get("Сдал/Принял/Дата", "сдал")))
         self.ui.comboBox_adopted.setItemText(0, _translate("MainWindow", config.get("Сдал/Принял/Дата", "принял")))
