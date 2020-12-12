@@ -62,7 +62,7 @@ class Window(QtWidgets.QMainWindow):
         self.ui.lineEdit_pvi_scale_start.textChanged.connect(self.out_pvi_in)
         self.ui.lineEdit_pvi_scale_end.textChanged.connect(self.out_pvi_in)
 
-        # Установка допуска ПВИ
+        # Установка допуска ИРТ
         self.ui.lineEdit_out_start_value.textChanged.connect(self.acceptance_irt)
         self.ui.lineEdit_out_end_value.textChanged.connect(self.acceptance_irt)
 
@@ -220,7 +220,7 @@ class Window(QtWidgets.QMainWindow):
             in_end = float(self.ui.lineEdit_in_end_value.text().replace(',', '.'))
 
             for i in (0.05, 0.25, 0.5, 0.75, 0.95):
-                values.append(str(round((float(in_end) - float(in_start)) * i + float(in_start), 3)))
+                values.append(str(round((in_end - in_start) * i + in_start, 3)))
 
             self.ui.lineEdit_out_irt_in_5.setText(values[1])
             self.ui.lineEdit_out_irt_in_25.setText(values[2])
