@@ -367,13 +367,12 @@ class Window(QtWidgets.QMainWindow):
 
         K = _K + one_unit_last_number
 
-        # TODO править на nix
         acceptance = '*'
         try:
-            acceptance = str((K / (out_end - out_start)) * 100)
+            acceptance = (K / (out_end - out_start)) * 100
         except:
             pass
-        in_signal_text = f"Допуск ±({_K} + {one_unit_last_number})% {'-> ' + acceptance}"
+        in_signal_text = f"Допуск ±({_K} + {one_unit_last_number})% -> {acceptance}"
         self.ui.label_acceptance_error_irt.setText(in_signal_text)
 
         if acceptance_error_pvi:
@@ -406,8 +405,8 @@ class Window(QtWidgets.QMainWindow):
 
     def acceptance_error_irt(self, Ai, Ad):
         """ Рассчет допусков ИРТ """
-        A_r_min = self.ui.lineEdit_out_start_value.text()
-        A_r_max = self.ui.lineEdit_out_end_value.text()
+        A_r_min = self.ui.lineEdit_out_start_value.text().replace(',', '.')
+        A_r_max = self.ui.lineEdit_out_end_value.text().replace(',', '.')
         try:
             Ai, Ad, A_r_min, A_r_max = float(Ai), float(Ad), float(A_r_min), float(A_r_max)
 
