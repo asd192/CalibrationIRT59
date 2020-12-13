@@ -77,7 +77,7 @@ class Window(QtWidgets.QMainWindow):
         # Установка параметров входа
         self.ui.comboBox_in_signal_type.activated.connect(self.parametr_in_signal)
 
-        # Рассчет основной приведенной погрешности
+        # Рассчет основной приведенной погрешности ИРТ + цветовая индикация
         self.ui.lineEdit_out_irt_value_5.textChanged.connect(self.error_irt_5)
         self.ui.lineEdit_out_irt_output_5.textChanged.connect(self.error_irt_5)
 
@@ -92,6 +92,10 @@ class Window(QtWidgets.QMainWindow):
 
         self.ui.lineEdit_out_irt_value_95.textChanged.connect(self.error_irt_95)
         self.ui.lineEdit_out_irt_output_95.textChanged.connect(self.error_irt_95)
+
+        # Цветовая индикация допуска 24В
+        self.ui.lineEdit_out_24_value_0.textChanged.connect(self.error_24_0)
+        self.ui.lineEdit_out_24_value_820.textChanged.connect(self.error_24_820)
 
         # Сохранение настроек
         self.ui.pushButton_save_custom.clicked.connect(self.save_param)
@@ -418,6 +422,32 @@ class Window(QtWidgets.QMainWindow):
             return color
 
         except ValueError:
+            pass
+
+    def error_24_0(self):
+        try:
+            Ai = abs(float(self.ui.lineEdit_out_24_value_0.text().replace(",", ".")))
+            Ad = float(self.ui.lineEdit_out_24_in_0.text().replace(",", "."))
+            if abs(round(Ad - Ai, 3)) > 0.48:
+                color = u"color: red"
+            else:
+                color = u"color: black"
+
+            self.ui.lineEdit_out_24_value_0.setStyleSheet(color)
+        except:
+            pass
+
+    def error_24_820(self):
+        try:
+            Ai = abs(float(self.ui.lineEdit_out_24_value_820.text().replace(",", ".")))
+            Ad = float(self.ui.lineEdit_out_24_in_820.text().replace(",", "."))
+            if abs(round(Ad - Ai, 3)) > 0.48:
+                color = u"color: red"
+            else:
+                color = u"color: black"
+
+            self.ui.lineEdit_out_24_value_820.setStyleSheet(color)
+        except:
             pass
 
     def acceptance_error_pvi(self):

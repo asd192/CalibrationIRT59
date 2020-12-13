@@ -637,6 +637,9 @@
          <bold>false</bold>
         </font>
        </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Начало шкалы как в приборе - с количеством знаков после запятой.&lt;/p&gt;&lt;p&gt;Например, если 2 знака после запятой, то ввести 0,00.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="inputMethodHints">
         <set>Qt::ImhNone</set>
        </property>
@@ -669,6 +672,9 @@
          <weight>50</weight>
          <bold>false</bold>
         </font>
+       </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Конец шкалы как в приборе - с количеством знаков после запятой.&lt;/p&gt;&lt;p&gt;Например, если 3 знака после запятой, то ввести 600,000.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="inputMethodHints">
         <set>Qt::ImhNone</set>
@@ -2739,7 +2745,7 @@
       <x>370</x>
       <y>163</y>
       <width>242</width>
-      <height>153</height>
+      <height>159</height>
      </rect>
     </property>
     <property name="title">
@@ -2748,6 +2754,7 @@
     <widget class="QMenu" name="menu_2">
      <property name="font">
       <font>
+       <family>Segoe UI</family>
        <pointsize>11</pointsize>
       </font>
      </property>
