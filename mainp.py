@@ -93,9 +93,22 @@ class Window(QtWidgets.QMainWindow):
         self.ui.lineEdit_out_irt_value_95.textChanged.connect(self.error_irt_95)
         self.ui.lineEdit_out_irt_output_95.textChanged.connect(self.error_irt_95)
 
+        # Рассчет основной приведенной погрешности ПВИ + цветовая индикация
+        self.ui.lineEdit_out_pvi_value_5.textChanged.connect(
+            lambda I_out=self.ui.lineEdit_out_pvi_value_5.text(): self.acceptance_error_pvi(I_out, 5))
+        self.ui.lineEdit_out_pvi_value_25.textChanged.connect(
+            lambda I_out=self.ui.lineEdit_out_pvi_value_25.text(): self.acceptance_error_pvi(I_out, 25))
+        self.ui.lineEdit_out_pvi_value_50.textChanged.connect(
+            lambda I_out=self.ui.lineEdit_out_pvi_value_50.text(): self.acceptance_error_pvi(I_out, 50))
+        self.ui.lineEdit_out_pvi_value_75.textChanged.connect(
+            lambda I_out=self.ui.lineEdit_out_pvi_value_75.text(): self.acceptance_error_pvi(I_out, 75))
+        self.ui.lineEdit_out_pvi_value_95.textChanged.connect(
+            lambda I_out=self.ui.lineEdit_out_pvi_value_95.text(): self.acceptance_error_pvi(I_out, 95))
+
+
         # Цветовая индикация допуска 24В
-        self.ui.lineEdit_out_24_value_0.textChanged.connect(self.error_24_0)
-        self.ui.lineEdit_out_24_value_820.textChanged.connect(self.error_24_820)
+        self.ui.lineEdit_out_24_value_0.textChanged.connect(self.acceptance_error_24_0)
+        self.ui.lineEdit_out_24_value_820.textChanged.connect(self.acceptance_error_24_820)
 
         # Сохранение настроек
         self.ui.pushButton_save_custom.clicked.connect(self.save_param)
@@ -148,6 +161,9 @@ class Window(QtWidgets.QMainWindow):
 
         # Допуск ИРТ
         self.acceptance_irt()
+        # Допуск ПВИ
+        self.out_pvi_out()
+
 
     def validat_param(self):
         """ Валидация полей Вход, Выход, Шкала ПВИ параметров прибора """
@@ -306,7 +322,6 @@ class Window(QtWidgets.QMainWindow):
             for i in (0.05, 0.25, 0.5, 0.75, 0.95):
                 values.append(str((in_end - in_start) * i + in_start))
 
-            print(values)
             self.ui.lineEdit_out_pvi_output_5.setText(values[1])
             self.ui.lineEdit_out_pvi_output_25.setText(values[2])
             self.ui.lineEdit_out_pvi_output_50.setText(values[3])
@@ -330,7 +345,12 @@ class Window(QtWidgets.QMainWindow):
         if r_pvi_key in r_pvi.keys():
             self.ui.label_pvi_out_r.setText(f"R={str(r_pvi[r_pvi_key])}±5%")
 
-    def acceptance_irt(self, acceptance_error_pvi=False):
+        # Допуск ПВИ
+        accept = self.acceptance_irt(True)
+        accept = f"Допуск ±(k {accept}+0,2)%"
+        self.ui.label_acceptance_error_pvi.setText(accept)
+
+    def acceptance_irt(self, acceptance_error=False):
         """ Устанавливает допуск ИРТ """
         out_start = self.is_number(self.ui.lineEdit_out_start_value.text())
         out_end = self.is_number(self.ui.lineEdit_out_end_value.text())
@@ -367,16 +387,19 @@ class Window(QtWidgets.QMainWindow):
 
         K = _K + one_unit_last_number
 
+        # Допуск в установленных единицах
         acceptance = '*'
         try:
-            acceptance = (K / (out_end - out_start)) * 100
+            acceptance = round(K / 100 * (float(out_end) - float(out_start)), 3)
         except:
             pass
+
         in_signal_text = f"Допуск ±({_K} + {one_unit_last_number})% -> {acceptance}"
         self.ui.label_acceptance_error_irt.setText(in_signal_text)
 
-        if acceptance_error_pvi:
-            return K
+        # Если запрошен допуск
+        if acceptance_error:
+            return round(K, 3)
 
     def error_irt_5(self):
         Ai = self.ui.lineEdit_out_irt_value_5.text()
@@ -405,13 +428,15 @@ class Window(QtWidgets.QMainWindow):
 
     def acceptance_error_irt(self, Ai, Ad):
         """ Рассчет допусков ИРТ """
-        A_r_min = self.ui.lineEdit_out_start_value.text().replace(',', '.')
-        A_r_max = self.ui.lineEdit_out_end_value.text().replace(',', '.')
+        A_min = self.ui.lineEdit_out_start_value.text().replace(',', '.')
+        A_max = self.ui.lineEdit_out_end_value.text().replace(',', '.')
+        print(Ai, Ad)
         try:
-            Ai, Ad, A_r_min, A_r_max = float(Ai), float(Ad), float(A_r_min), float(A_r_max)
+            Ai, Ad, A_min, A_max = float(Ai), float(Ad), float(A_min), float(A_max)
 
             k = self.acceptance_irt(True)  # запрос допуска
-            y = round(abs(((Ai - Ad) / (A_r_max - A_r_min)) * 100), 3)
+            y = round(abs(((Ai - Ad) / (A_max - A_min)) * 100), 5)
+            print(f"k: {k}, y: {y}")
 
             if y > k:
                 color = u"color: red"
@@ -423,7 +448,27 @@ class Window(QtWidgets.QMainWindow):
         except ValueError:
             pass
 
-    def error_24_0(self):
+    def acceptance_error_pvi(self, I_out, percent):
+        """ Рассчет допусков ПВИ """
+        I_out = float(str(I_out).replace(",", "."))
+        I_out_min = float(self.ui.comboBox_pvi_out.currentText().split('-')[0])
+        I_out_max = float(self.ui.comboBox_pvi_out.currentText().split('-')[1])
+        A_out_min = float(self.ui.lineEdit_pvi_scale_start.text().replace(",", "."))
+        A_out_max = float(self.ui.lineEdit_pvi_scale_end.text().replace(",", "."))
+
+        A_out = round(((I_out - I_out_min) / (I_out_max - I_out_min)) * (A_out_max - A_out_min) + A_out_min, 3)
+
+        # percent_value = {
+        #     5:
+        # }
+
+        Y = ((A_out - I_out) / (A_out_max - A_out_min)) * 100
+
+        print(A_out, I_out_min, I_out_max, A_out_min, A_out_max)
+        print(f"Y: {Y}")
+        print(self.acceptance_irt(True))
+
+    def acceptance_error_24_0(self):
         try:
             Ai = abs(float(self.ui.lineEdit_out_24_value_0.text().replace(",", ".")))
             Ad = float(self.ui.lineEdit_out_24_in_0.text().replace(",", "."))
@@ -436,7 +481,7 @@ class Window(QtWidgets.QMainWindow):
         except:
             pass
 
-    def error_24_820(self):
+    def acceptance_error_24_820(self):
         try:
             Ai = abs(float(self.ui.lineEdit_out_24_value_820.text().replace(",", ".")))
             Ad = float(self.ui.lineEdit_out_24_in_820.text().replace(",", "."))
@@ -448,10 +493,6 @@ class Window(QtWidgets.QMainWindow):
             self.ui.lineEdit_out_24_value_820.setStyleSheet(color)
         except:
             pass
-
-    def acceptance_error_pvi(self):
-        """ Рассчет допусков ПВИ """
-        pass
 
     def load_param(self):
         """ Загрузка параметров """

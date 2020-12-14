@@ -527,7 +527,7 @@
        <property name="font">
         <font>
          <family>DejaVu Sans</family>
-         <pointsize>11</pointsize>
+         <pointsize>10</pointsize>
          <weight>50</weight>
          <bold>false</bold>
         </font>
@@ -2730,7 +2730,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -2744,8 +2744,8 @@
      <rect>
       <x>370</x>
       <y>163</y>
-      <width>242</width>
-      <height>159</height>
+      <width>236</width>
+      <height>160</height>
      </rect>
     </property>
     <property name="title">
