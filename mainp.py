@@ -67,8 +67,8 @@ class Window(QtWidgets.QMainWindow):
         self.ui.lineEdit_pvi_scale_start.textChanged.connect(self.out_pvi_in)
         self.ui.lineEdit_pvi_scale_end.textChanged.connect(self.out_pvi_in)
 
-        # Установка выходных значений выходов ПВИ и R ПВИ
-        self.ui.comboBox_pvi_out.activated.connect(self.out_pvi_out)
+        # Установка выходных значений выходов, R и допуска ПВИ
+        self.ui.comboBox_pvi_out.currentTextChanged.connect(self.out_pvi_out)
 
         # Установка допуска ПВИ
         self.ui.lineEdit_out_start_value.textChanged.connect(self.acceptance_irt)
@@ -104,7 +104,6 @@ class Window(QtWidgets.QMainWindow):
             lambda I_out=self.ui.lineEdit_out_pvi_value_75.text(): self.acceptance_error_pvi(I_out, 75))
         self.ui.lineEdit_out_pvi_value_95.textChanged.connect(
             lambda I_out=self.ui.lineEdit_out_pvi_value_95.text(): self.acceptance_error_pvi(I_out, 95))
-
 
         # Цветовая индикация допуска 24В
         self.ui.lineEdit_out_24_value_0.textChanged.connect(self.acceptance_error_24_0)
@@ -167,15 +166,15 @@ class Window(QtWidgets.QMainWindow):
 
     def validat_param(self):
         """ Валидация полей Вход, Выход, Шкала ПВИ параметров прибора """
-        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,6}(?:[\.,]\d{,3})?$"))
+        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,6}(?:[\.]\d{,3})?$"))
 
     def validat_in_out(self):
         """ Валиддация показаний Выход ИРТ, Выход ПВИ """
-        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,5}(?:[\.,]\d{,3})?$"))
+        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,5}(?:[\.]\d{,3})?$"))
 
     def valdat_24(self):
         """ Валидация полей Выход 24В """
-        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,2}(?:[\.,]\d{,3})?$"))
+        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,2}(?:[\.]\d{,3})?$"))
 
     def comboBox_load(self, col=0):
         """ Заполнение ComboBox из tableWidget """
@@ -234,7 +233,7 @@ class Window(QtWidgets.QMainWindow):
     def is_number(self, num):
         """ Преобразует в Decimal """
         try:
-            num = num.replace(',', '.')
+            num = num
             if float(num) or float(num) == 0:
                 return Decimal(num)
         except:
@@ -245,8 +244,8 @@ class Window(QtWidgets.QMainWindow):
         values = ['']
         try:
             # Установка входных
-            in_start = float(self.ui.lineEdit_in_start_value.text().replace(',', '.'))
-            in_end = float(self.ui.lineEdit_in_end_value.text().replace(',', '.'))
+            in_start = float(self.ui.lineEdit_in_start_value.text())
+            in_end = float(self.ui.lineEdit_in_end_value.text())
 
             for i in (0.05, 0.25, 0.5, 0.75, 0.95):
                 values.append(str(round((float(in_end) - float(in_start)) * i + float(in_start), 3)))
@@ -268,8 +267,8 @@ class Window(QtWidgets.QMainWindow):
         values = ['']
         try:
             # Установка выходных
-            in_start = float(self.ui.lineEdit_out_start_value.text().replace(',', '.'))
-            in_end = float(self.ui.lineEdit_out_end_value.text().replace(',', '.'))
+            in_start = float(self.ui.lineEdit_out_start_value.text())
+            in_end = float(self.ui.lineEdit_out_end_value.text())
 
             for i in (0.05, 0.25, 0.5, 0.75, 0.95):
                 values.append(str(round((float(in_end) - float(in_start)) * i + float(in_start), 3)))
@@ -291,11 +290,11 @@ class Window(QtWidgets.QMainWindow):
         """ Расчет требуемых входных ПВИ"""
         values = ['']
         try:
-            in_start = float(self.ui.lineEdit_pvi_scale_start.text().replace(',', '.'))
-            in_end = float(self.ui.lineEdit_pvi_scale_end.text().replace(',', '.'))
+            in_start = float(self.ui.lineEdit_pvi_scale_start.text())
+            in_end = float(self.ui.lineEdit_pvi_scale_end.text())
 
             for i in (0.05, 0.25, 0.5, 0.75, 0.95):
-                values.append(str((in_end - in_start) * i + in_start))
+                values.append(str(round((in_end - in_start) * i + in_start, 3)))
 
             self.ui.lineEdit_out_pvi_in_5.setText(values[1])
             self.ui.lineEdit_out_pvi_in_25.setText(values[2])
@@ -309,7 +308,7 @@ class Window(QtWidgets.QMainWindow):
             self.ui.lineEdit_out_pvi_in_75.setText(values[0])
             self.ui.lineEdit_out_pvi_in_95.setText(values[0])
 
-    def out_pvi_out(self):
+    def out_pvi_out(self, acceptance_error=False):
         """ Расчет требуемых выходных ПВИ"""
         values = ['']
         try:
@@ -346,9 +345,28 @@ class Window(QtWidgets.QMainWindow):
             self.ui.label_pvi_out_r.setText(f"R={str(r_pvi[r_pvi_key])}±5%")
 
         # Допуск ПВИ
-        accept = self.acceptance_irt(True)
-        accept = f"Допуск ±(k {accept}+0,2)%"
+        K = 0.2 # допускаемая основная погрешность
+        try:
+            irt_start = float(self.ui.lineEdit_in_start_value.text())
+            irt_end = float(self.ui.lineEdit_in_end_value.text())
+
+            pvi_start = float(self.ui.lineEdit_pvi_scale_start.text())
+            pvi_end = float(self.ui.lineEdit_pvi_scale_end.text())
+
+            _K = 0.2 # погрешность
+            k = round((irt_end - irt_start) / (pvi_end - pvi_start), 3) # коэффициент, равный отношению диапазона измерений к диапазону преобразования ПВИ
+            Y = self.acceptance_irt(True) # предел основной приведенной погрешности ПВИ
+
+            K = round(k + Y + _K, 3)
+            accept = f"Допуск ±({k}*{Y}+{_K})% -> {K}"
+        except:
+            accept = f"Допуск ±(k γ0+0.2)% exept"
+
         self.ui.label_acceptance_error_pvi.setText(accept)
+
+        if acceptance_error:
+            return round(K, 3)
+
 
     def acceptance_irt(self, acceptance_error=False):
         """ Устанавливает допуск ИРТ """
@@ -402,43 +420,43 @@ class Window(QtWidgets.QMainWindow):
             return round(K, 3)
 
     def error_irt_5(self):
-        Ai = self.ui.lineEdit_out_irt_value_5.text()
-        Ad = self.ui.lineEdit_out_irt_output_5.text()
+        Ai = self.ui.lineEdit_out_irt_value_5.text().replace(",", ".")
+        Ad = self.ui.lineEdit_out_irt_output_5.text().replace(",", ".")
         self.ui.lineEdit_out_irt_value_5.setStyleSheet(self.acceptance_error_irt(Ai, Ad))
 
     def error_irt_25(self):
-        Ai = self.ui.lineEdit_out_irt_value_25.text()
-        Ad = self.ui.lineEdit_out_irt_output_25.text()
+        Ai = self.ui.lineEdit_out_irt_value_25.text().replace(",", ".")
+        Ad = self.ui.lineEdit_out_irt_output_25.text().replace(",", ".")
         self.ui.lineEdit_out_irt_value_25.setStyleSheet(self.acceptance_error_irt(Ai, Ad))
 
     def error_irt_50(self):
-        Ai = self.ui.lineEdit_out_irt_value_50.text()
-        Ad = self.ui.lineEdit_out_irt_output_50.text()
+        Ai = self.ui.lineEdit_out_irt_value_50.text().replace(",", ".")
+        Ad = self.ui.lineEdit_out_irt_output_50.text().replace(",", ".")
         self.ui.lineEdit_out_irt_value_50.setStyleSheet(self.acceptance_error_irt(Ai, Ad))
 
     def error_irt_75(self):
-        Ai = self.ui.lineEdit_out_irt_value_75.text()
-        Ad = self.ui.lineEdit_out_irt_output_75.text()
+        Ai = self.ui.lineEdit_out_irt_value_75.text().replace(",", ".")
+        Ad = self.ui.lineEdit_out_irt_output_75.text().replace(",", ".")
         self.ui.lineEdit_out_irt_value_75.setStyleSheet(self.acceptance_error_irt(Ai, Ad))
 
     def error_irt_95(self):
-        Ai = self.ui.lineEdit_out_irt_value_95.text()
-        Ad = self.ui.lineEdit_out_irt_output_95.text()
+        Ai = self.ui.lineEdit_out_irt_value_95.text().replace(",", ".")
+        Ad = self.ui.lineEdit_out_irt_output_95.text().replace(",", ".")
         self.ui.lineEdit_out_irt_value_95.setStyleSheet(self.acceptance_error_irt(Ai, Ad))
 
     def acceptance_error_irt(self, Ai, Ad):
         """ Рассчет допусков ИРТ """
-        A_min = self.ui.lineEdit_out_start_value.text().replace(',', '.')
-        A_max = self.ui.lineEdit_out_end_value.text().replace(',', '.')
-        print(Ai, Ad)
+        A_min = self.ui.lineEdit_out_start_value.text()
+        A_max = self.ui.lineEdit_out_end_value.text()
         try:
-            Ai, Ad, A_min, A_max = float(Ai), float(Ad), float(A_min), float(A_max)
+            Ai, Ad = float(Ai), float(Ad),
+            A_min, A_max = float(A_min), float(A_max)
 
-            k = self.acceptance_irt(True)  # запрос допуска
             y = round(abs(((Ai - Ad) / (A_max - A_min)) * 100), 5)
+            k = self.acceptance_irt(True)  # запрос допуска
             print(f"k: {k}, y: {y}")
 
-            if y > k:
+            if y > float(k):
                 color = u"color: red"
             else:
                 color = u"color: black"
@@ -458,14 +476,9 @@ class Window(QtWidgets.QMainWindow):
 
         A_out = round(((I_out - I_out_min) / (I_out_max - I_out_min)) * (A_out_max - A_out_min) + A_out_min, 3)
 
-        # percent_value = {
-        #     5:
-        # }
+        Y = round(((A_out - I_out) / (A_out_max - A_out_min)) * 100, 5)
 
-        Y = ((A_out - I_out) / (A_out_max - A_out_min)) * 100
-
-        print(A_out, I_out_min, I_out_max, A_out_min, A_out_max)
-        print(f"Y: {Y}")
+        print(f"A_out: {A_out}, Y: {Y}")
         print(self.acceptance_irt(True))
 
     def acceptance_error_24_0(self):
@@ -612,64 +625,67 @@ class Window(QtWidgets.QMainWindow):
 
     def load_config_file(self):
         """ Загружает пользовательский файл конфигурации """
-        path = f"{os.path.abspath(os.curdir)}\configurations"
-        file = QtWidgets.QFileDialog.getOpenFileName(parent=application,
-                                                     caption="Загрузить файл",
-                                                     directory=path,
-                                                     filter="All (*);;clbr59 (*.clbr59)",
-                                                     initialFilter="clbr59 (*.clbr59)",)
+        try:
+            path = f"{os.path.abspath(os.curdir)}\configurations"
+            file = QtWidgets.QFileDialog.getOpenFileName(parent=application,
+                                                         caption="Загрузить файл",
+                                                         directory=path,
+                                                         filter="All (*);;clbr59 (*.clbr59)",
+                                                         initialFilter="clbr59 (*.clbr59)",)
 
-        config = configparser.ConfigParser()
-        config.read(file[0], encoding="UTF-8")
+            config = configparser.ConfigParser()
+            config.read(file[0], encoding="UTF-8")
 
-        _translate = QtCore.QCoreApplication.translate
+            _translate = QtCore.QCoreApplication.translate
 
-        self.ui.comboBox_calibr_name.setItemText(0, _translate("MainWindow", config.get("Средство калибровки", "калибратор")))
+            self.ui.comboBox_calibr_name.setItemText(0, _translate("MainWindow", config.get("Средство калибровки", "калибратор")))
 
-        self.ui.comboBox_parametr_type.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "тип")))
-        self.ui.lineEdit_parametr_number.setText(config.get("Параметры прибора", "номер"))
-        self.ui.comboBox_parametr_year.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "год выпуска")))
-        self.ui.lineEdit_parametr_position.setText(config.get("Параметры прибора", "позиция"))
-        self.ui.comboBox_in_signal_type.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "тип входа")))
-        self.ui.lineEdit_in_start_value.setText(config.get("Параметры прибора", "вход начало шкалы"))
-        self.ui.lineEdit_in_end_value.setText(config.get("Параметры прибора", "вход конец шкалы"))
-        self.ui.comboBox_out_signal_type.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "тип выхода")))
-        self.ui.lineEdit_out_start_value.setText(config.get("Параметры прибора", "выход начало шкалы"))
-        self.ui.lineEdit_out_end_value.setText(config.get("Параметры прибора", "выход конец шкалы"))
-        if config.get("Параметры прибора", "наличие пви") == 'True':
-            self.ui.checkBox_pvi.setChecked(True)
-        else:
-            self.ui.checkBox_pvi.setChecked(False)
-        self.ui.lineEdit_pvi_scale_start.setText(config.get("Параметры прибора", "пви начало шкалы"))
-        self.ui.lineEdit_pvi_scale_end.setText(config.get("Параметры прибора", "пви конец шкалы"))
-        self.ui.comboBox_pvi_out.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "пви тип выхода")))
+            self.ui.comboBox_parametr_type.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "тип")))
+            self.ui.lineEdit_parametr_number.setText(config.get("Параметры прибора", "номер"))
+            self.ui.comboBox_parametr_year.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "год выпуска")))
+            self.ui.lineEdit_parametr_position.setText(config.get("Параметры прибора", "позиция"))
+            self.ui.comboBox_in_signal_type.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "тип входа")))
+            self.ui.lineEdit_in_start_value.setText(config.get("Параметры прибора", "вход начало шкалы"))
+            self.ui.lineEdit_in_end_value.setText(config.get("Параметры прибора", "вход конец шкалы"))
+            self.ui.comboBox_out_signal_type.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "тип выхода")))
+            self.ui.lineEdit_out_start_value.setText(config.get("Параметры прибора", "выход начало шкалы"))
+            self.ui.lineEdit_out_end_value.setText(config.get("Параметры прибора", "выход конец шкалы"))
+            if config.get("Параметры прибора", "наличие пви") == 'True':
+                self.ui.checkBox_pvi.setChecked(True)
+            else:
+                self.ui.checkBox_pvi.setChecked(False)
+            self.ui.lineEdit_pvi_scale_start.setText(config.get("Параметры прибора", "пви начало шкалы"))
+            self.ui.lineEdit_pvi_scale_end.setText(config.get("Параметры прибора", "пви конец шкалы"))
+            self.ui.comboBox_pvi_out.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "пви тип выхода")))
 
-        self.ui.lineEdit_out_irt_value_5.setText(config.get("Выход ИРТ", "показания 5"))
-        self.ui.lineEdit_out_irt_value_25.setText(config.get("Выход ИРТ", "показания 25"))
-        self.ui.lineEdit_out_irt_value_50.setText(config.get("Выход ИРТ", "показания 50"))
-        self.ui.lineEdit_out_irt_value_75.setText(config.get("Выход ИРТ", "показания 75"))
-        self.ui.lineEdit_out_irt_value_95.setText(config.get("Выход ИРТ", "показания 95"))
+            self.ui.lineEdit_out_irt_value_5.setText(config.get("Выход ИРТ", "показания 5"))
+            self.ui.lineEdit_out_irt_value_25.setText(config.get("Выход ИРТ", "показания 25"))
+            self.ui.lineEdit_out_irt_value_50.setText(config.get("Выход ИРТ", "показания 50"))
+            self.ui.lineEdit_out_irt_value_75.setText(config.get("Выход ИРТ", "показания 75"))
+            self.ui.lineEdit_out_irt_value_95.setText(config.get("Выход ИРТ", "показания 95"))
 
-        self.ui.lineEdit_out_24_value_0.setText(config.get("Выход 24В", "выход r0"))
-        self.ui.lineEdit_out_24_value_820.setText(config.get("Выход 24В", "выход r820"))
+            self.ui.lineEdit_out_24_value_0.setText(config.get("Выход 24В", "выход r0"))
+            self.ui.lineEdit_out_24_value_820.setText(config.get("Выход 24В", "выход r820"))
 
-        self.ui.lineEdit_out_pvi_value_5.setText(config.get("Выход ПВИ", "показания 5"))
-        self.ui.lineEdit_out_pvi_value_25.setText(config.get("Выход ПВИ", "показания 25"))
-        self.ui.lineEdit_out_pvi_value_50.setText(config.get("Выход ПВИ", "показания 50"))
-        self.ui.lineEdit_out_pvi_value_75.setText(config.get("Выход ПВИ", "показания 75"))
-        self.ui.lineEdit_out_pvi_value_95.setText(config.get("Выход ПВИ", "показания 95"))
+            self.ui.lineEdit_out_pvi_value_5.setText(config.get("Выход ПВИ", "показания 5"))
+            self.ui.lineEdit_out_pvi_value_25.setText(config.get("Выход ПВИ", "показания 25"))
+            self.ui.lineEdit_out_pvi_value_50.setText(config.get("Выход ПВИ", "показания 50"))
+            self.ui.lineEdit_out_pvi_value_75.setText(config.get("Выход ПВИ", "показания 75"))
+            self.ui.lineEdit_out_pvi_value_95.setText(config.get("Выход ПВИ", "показания 95"))
 
-        self.ui.lineEdit_out_pvi_output_5.setText(config.get("Выход ПВИ", "выход 5"))
-        self.ui.lineEdit_out_pvi_output_25.setText(config.get("Выход ПВИ", "выход 25"))
-        self.ui.lineEdit_out_pvi_output_50.setText(config.get("Выход ПВИ", "выход 50"))
-        self.ui.lineEdit_out_pvi_output_75.setText(config.get("Выход ПВИ", "выход 75"))
-        self.ui.lineEdit_out_pvi_output_95.setText(config.get("Выход ПВИ", "выход 95"))
+            self.ui.lineEdit_out_pvi_output_5.setText(config.get("Выход ПВИ", "выход 5"))
+            self.ui.lineEdit_out_pvi_output_25.setText(config.get("Выход ПВИ", "выход 25"))
+            self.ui.lineEdit_out_pvi_output_50.setText(config.get("Выход ПВИ", "выход 50"))
+            self.ui.lineEdit_out_pvi_output_75.setText(config.get("Выход ПВИ", "выход 75"))
+            self.ui.lineEdit_out_pvi_output_95.setText(config.get("Выход ПВИ", "выход 95"))
 
-        self.ui.comboBox_passed.setItemText(0, _translate("MainWindow", config.get("Сдал/Принял/Дата", "сдал")))
-        self.ui.comboBox_adopted.setItemText(0, _translate("MainWindow", config.get("Сдал/Принял/Дата", "принял")))
+            self.ui.comboBox_passed.setItemText(0, _translate("MainWindow", config.get("Сдал/Принял/Дата", "сдал")))
+            self.ui.comboBox_adopted.setItemText(0, _translate("MainWindow", config.get("Сдал/Принял/Дата", "принял")))
 
-        date_c = tuple(map(int, config.get("Сдал/Принял/Дата", "дата калибровки(ДД.ММ.ГГГГ)").split('.')))
-        self.ui.dateEdit_date_calibration.setDate(QtCore.QDate(date_c[0], date_c[1], date_c[2]))
+            date_c = tuple(map(int, config.get("Сдал/Принял/Дата", "дата калибровки(ДД.ММ.ГГГГ)").split('.')))
+            self.ui.dateEdit_date_calibration.setDate(QtCore.QDate(date_c[0], date_c[1], date_c[2]))
+        except configparser.NoSectionError:
+            pass
 
     def about(self):
         QtWidgets.QMessageBox.aboutQt(application, title="О программе")

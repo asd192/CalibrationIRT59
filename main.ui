@@ -1669,9 +1669,9 @@
       <widget class="QLabel" name="label_acceptance_error_irt">
        <property name="geometry">
         <rect>
-         <x>0</x>
+         <x>2</x>
          <y>230</y>
-         <width>245</width>
+         <width>266</width>
          <height>15</height>
         </rect>
        </property>
@@ -2398,10 +2398,10 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>0</x>
+         <x>-2</x>
          <y>230</y>
-         <width>245</width>
-         <height>15</height>
+         <width>266</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="font">
@@ -2411,6 +2411,9 @@
          <weight>50</weight>
          <bold>false</bold>
         </font>
+       </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;γ0 – предел основной приведенной погрешности&lt;/p&gt;&lt;p&gt;k – коэффициент, равный отношению диапазона измерений к диапазону преобразования ПВИ&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="text">
         <string>Допуск ±(k γ0+0,2)%</string>
