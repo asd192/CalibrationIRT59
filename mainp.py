@@ -70,40 +70,43 @@ class Window(QtWidgets.QMainWindow):
         # Установка выходных значений выходов, R и допуска ПВИ
         self.ui.comboBox_pvi_out.currentTextChanged.connect(self.out_pvi_out)
 
+        # Пересчет допуска ПВИ
+        self.ui.lineEdit_in_start_value.textChanged.connect(self.out_pvi_out)
+        self.ui.lineEdit_in_end_value.textChanged.connect(self.out_pvi_out)
+        self.ui.lineEdit_pvi_scale_start.textChanged.connect(self.out_pvi_out)
+        self.ui.lineEdit_pvi_scale_end.textChanged.connect(self.out_pvi_out)
+
         # Установка допуска ПВИ
         self.ui.lineEdit_out_start_value.textChanged.connect(self.acceptance_irt)
         self.ui.lineEdit_out_end_value.textChanged.connect(self.acceptance_irt)
+        self.ui.comboBox_out_signal_type.currentTextChanged.connect(self.acceptance_irt)
 
         # Установка параметров входа
         self.ui.comboBox_in_signal_type.activated.connect(self.parametr_in_signal)
 
-        # Рассчет основной приведенной погрешности ИРТ + цветовая индикация
-        self.ui.lineEdit_out_irt_value_5.textChanged.connect(self.error_irt_5)
-        self.ui.lineEdit_out_irt_output_5.textChanged.connect(self.error_irt_5)
+        # Цветовая индикация допуска ИРТ
+        self.ui.lineEdit_out_irt_value_5.textChanged.connect(
+            lambda irt_value=self.ui.lineEdit_out_irt_value_5.text(): self.acceptance_error_irt(irt_value, 5))
+        self.ui.lineEdit_out_irt_value_25.textChanged.connect(
+            lambda irt_value=self.ui.lineEdit_out_irt_value_25.text(): self.acceptance_error_irt(irt_value, 25))
+        self.ui.lineEdit_out_irt_value_50.textChanged.connect(
+            lambda irt_value=self.ui.lineEdit_out_irt_value_50.text(): self.acceptance_error_irt(irt_value, 50))
+        self.ui.lineEdit_out_irt_value_75.textChanged.connect(
+            lambda irt_value=self.ui.lineEdit_out_irt_value_75.text(): self.acceptance_error_irt(irt_value, 75))
+        self.ui.lineEdit_out_irt_value_95.textChanged.connect(
+            lambda irt_value=self.ui.lineEdit_out_irt_value_95.text(): self.acceptance_error_irt(irt_value, 95))
 
-        self.ui.lineEdit_out_irt_value_25.textChanged.connect(self.error_irt_25)
-        self.ui.lineEdit_out_irt_output_25.textChanged.connect(self.error_irt_25)
-
-        self.ui.lineEdit_out_irt_value_50.textChanged.connect(self.error_irt_50)
-        self.ui.lineEdit_out_irt_output_50.textChanged.connect(self.error_irt_50)
-
-        self.ui.lineEdit_out_irt_value_75.textChanged.connect(self.error_irt_75)
-        self.ui.lineEdit_out_irt_output_75.textChanged.connect(self.error_irt_75)
-
-        self.ui.lineEdit_out_irt_value_95.textChanged.connect(self.error_irt_95)
-        self.ui.lineEdit_out_irt_output_95.textChanged.connect(self.error_irt_95)
-
-        # Рассчет основной приведенной погрешности ПВИ + цветовая индикация
+        # Цветовая индикация допуска ПВИ
         self.ui.lineEdit_out_pvi_value_5.textChanged.connect(
-            lambda I_out=self.ui.lineEdit_out_pvi_value_5.text(): self.acceptance_error_pvi(I_out, 5))
+            lambda pvi_value=self.ui.lineEdit_out_pvi_value_5.text(): self.acceptance_error_pvi(pvi_value, 5))
         self.ui.lineEdit_out_pvi_value_25.textChanged.connect(
-            lambda I_out=self.ui.lineEdit_out_pvi_value_25.text(): self.acceptance_error_pvi(I_out, 25))
+            lambda pvi_value=self.ui.lineEdit_out_pvi_value_25.text(): self.acceptance_error_pvi(pvi_value, 25))
         self.ui.lineEdit_out_pvi_value_50.textChanged.connect(
-            lambda I_out=self.ui.lineEdit_out_pvi_value_50.text(): self.acceptance_error_pvi(I_out, 50))
+            lambda pvi_value=self.ui.lineEdit_out_pvi_value_50.text(): self.acceptance_error_pvi(pvi_value, 50))
         self.ui.lineEdit_out_pvi_value_75.textChanged.connect(
-            lambda I_out=self.ui.lineEdit_out_pvi_value_75.text(): self.acceptance_error_pvi(I_out, 75))
+            lambda pvi_value=self.ui.lineEdit_out_pvi_value_75.text(): self.acceptance_error_pvi(pvi_value, 75))
         self.ui.lineEdit_out_pvi_value_95.textChanged.connect(
-            lambda I_out=self.ui.lineEdit_out_pvi_value_95.text(): self.acceptance_error_pvi(I_out, 95))
+            lambda pvi_value=self.ui.lineEdit_out_pvi_value_95.text(): self.acceptance_error_pvi(pvi_value, 95))
 
         # Цветовая индикация допуска 24В
         self.ui.lineEdit_out_24_value_0.textChanged.connect(self.acceptance_error_24_0)
@@ -317,7 +320,6 @@ class Window(QtWidgets.QMainWindow):
             in_start = int(type_out[0])
             in_end = int(type_out[1])
 
-            print(in_start, in_end)
             for i in (0.05, 0.25, 0.5, 0.75, 0.95):
                 values.append(str((in_end - in_start) * i + in_start))
 
@@ -357,10 +359,15 @@ class Window(QtWidgets.QMainWindow):
             k = round((irt_end - irt_start) / (pvi_end - pvi_start), 3) # коэффициент, равный отношению диапазона измерений к диапазону преобразования ПВИ
             Y = self.acceptance_irt(True) # предел основной приведенной погрешности ПВИ
 
-            K = round(k + Y + _K, 3)
-            accept = f"Допуск ±({k}*{Y}+{_K})% -> {K}"
+            K_percent = round(k * Y + _K, 3)
+            pvi_start = float(self.ui.comboBox_pvi_out.currentText().split("-")[0])
+            pvi_end = float(self.ui.comboBox_pvi_out.currentText().split("-")[1])
+
+            K = abs(round(K_percent / 100 * (pvi_start - pvi_end), 3))
+
+            accept = f"Допуск ±({k}*{Y}+{_K})% -> {K}мА"
         except:
-            accept = f"Допуск ±(k γ0+0.2)% exept"
+            accept = f"Допуск ±(k γ0+0.2)%"
 
         self.ui.label_acceptance_error_pvi.setText(accept)
 
@@ -412,74 +419,116 @@ class Window(QtWidgets.QMainWindow):
         except:
             pass
 
-        in_signal_text = f"Допуск ±({_K} + {one_unit_last_number})% -> {acceptance}"
+        signal_type = self.ui.comboBox_out_signal_type.currentText()
+        in_signal_text = f"Допуск ±({_K} + {one_unit_last_number})% -> {acceptance}{signal_type}"
         self.ui.label_acceptance_error_irt.setText(in_signal_text)
 
         # Если запрошен допуск
         if acceptance_error:
-            return round(K, 3)
+            return acceptance
 
     def error_irt_5(self):
-        Ai = self.ui.lineEdit_out_irt_value_5.text().replace(",", ".")
-        Ad = self.ui.lineEdit_out_irt_output_5.text().replace(",", ".")
+        Ai = self.ui.lineEdit_out_irt_value_5.text()
+        Ad = self.ui.lineEdit_out_irt_output_5.text()
         self.ui.lineEdit_out_irt_value_5.setStyleSheet(self.acceptance_error_irt(Ai, Ad))
 
     def error_irt_25(self):
-        Ai = self.ui.lineEdit_out_irt_value_25.text().replace(",", ".")
-        Ad = self.ui.lineEdit_out_irt_output_25.text().replace(",", ".")
+        Ai = self.ui.lineEdit_out_irt_value_25.text()
+        Ad = self.ui.lineEdit_out_irt_output_25.text()
         self.ui.lineEdit_out_irt_value_25.setStyleSheet(self.acceptance_error_irt(Ai, Ad))
 
     def error_irt_50(self):
-        Ai = self.ui.lineEdit_out_irt_value_50.text().replace(",", ".")
-        Ad = self.ui.lineEdit_out_irt_output_50.text().replace(",", ".")
+        Ai = self.ui.lineEdit_out_irt_value_50.text()
+        Ad = self.ui.lineEdit_out_irt_output_50.text()
         self.ui.lineEdit_out_irt_value_50.setStyleSheet(self.acceptance_error_irt(Ai, Ad))
 
     def error_irt_75(self):
-        Ai = self.ui.lineEdit_out_irt_value_75.text().replace(",", ".")
-        Ad = self.ui.lineEdit_out_irt_output_75.text().replace(",", ".")
+        Ai = self.ui.lineEdit_out_irt_value_75.text()
+        Ad = self.ui.lineEdit_out_irt_output_75.text()
         self.ui.lineEdit_out_irt_value_75.setStyleSheet(self.acceptance_error_irt(Ai, Ad))
 
     def error_irt_95(self):
-        Ai = self.ui.lineEdit_out_irt_value_95.text().replace(",", ".")
-        Ad = self.ui.lineEdit_out_irt_output_95.text().replace(",", ".")
+        Ai = self.ui.lineEdit_out_irt_value_95.text()
+        Ad = self.ui.lineEdit_out_irt_output_95.text()
         self.ui.lineEdit_out_irt_value_95.setStyleSheet(self.acceptance_error_irt(Ai, Ad))
 
-    def acceptance_error_irt(self, Ai, Ad):
+    def acceptance_error_irt(self, irt_value, percent):
         """ Рассчет допусков ИРТ """
-        A_min = self.ui.lineEdit_out_start_value.text()
-        A_max = self.ui.lineEdit_out_end_value.text()
+        acceptance_error = self.acceptance_irt(True)
+
         try:
-            Ai, Ad = float(Ai), float(Ad),
-            A_min, A_max = float(A_min), float(A_max)
+            irt_value = float(irt_value)
+            irt_output = 0
 
-            y = round(abs(((Ai - Ad) / (A_max - A_min)) * 100), 5)
-            k = self.acceptance_irt(True)  # запрос допуска
-            print(f"k: {k}, y: {y}")
+            if percent == 5:
+                irt_output = float(self.ui.lineEdit_out_irt_output_5.text())
+            if percent == 25:
+                irt_output = float(self.ui.lineEdit_out_irt_output_25.text())
+            if percent == 50:
+                irt_output = float(self.ui.lineEdit_out_irt_output_50.text())
+            if percent == 75:
+                irt_output = float(self.ui.lineEdit_out_irt_output_75.text())
+            if percent == 95:
+                irt_output = float(self.ui.lineEdit_out_irt_output_95.text())
 
-            if y > float(k):
+            if round(abs(irt_value - irt_output), 5) > acceptance_error:
                 color = u"color: red"
             else:
                 color = u"color: black"
 
-            return color
+            print(round(abs(irt_value) - abs(irt_output), 5), acceptance_error)
 
+            if percent == 5:
+                self.ui.lineEdit_out_irt_value_5.setStyleSheet(color)
+            if percent == 25:
+                self.ui.lineEdit_out_irt_value_25.setStyleSheet(color)
+            if percent == 50:
+                self.ui.lineEdit_out_irt_value_50.setStyleSheet(color)
+            if percent == 75:
+                self.ui.lineEdit_out_irt_value_75.setStyleSheet(color)
+            if percent == 95:
+                self.ui.lineEdit_out_irt_value_95.setStyleSheet(color)
         except ValueError:
             pass
 
-    def acceptance_error_pvi(self, I_out, percent):
+    def acceptance_error_pvi(self, pvi_value, percent):
         """ Рассчет допусков ПВИ """
-        I_out = float(str(I_out).replace(",", "."))
-        I_out_min = float(self.ui.comboBox_pvi_out.currentText().split('-')[0])
-        I_out_max = float(self.ui.comboBox_pvi_out.currentText().split('-')[1])
-        A_out_min = float(self.ui.lineEdit_pvi_scale_start.text().replace(",", "."))
-        A_out_max = float(self.ui.lineEdit_pvi_scale_end.text().replace(",", "."))
+        acceptance_error = self.out_pvi_out(True)
 
-        A_out = round(((I_out - I_out_min) / (I_out_max - I_out_min)) * (A_out_max - A_out_min) + A_out_min, 3)
+        try:
+            pvi_value = float(pvi_value)
+            pvi_output = 0
 
-        Y = round(((A_out - I_out) / (A_out_max - A_out_min)) * 100, 5)
+            if percent == 5:
+                pvi_output = float(self.ui.lineEdit_out_pvi_output_5.text())
+            if percent == 25:
+                pvi_output = float(self.ui.lineEdit_out_pvi_output_25.text())
+            if percent == 50:
+                pvi_output = float(self.ui.lineEdit_out_pvi_output_50.text())
+            if percent == 75:
+                pvi_output = float(self.ui.lineEdit_out_pvi_output_75.text())
+            if percent == 95:
+                pvi_output = float(self.ui.lineEdit_out_pvi_output_95.text())
 
-        print(f"A_out: {A_out}, Y: {Y}")
-        print(self.acceptance_irt(True))
+            if round(abs(pvi_value - pvi_output), 5) > acceptance_error:
+                color = u"color: red"
+            else:
+                color = u"color: black"
+
+            print(round(abs(pvi_value) - abs(pvi_output), 5), acceptance_error)
+
+            if percent == 5:
+                self.ui.lineEdit_out_pvi_value_5.setStyleSheet(color)
+            if percent == 25:
+                self.ui.lineEdit_out_pvi_value_25.setStyleSheet(color)
+            if percent == 50:
+                self.ui.lineEdit_out_pvi_value_50.setStyleSheet(color)
+            if percent == 75:
+                self.ui.lineEdit_out_pvi_value_75.setStyleSheet(color)
+            if percent == 95:
+                self.ui.lineEdit_out_pvi_value_95.setStyleSheet(color)
+        except ValueError:
+            pass
 
     def acceptance_error_24_0(self):
         try:
