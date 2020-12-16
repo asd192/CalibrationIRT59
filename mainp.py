@@ -537,8 +537,8 @@ class Window(QtWidgets.QMainWindow):
 
     def acceptance_error_24_0(self):
         try:
-            Ai = abs(float(self.ui.lineEdit_out_24_value_0.text().replace(",", ".")))
-            Ad = float(self.ui.lineEdit_out_24_in_0.text().replace(",", "."))
+            Ai = abs(float(self.ui.lineEdit_out_24_value_0.text()))
+            Ad = float(self.ui.lineEdit_out_24_in_0.text())
             if abs(round(Ad - Ai, 3)) > 0.48:
                 color = u"color: red"
             else:
@@ -576,7 +576,7 @@ class Window(QtWidgets.QMainWindow):
                     table.setItem(row, column, QTableWidgetItem(param[row][1]))
         except Exception as exeption:
             QtWidgets.QMessageBox.critical(self, "Ошибка",
-                                           f"Не удалось загрузить параметры из файла <parameters.ini>. Ошибка - {type(exeption).__name__}",
+                                           f"Не удалось загрузить параметры из файла <parameters.ini>.Ошибка - {type(exeption).__name__}",
                                            QtWidgets.QMessageBox.Ok)
 
     def save_param(self):
