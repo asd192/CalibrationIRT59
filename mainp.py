@@ -1,5 +1,5 @@
 import sys, os, configparser
-import subprocess
+from subprocess import Popen
 from decimal import Decimal
 
 from main import Ui_MainWindow
@@ -22,7 +22,7 @@ class Window(QtWidgets.QMainWindow):
         self.comboBox_load(2)  # сдал
         self.comboBox_load(3)  # принял
 
-    # Валидация полей Вход, Выход, Шкала ПВИ параметров прибора
+        # Валидация полей Вход, Выход, Шкала ПВИ параметров прибора
         self.ui.lineEdit_in_start_value.setValidator(self.validat_param())
         self.ui.lineEdit_in_end_value.setValidator(self.validat_param())
         self.ui.lineEdit_out_start_value.setValidator(self.validat_param())
@@ -54,7 +54,6 @@ class Window(QtWidgets.QMainWindow):
         # Группа ПВИ(чекбокс)
         self.ui.groupBox_out_pvi.setEnabled(False)
         self.ui.checkBox_pvi.stateChanged.connect(lambda check=self.ui.checkBox_pvi.isChecked(): self.select_pvi(check))
-
 
         # Установка входных значений выходов ИРТ
         self.ui.lineEdit_in_start_value.textChanged.connect(self.out_irt_in)
@@ -123,10 +122,12 @@ class Window(QtWidgets.QMainWindow):
         # Загрузка файла конфигурации прибора
         self.ui.action_load_config.triggered.connect(self.load_config_file)
 
-        # Открытие pdf-инструкции
         if sys.platform == "win32":
+            # Help
             self.ui.action_help.setVisible(True)
-            self.ui.action_help.triggered.connect(os.startfile(r'C:\Users\Pansh\PycharmProjects\PyQt_CalibrationIRT59\Documents\Pasport_IRT_5920.pdf'))
+            self.ui.action_help.triggered.connect(self.ui_help)
+            # Send error
+            self.ui.action_error.triggered.connect(self.help_error)
 
         # О программе
         self.ui.action_about.triggered.connect(self.about)
@@ -171,7 +172,6 @@ class Window(QtWidgets.QMainWindow):
         self.acceptance_irt()
         # Допуск ПВИ
         self.out_pvi_out()
-
 
     def validat_param(self):
         """ Валидация полей Вход, Выход, Шкала ПВИ параметров прибора """
@@ -294,7 +294,6 @@ class Window(QtWidgets.QMainWindow):
             self.ui.lineEdit_out_irt_output_75.setText(values[0])
             self.ui.lineEdit_out_irt_output_95.setText(values[0])
 
-
     def out_pvi_in(self):
         """ Расчет требуемых входных ПВИ"""
         values = ['']
@@ -353,7 +352,7 @@ class Window(QtWidgets.QMainWindow):
             self.ui.label_pvi_out_r.setText(f"R={str(r_pvi[r_pvi_key])}±5%")
 
         # Допуск ПВИ
-        K = 0.2 # допускаемая основная погрешность
+        K = 0.2  # допускаемая основная погрешность
         try:
             irt_start = float(self.ui.lineEdit_in_start_value.text())
             irt_end = float(self.ui.lineEdit_in_end_value.text())
@@ -361,9 +360,10 @@ class Window(QtWidgets.QMainWindow):
             pvi_start = float(self.ui.lineEdit_pvi_scale_start.text())
             pvi_end = float(self.ui.lineEdit_pvi_scale_end.text())
 
-            _K = 0.2 # погрешность
-            k = round((irt_end - irt_start) / (pvi_end - pvi_start), 3) # коэффициент, равный отношению диапазона измерений к диапазону преобразования ПВИ
-            Y = self.acceptance_irt(True) # предел основной приведенной погрешности ПВИ
+            _K = 0.2  # погрешность
+            k = round((irt_end - irt_start) / (pvi_end - pvi_start),
+                      3)  # коэффициент, равный отношению диапазона измерений к диапазону преобразования ПВИ
+            Y = self.acceptance_irt(True)  # предел основной приведенной погрешности ПВИ
 
             K_percent = round(k * Y + _K, 3)
             pvi_start = float(self.ui.comboBox_pvi_out.currentText().split("-")[0])
@@ -380,7 +380,6 @@ class Window(QtWidgets.QMainWindow):
         if acceptance_error:
             return round(K, 3)
 
-
     def acceptance_irt(self, acceptance_error=False):
         """ Устанавливает допуск ИРТ """
         out_start = self.is_number(self.ui.lineEdit_out_start_value.text())
@@ -388,7 +387,7 @@ class Window(QtWidgets.QMainWindow):
 
         one_unit_last_number = 0
         try:
-            range_scale = str(out_end - out_start) # TODO проверить ABS?
+            range_scale = str(out_end - out_start)
 
             dig = abs(range_scale.find('.') - len(range_scale)) - 1 if '.' in range_scale else 0
             if dig == 0:
@@ -639,7 +638,6 @@ class Window(QtWidgets.QMainWindow):
         config.set("Выход ИРТ", "Показания 75", self.ui.lineEdit_out_irt_value_75.text())
         config.set("Выход ИРТ", "Показания 95", self.ui.lineEdit_out_irt_value_95.text())
 
-
         config.add_section("Выход 24В")
         config.set("Выход 24В", "Выход R0", self.ui.lineEdit_out_24_value_0.text())
         config.set("Выход 24В", "Выход R820", self.ui.lineEdit_out_24_value_820.text())
@@ -686,23 +684,28 @@ class Window(QtWidgets.QMainWindow):
                                                          caption="Загрузить файл",
                                                          directory=path,
                                                          filter="All (*);;clbr59 (*.clbr59)",
-                                                         initialFilter="clbr59 (*.clbr59)",)
+                                                         initialFilter="clbr59 (*.clbr59)", )
 
             config = configparser.ConfigParser()
             config.read(file[0], encoding="UTF-8")
 
             _translate = QtCore.QCoreApplication.translate
 
-            self.ui.comboBox_calibr_name.setItemText(0, _translate("MainWindow", config.get("Средство калибровки", "калибратор")))
+            self.ui.comboBox_calibr_name.setItemText(0, _translate("MainWindow",
+                                                                   config.get("Средство калибровки", "калибратор")))
 
-            self.ui.comboBox_parametr_type.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "тип")))
+            self.ui.comboBox_parametr_type.setItemText(0,
+                                                       _translate("MainWindow", config.get("Параметры прибора", "тип")))
             self.ui.lineEdit_parametr_number.setText(config.get("Параметры прибора", "номер"))
-            self.ui.comboBox_parametr_year.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "год выпуска")))
+            self.ui.comboBox_parametr_year.setItemText(0, _translate("MainWindow",
+                                                                     config.get("Параметры прибора", "год выпуска")))
             self.ui.lineEdit_parametr_position.setText(config.get("Параметры прибора", "позиция"))
-            self.ui.comboBox_in_signal_type.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "тип входа")))
+            self.ui.comboBox_in_signal_type.setItemText(0, _translate("MainWindow",
+                                                                      config.get("Параметры прибора", "тип входа")))
             self.ui.lineEdit_in_start_value.setText(config.get("Параметры прибора", "вход начало шкалы"))
             self.ui.lineEdit_in_end_value.setText(config.get("Параметры прибора", "вход конец шкалы"))
-            self.ui.comboBox_out_signal_type.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "тип выхода")))
+            self.ui.comboBox_out_signal_type.setItemText(0, _translate("MainWindow",
+                                                                       config.get("Параметры прибора", "тип выхода")))
             self.ui.lineEdit_out_start_value.setText(config.get("Параметры прибора", "выход начало шкалы"))
             self.ui.lineEdit_out_end_value.setText(config.get("Параметры прибора", "выход конец шкалы"))
             if config.get("Параметры прибора", "наличие пви") == 'True':
@@ -711,7 +714,8 @@ class Window(QtWidgets.QMainWindow):
                 self.ui.checkBox_pvi.setChecked(False)
             self.ui.lineEdit_pvi_scale_start.setText(config.get("Параметры прибора", "пви начало шкалы"))
             self.ui.lineEdit_pvi_scale_end.setText(config.get("Параметры прибора", "пви конец шкалы"))
-            self.ui.comboBox_pvi_out.setItemText(0, _translate("MainWindow", config.get("Параметры прибора", "пви тип выхода")))
+            self.ui.comboBox_pvi_out.setItemText(0, _translate("MainWindow",
+                                                               config.get("Параметры прибора", "пви тип выхода")))
 
             self.ui.lineEdit_out_irt_value_5.setText(config.get("Выход ИРТ", "показания 5"))
             self.ui.lineEdit_out_irt_value_25.setText(config.get("Выход ИРТ", "показания 25"))
@@ -742,14 +746,25 @@ class Window(QtWidgets.QMainWindow):
         except configparser.NoSectionError:
             pass
 
+    def help_error(self):
+        try:
+            path = "C:\Program Files\Microsoft Office\Office16\outlook.exe"
+            Popen([path, "/c", "ipm.note", "/m", "help@ya.ru"])
+        except Exception as exeption:
+            QtWidgets.QMessageBox.critical(self, "Ошибка",
+                                           f"Не могу найти почтовую программу. Ошибка - {type(exeption).__name__}",
+                                           QtWidgets.QMessageBox.Ok)
+
+    def ui_help(self):
+        os.startfile(f"{os.path.abspath(os.curdir)}\Documents\Pasport_IRT_5920.pdf")
+
     def about(self):
         QtWidgets.QMessageBox.aboutQt(application, title="О программе")
 
     def exit(self):
         dialog = QtWidgets.QMessageBox.question(application, "Выход из программы",
                                                 "Сохранить файл конфигурации прибора?",
-                                                buttons=QtWidgets.QMessageBox.Cancel | QtWidgets.QMessageBox.No |
-                                                        QtWidgets.QMessageBox.Yes,
+                                                buttons=QtWidgets.QMessageBox.Cancel | QtWidgets.QMessageBox.No | QtWidgets.QMessageBox.Yes,
                                                 defaultButton=QtWidgets.QMessageBox.Yes)
         if dialog == 65536:
             sys.exit(app.exec())
