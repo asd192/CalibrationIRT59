@@ -1861,9 +1861,9 @@
      <widget class="QGroupBox" name="groupBox_calibration">
       <property name="geometry">
        <rect>
-        <x>11</x>
+        <x>10</x>
         <y>8</y>
-        <width>770</width>
+        <width>421</width>
         <height>68</height>
        </rect>
       </property>
@@ -1882,9 +1882,9 @@
       <widget class="QLabel" name="label_calibr_name">
        <property name="geometry">
         <rect>
-         <x>68</x>
+         <x>8</x>
          <y>38</y>
-         <width>160</width>
+         <width>80</width>
          <height>16</height>
         </rect>
        </property>
@@ -1899,7 +1899,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Наименование, номер:</string>
+        <string>Тип, номер:</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1911,9 +1911,9 @@
       <widget class="QComboBox" name="comboBox_calibr_name">
        <property name="geometry">
         <rect>
-         <x>230</x>
+         <x>90</x>
          <y>33</y>
-         <width>451</width>
+         <width>321</width>
          <height>25</height>
         </rect>
        </property>
@@ -2612,6 +2612,214 @@
        </rect>
       </property>
      </widget>
+     <widget class="QGroupBox" name="groupBox_environmental_conditions">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>8</y>
+        <width>341</width>
+        <height>68</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="inputMethodHints">
+       <set>Qt::ImhNone</set>
+      </property>
+      <property name="title">
+       <string>Условия</string>
+      </property>
+      <widget class="QLabel" name="label_t">
+       <property name="geometry">
+        <rect>
+         <x>45</x>
+         <y>18</y>
+         <width>80</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DejaVu Sans</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>Т окр.с.</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="buddy">
+        <cstring>comboBox_calibr_name</cstring>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_t">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>34</y>
+         <width>70</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>11</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="inputMethodHints">
+        <set>Qt::ImhNone</set>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="maxLength">
+        <number>6</number>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_f">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>18</y>
+         <width>80</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DejaVu Sans</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>Отн.вл в.</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="buddy">
+        <cstring>comboBox_calibr_name</cstring>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_f">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>135</x>
+         <y>34</y>
+         <width>70</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>11</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="inputMethodHints">
+        <set>Qt::ImhNone</set>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="maxLength">
+        <number>6</number>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_p">
+       <property name="geometry">
+        <rect>
+         <x>214</x>
+         <y>18</y>
+         <width>80</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DejaVu Sans</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>Атм.давл.</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="buddy">
+        <cstring>comboBox_calibr_name</cstring>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_p">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>219</x>
+         <y>34</y>
+         <width>70</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>11</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="inputMethodHints">
+        <set>Qt::ImhNone</set>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="maxLength">
+        <number>6</number>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_param">
      <attribute name="title">
@@ -2620,10 +2828,10 @@
      <widget class="QTableWidget" name="tableWidget_param">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>2</x>
         <y>0</y>
-        <width>790</width>
-        <height>570</height>
+        <width>789</width>
+        <height>501</height>
        </rect>
       </property>
       <property name="rowCount">
@@ -2687,7 +2895,7 @@
       <property name="geometry">
        <rect>
         <x>695</x>
-        <y>526</y>
+        <y>530</y>
         <width>90</width>
         <height>30</height>
        </rect>
@@ -2732,23 +2940,7 @@
     <property name="title">
      <string>Файл</string>
     </property>
-    <widget class="QMenu" name="menu_1">
-     <property name="font">
-      <font>
-       <family>Segoe UI</family>
-       <pointsize>11</pointsize>
-      </font>
-     </property>
-     <property name="title">
-      <string>Создать</string>
-     </property>
-     <addaction name="action_empty"/>
-     <addaction name="separator"/>
-     <addaction name="action_empty_ma"/>
-     <addaction name="action_empty_tp"/>
-     <addaction name="action_empty_tsm"/>
-    </widget>
-    <addaction name="menu_1"/>
+    <addaction name="action_empty"/>
     <addaction name="action_load_config"/>
     <addaction name="action_save_config"/>
     <addaction name="separator"/>

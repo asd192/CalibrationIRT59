@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import sys, os, configparser
 from subprocess import Popen
 from decimal import Decimal
@@ -43,6 +45,26 @@ class Window(QtWidgets.QMainWindow):
         self.ui.lineEdit_out_pvi_value_50.setValidator(self.validat_in_out())
         self.ui.lineEdit_out_pvi_value_75.setValidator(self.validat_in_out())
         self.ui.lineEdit_out_pvi_value_95.setValidator(self.validat_in_out())
+
+        # Валидация полей условия
+        self.ui.lineEdit_t.setValidator(self.valdat_24())
+        self.ui.lineEdit_f.setValidator(self.valdat_24())
+        self.ui.lineEdit_p.setValidator(self.valdat_24())
+
+        # Замена , -> .
+        widgets_repl = (self.ui.lineEdit_t, self.ui.lineEdit_f, self.ui.lineEdit_p,
+                        self.ui.lineEdit_in_start_value, self.ui.lineEdit_in_end_value,
+                        self.ui.lineEdit_out_start_value, self.ui.lineEdit_out_end_value,
+                        self.ui.lineEdit_pvi_scale_start, self.ui.lineEdit_pvi_scale_end,
+                        self.ui.lineEdit_out_irt_value_5, self.ui.lineEdit_out_irt_value_25,
+                        self.ui.lineEdit_out_irt_value_50, self.ui.lineEdit_out_irt_value_75,
+                        self.ui.lineEdit_out_irt_value_95, self.ui.lineEdit_out_24_value_0,
+                        self.ui.lineEdit_out_24_value_820, self.ui.lineEdit_out_pvi_value_5,
+                        self.ui.lineEdit_out_pvi_value_25, self.ui.lineEdit_out_pvi_value_50,
+                        self.ui.lineEdit_out_pvi_value_75, self.ui.lineEdit_out_pvi_value_95)
+
+        for wr in widgets_repl:
+                self.repl(wr)
 
         # Дата сегодня
         self.ui.dateEdit_date_calibration.setDate(QtCore.QDate.currentDate())
@@ -115,6 +137,9 @@ class Window(QtWidgets.QMainWindow):
         # Сохранение настроек
         self.ui.pushButton_save_custom.clicked.connect(self.save_param)
 
+        # Очистить все поля(Новый)
+        self.ui.action_empty.triggered.connect(self.cal_clear)
+
         # Сохранение файла конфигурации прибора
         self.ui.pushButton_save_config.clicked.connect(self.save_config_file)
         self.ui.action_save_config.triggered.connect(self.save_config_file)
@@ -134,6 +159,9 @@ class Window(QtWidgets.QMainWindow):
 
         # Выход из программы
         self.ui.action_exit.triggered.connect(self.exit)
+
+    def repl(self, p):
+        p.textChanged.connect(lambda v=p.text(): p.setText(v.replace(",", ".")))
 
     def parametr_in_signal(self):
         """ Устанавливает параметры прибора(входные значения) """
@@ -175,15 +203,15 @@ class Window(QtWidgets.QMainWindow):
 
     def validat_param(self):
         """ Валидация полей Вход, Выход, Шкала ПВИ параметров прибора """
-        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,6}(?:[\.]\d{,3})?$"))
+        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,6}(?:[\.,]\d{,3})?$"))
 
     def validat_in_out(self):
         """ Валиддация показаний Выход ИРТ, Выход ПВИ """
-        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,5}(?:[\.]\d{,3})?$"))
+        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,5}(?:[\.,]\d{,3})?$"))
 
     def valdat_24(self):
         """ Валидация полей Выход 24В """
-        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,2}(?:[\.]\d{,3})?$"))
+        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,2}(?:[\.,]\d{,3})?$"))
 
     def comboBox_load(self, col=0):
         """ Заполнение ComboBox из tableWidget """
@@ -615,6 +643,11 @@ class Window(QtWidgets.QMainWindow):
         config.add_section("Средство калибровки")
         config.set("Средство калибровки", "Калибратор", self.ui.comboBox_calibr_name.currentText())
 
+        config.add_section("Условия калибровки")
+        config.set("Условия калибровки", "Температура", self.ui.lineEdit_t.text())
+        config.set("Условия калибровки", "Влажность", self.ui.lineEdit_f.text())
+        config.set("Условия калибровки", "Давление", self.ui.lineEdit_p.text())
+
         config.add_section("Параметры прибора")
         config.set("Параметры прибора", "Тип", self.ui.comboBox_parametr_type.currentText())
         config.set("Параметры прибора", "Номер", self.ui.lineEdit_parametr_number.text())
@@ -676,7 +709,7 @@ class Window(QtWidgets.QMainWindow):
                                            f"Не удалось сохранить параметры. Ошибка - {type(exeption).__name__}",
                                            QtWidgets.QMessageBox.Ok)
 
-    def load_config_file(self):
+    def load_config_file(self, empty=False):
         """ Загружает пользовательский файл конфигурации """
         try:
             path = f"{os.path.abspath(os.curdir)}\configurations"
@@ -693,6 +726,10 @@ class Window(QtWidgets.QMainWindow):
 
             self.ui.comboBox_calibr_name.setItemText(0, _translate("MainWindow",
                                                                    config.get("Средство калибровки", "калибратор")))
+
+            self.ui.lineEdit_t.setText(config.get("Условия калибровки", "Температура"))
+            self.ui.lineEdit_f.setText(config.get("Условия калибровки", "Влажность"))
+            self.ui.lineEdit_p.setText(config.get("Условия калибровки", "Давление"))
 
             self.ui.comboBox_parametr_type.setItemText(0,
                                                        _translate("MainWindow", config.get("Параметры прибора", "тип")))
@@ -745,6 +782,33 @@ class Window(QtWidgets.QMainWindow):
             self.ui.dateEdit_date_calibration.setDate(QtCore.QDate(date_c[0], date_c[1], date_c[2]))
         except configparser.NoSectionError:
             pass
+
+    def cal_clear(self):
+        """ Очищает виджеты """
+        w = self.ui
+
+        widgets = (w.lineEdit_parametr_number, w.lineEdit_parametr_position, w.lineEdit_in_start_value,
+                   w.lineEdit_in_end_value, w.lineEdit_out_start_value, w.lineEdit_out_end_value,
+                   w.lineEdit_out_irt_value_5, w.lineEdit_out_irt_value_25, w.lineEdit_out_irt_value_50,
+                   w.lineEdit_out_irt_value_75, w.lineEdit_out_irt_value_95, w.lineEdit_out_pvi_value_5,
+                   w.lineEdit_out_pvi_value_25, w.lineEdit_out_pvi_value_50, w.lineEdit_out_pvi_value_75,
+                   w.lineEdit_out_pvi_value_95, w.lineEdit_out_24_value_0, w.lineEdit_out_24_value_820,
+                   w.lineEdit_pvi_scale_start, w.lineEdit_pvi_scale_end, w.lineEdit_t, w.lineEdit_f, w.lineEdit_p)
+        for _w in widgets:
+            _w.clear()
+
+        self.ui.comboBox_calibr_name.setCurrentIndex(0)
+
+        w.comboBox_calibr_name.setItemText(0, '')
+        w.comboBox_parametr_type.setItemText(0, '')
+        w.comboBox_parametr_year.setItemText(0, '')
+        w.comboBox_in_signal_type.setItemText(0, '')
+        w.comboBox_out_signal_type.setItemText(0, '')
+        w.comboBox_pvi_out.setItemText(0, '')
+        w.comboBox_passed.setItemText(0, '')
+        w.comboBox_adopted.setItemText(0, '')
+
+        w.checkBox_pvi.setChecked(False)
 
     def help_error(self):
         try:
