@@ -1,4 +1,5 @@
 import sys, os, configparser
+import subprocess #
 from decimal import Decimal
 
 from main import Ui_MainWindow
@@ -121,6 +122,13 @@ class Window(QtWidgets.QMainWindow):
 
         # Загрузка файла конфигурации прибора
         self.ui.action_load_config.triggered.connect(self.load_config_file)
+
+        # Открытие pdf-инструкции
+        if sys.platform == "win32":
+            self.ui.action_help.setVisible(True)
+            self.ui.action_help.triggered.connect(subprocess.Popen([r"/Documents/Pasport_IRT_5920.pdf"]))
+
+
 
         # О программе
         self.ui.action_about.triggered.connect(self.about)

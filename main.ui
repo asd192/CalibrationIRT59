@@ -53,9 +53,9 @@
      <widget class="QPushButton" name="pushButton_create">
       <property name="geometry">
        <rect>
-        <x>682</x>
+        <x>672</x>
         <y>545</y>
-        <width>90</width>
+        <width>100</width>
         <height>30</height>
        </rect>
       </property>
@@ -241,7 +241,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Выход:</string>
+        <string>Шкала:</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -953,34 +953,12 @@
        <cstring>dateEdit_date_calibration</cstring>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_check">
-      <property name="geometry">
-       <rect>
-        <x>582</x>
-        <y>545</y>
-        <width>90</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>DejaVu Sans</family>
-        <pointsize>11</pointsize>
-       </font>
-      </property>
-      <property name="toolTip">
-       <string>Проверить погрешность</string>
-      </property>
-      <property name="text">
-       <string>Проверить</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="pushButton_save_config">
       <property name="geometry">
        <rect>
         <x>20</x>
         <y>545</y>
-        <width>90</width>
+        <width>100</width>
         <height>30</height>
        </rect>
       </property>
@@ -2827,6 +2805,9 @@
      <pointsize>11</pointsize>
     </font>
    </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
   </action>
   <action name="action_about">
    <property name="text">
@@ -2939,7 +2920,6 @@
   <tabstop>comboBox_adopted</tabstop>
   <tabstop>dateEdit_date_calibration</tabstop>
   <tabstop>pushButton_save_config</tabstop>
-  <tabstop>pushButton_check</tabstop>
   <tabstop>pushButton_create</tabstop>
   <tabstop>lineEdit_out_irt_in_5</tabstop>
   <tabstop>lineEdit_out_irt_in_25</tabstop>
