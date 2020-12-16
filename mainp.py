@@ -1,5 +1,5 @@
 import sys, os, configparser
-import subprocess #
+import subprocess
 from decimal import Decimal
 
 from main import Ui_MainWindow
@@ -126,9 +126,7 @@ class Window(QtWidgets.QMainWindow):
         # Открытие pdf-инструкции
         if sys.platform == "win32":
             self.ui.action_help.setVisible(True)
-            self.ui.action_help.triggered.connect(subprocess.Popen([r"/Documents/Pasport_IRT_5920.pdf"]))
-
-
+            self.ui.action_help.triggered.connect(os.startfile(r'C:\Users\Pansh\PycharmProjects\PyQt_CalibrationIRT59\Documents\Pasport_IRT_5920.pdf'))
 
         # О программе
         self.ui.action_about.triggered.connect(self.about)

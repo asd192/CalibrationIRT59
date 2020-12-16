@@ -2711,7 +2711,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>31</height>
+     <height>26</height>
     </rect>
    </property>
    <property name="font">
@@ -2720,19 +2720,19 @@
      <pointsize>11</pointsize>
     </font>
    </property>
-   <widget class="QMenu" name="menu1">
+   <widget class="QMenu" name="main_menu">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>163</y>
-      <width>236</width>
-      <height>160</height>
+      <x>269</x>
+      <y>130</y>
+      <width>242</width>
+      <height>153</height>
      </rect>
     </property>
     <property name="title">
      <string>Файл</string>
     </property>
-    <widget class="QMenu" name="menu_2">
+    <widget class="QMenu" name="menu_1">
      <property name="font">
       <font>
        <family>Segoe UI</family>
@@ -2748,13 +2748,13 @@
      <addaction name="action_empty_tp"/>
      <addaction name="action_empty_tsm"/>
     </widget>
-    <addaction name="menu_2"/>
+    <addaction name="menu_1"/>
     <addaction name="action_load_config"/>
     <addaction name="action_save_config"/>
     <addaction name="separator"/>
     <addaction name="action_exit"/>
    </widget>
-   <widget class="QMenu" name="menu">
+   <widget class="QMenu" name="menu_2">
     <property name="font">
      <font>
       <family>Segoe UI</family>
@@ -2769,8 +2769,8 @@
     <addaction name="separator"/>
     <addaction name="action_about"/>
    </widget>
-   <addaction name="menu1"/>
-   <addaction name="menu"/>
+   <addaction name="main_menu"/>
+   <addaction name="menu_2"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action_load_config">
