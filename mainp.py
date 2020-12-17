@@ -46,12 +46,12 @@ class Window(QtWidgets.QMainWindow):
         self.ui.lineEdit_out_pvi_value_75.setValidator(self.validat_in_out())
         self.ui.lineEdit_out_pvi_value_95.setValidator(self.validat_in_out())
 
-        # Валидация полей условия
+        # Валидация полей Условия
         self.ui.lineEdit_t.setValidator(self.valdat_24())
         self.ui.lineEdit_f.setValidator(self.valdat_24())
         self.ui.lineEdit_p.setValidator(self.valdat_24())
 
-        # Замена , -> .
+        # Замена ',' -> '.'
         widgets_repl = (self.ui.lineEdit_t, self.ui.lineEdit_f, self.ui.lineEdit_p,
                         self.ui.lineEdit_in_start_value, self.ui.lineEdit_in_end_value,
                         self.ui.lineEdit_out_start_value, self.ui.lineEdit_out_end_value,
@@ -105,6 +105,11 @@ class Window(QtWidgets.QMainWindow):
 
         # Установка параметров входа
         self.ui.comboBox_in_signal_type.activated.connect(self.parametr_in_signal)
+
+        # Цветовая индикация условий калибровки
+        self.ui.lineEdit_t.textChanged.connect(self.acceptance_conditions_t)
+        self.ui.lineEdit_f.textChanged.connect(self.acceptance_conditions_f)
+        self.ui.lineEdit_p.textChanged.connect(self.acceptance_conditions_p)
 
         # Цветовая индикация допуска ИРТ
         self.ui.lineEdit_out_irt_value_5.textChanged.connect(
@@ -211,7 +216,7 @@ class Window(QtWidgets.QMainWindow):
 
     def valdat_24(self):
         """ Валидация полей Выход 24В """
-        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,2}(?:[\.,]\d{,3})?$"))
+        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,3}(?:[\.,]\d{,3})?$"))
 
     def comboBox_load(self, col=0):
         """ Заполнение ComboBox из tableWidget """
@@ -459,6 +464,33 @@ class Window(QtWidgets.QMainWindow):
         # Если запрошен допуск
         if acceptance_error:
             return acceptance
+
+    def acceptance_conditions_t(self):
+        # температура окружающего воздуха
+        t = 0 if self.ui.lineEdit_t.text() == '' else float(self.ui.lineEdit_t.text())
+        if 15 <= t <= 25:
+            color = u"color: black"
+        else:
+            color = u"color: red"
+        self.ui.lineEdit_t.setStyleSheet(color)
+
+    def acceptance_conditions_f(self):
+        # относительная влажность воздуха
+        f = 0 if self.ui.lineEdit_f.text() == '' else float(self.ui.lineEdit_f.text())
+        if 30 <= f <= 80:
+            color = u"color: black"
+        else:
+            color = u"color: red"
+        self.ui.lineEdit_f.setStyleSheet(color)
+
+    def acceptance_conditions_p(self):
+        # атмосферное давление
+        p = 0 if self.ui.lineEdit_p.text() == '' else float(self.ui.lineEdit_p.text())
+        if 84.0<= p <= 106.7:
+            color = u"color: black"
+        else:
+            color = u"color: red"
+        self.ui.lineEdit_p.setStyleSheet(color)
 
     def error_irt_5(self):
         Ai = self.ui.lineEdit_out_irt_value_5.text()
