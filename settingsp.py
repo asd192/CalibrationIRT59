@@ -2,11 +2,13 @@ import sys
 from PyQt5 import QtWidgets
 from settings import Ui_settings
 
-class WindowSettings(QtWidgets.QMainWindow):
+
+class WindowSettings(QtWidgets.QDialog):
     def __init__(self):
         super(WindowSettings, self).__init__()
         self.st = Ui_settings()
         self.st.setupUi(self)
+
 
 if __name__ == "__main__":
     s_app = QtWidgets.QApplication([])

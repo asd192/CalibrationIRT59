@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>16</x>
-     <y>86</y>
+     <y>113</y>
      <width>770</width>
      <height>145</height>
     </rect>
@@ -197,9 +197,6 @@
       <bold>false</bold>
      </font>
     </property>
-    <property name="toolTip">
-     <string>Наличие ПВИ</string>
-    </property>
     <property name="text">
      <string>ПВИ</string>
     </property>
@@ -233,6 +230,7 @@
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
       <weight>50</weight>
+      <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
@@ -244,6 +242,9 @@
     </property>
     <property name="maxLength">
      <number>6</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -266,6 +267,7 @@
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
       <weight>50</weight>
+      <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
@@ -277,6 +279,9 @@
     </property>
     <property name="maxLength">
      <number>6</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -299,11 +304,12 @@
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
       <weight>50</weight>
+      <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Начало шкалы как в приборе - с количеством знаков после запятой.&lt;/p&gt;&lt;p&gt;Например, если 2 знака после запятой, то ввести 0,00.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="inputMethodHints">
      <set>Qt::ImhNone</set>
@@ -313,6 +319,9 @@
     </property>
     <property name="maxLength">
      <number>6</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -335,11 +344,12 @@
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
       <weight>50</weight>
+      <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Конец шкалы как в приборе - с количеством знаков после запятой.&lt;/p&gt;&lt;p&gt;Например, если 3 знака после запятой, то ввести 600,000.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="inputMethodHints">
      <set>Qt::ImhNone</set>
@@ -349,6 +359,9 @@
     </property>
     <property name="maxLength">
      <number>6</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -371,6 +384,7 @@
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
       <weight>50</weight>
+      <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
@@ -379,6 +393,9 @@
     </property>
     <property name="maxLength">
      <number>6</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -401,6 +418,7 @@
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
       <weight>50</weight>
+      <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
@@ -409,6 +427,9 @@
     </property>
     <property name="maxLength">
      <number>6</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -509,6 +530,7 @@
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
       <weight>50</weight>
+      <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
@@ -517,6 +539,9 @@
     </property>
     <property name="maxLength">
      <number>12</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLineEdit" name="s_parametr_position">
@@ -533,11 +558,15 @@
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
       <weight>50</weight>
+      <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
     <property name="text">
      <string>D11</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLineEdit" name="s_parametr_type">
@@ -554,6 +583,7 @@
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
       <weight>50</weight>
+      <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
@@ -562,6 +592,9 @@
     </property>
     <property name="maxLength">
      <number>12</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLineEdit" name="s_parametr_yeaar">
@@ -578,11 +611,15 @@
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
       <weight>50</weight>
+      <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
     <property name="text">
      <string>K10</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLineEdit" name="s_in_signal">
@@ -602,6 +639,7 @@
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
       <weight>50</weight>
+      <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
@@ -616,6 +654,9 @@
     </property>
     <property name="maxLength">
      <number>6</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -638,6 +679,7 @@
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
       <weight>50</weight>
+      <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
@@ -652,6 +694,9 @@
     </property>
     <property name="maxLength">
      <number>6</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -674,6 +719,7 @@
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
       <weight>50</weight>
+      <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
@@ -686,6 +732,9 @@
     <property name="maxLength">
      <number>6</number>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
     <property name="readOnly">
      <bool>false</bool>
     </property>
@@ -695,7 +744,7 @@
    <property name="geometry">
     <rect>
      <x>445</x>
-     <y>13</y>
+     <y>45</y>
      <width>341</width>
      <height>68</height>
     </rect>
@@ -755,6 +804,7 @@
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
       <weight>50</weight>
+      <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
@@ -766,6 +816,9 @@
     </property>
     <property name="maxLength">
      <number>6</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -814,6 +867,7 @@
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
       <weight>50</weight>
+      <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
@@ -825,6 +879,9 @@
     </property>
     <property name="maxLength">
      <number>6</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -873,6 +930,7 @@
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
       <weight>50</weight>
+      <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
@@ -885,6 +943,9 @@
     <property name="maxLength">
      <number>6</number>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
     <property name="readOnly">
      <bool>false</bool>
     </property>
@@ -894,7 +955,7 @@
    <property name="geometry">
     <rect>
      <x>15</x>
-     <y>13</y>
+     <y>45</y>
      <width>421</width>
      <height>68</height>
     </rect>
@@ -951,6 +1012,7 @@
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
       <weight>50</weight>
+      <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
@@ -959,6 +1021,9 @@
     </property>
     <property name="maxLength">
      <number>12</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLineEdit" name="s_calibr_number">
@@ -975,6 +1040,7 @@
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
       <weight>50</weight>
+      <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
@@ -984,13 +1050,16 @@
     <property name="maxLength">
      <number>12</number>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
   </widget>
   <widget class="QLabel" name="label_s_adopted">
    <property name="geometry">
     <rect>
      <x>278</x>
-     <y>513</y>
+     <y>517</y>
      <width>60</width>
      <height>16</height>
     </rect>
@@ -1014,7 +1083,7 @@
    <property name="geometry">
     <rect>
      <x>301</x>
-     <y>243</y>
+     <y>270</y>
      <width>200</width>
      <height>150</height>
     </rect>
@@ -1086,6 +1155,7 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
@@ -1135,6 +1205,7 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
@@ -1142,6 +1213,9 @@
     </property>
     <property name="maxLength">
      <number>7</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label_s_24">
@@ -1184,6 +1258,7 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
@@ -1209,6 +1284,7 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
@@ -1217,13 +1293,16 @@
     <property name="maxLength">
      <number>7</number>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_s_out_irt">
    <property name="geometry">
     <rect>
      <x>16</x>
-     <y>243</y>
+     <y>270</y>
      <width>270</width>
      <height>260</height>
     </rect>
@@ -1247,6 +1326,7 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="inputMask">
@@ -1263,6 +1343,9 @@
     </property>
     <property name="cursorPosition">
      <number>3</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="placeholderText">
      <string/>
@@ -1311,6 +1394,7 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
@@ -1318,6 +1402,9 @@
     </property>
     <property name="maxLength">
      <number>10</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLineEdit" name="s_out_irt_in_50">
@@ -1336,10 +1423,14 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
      <string>C45</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -1361,6 +1452,7 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="inputMethodHints">
@@ -1368,6 +1460,9 @@
     </property>
     <property name="text">
      <string>C43</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -1386,6 +1481,7 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
@@ -1393,6 +1489,9 @@
     </property>
     <property name="maxLength">
      <number>10</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="clearButtonEnabled">
      <bool>false</bool>
@@ -1435,6 +1534,7 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
@@ -1442,6 +1542,9 @@
     </property>
     <property name="maxLength">
      <number>10</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="clearButtonEnabled">
      <bool>false</bool>
@@ -1559,10 +1662,14 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
      <string>C44</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -1581,6 +1688,7 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
@@ -1588,6 +1696,9 @@
     </property>
     <property name="maxLength">
      <number>10</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLineEdit" name="s_out_irt_in_75">
@@ -1606,10 +1717,14 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
      <string>C46</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -1631,10 +1746,14 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
      <string>C47</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -1704,10 +1823,14 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
      <string>E45</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -1729,6 +1852,7 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="inputMethodHints">
@@ -1736,6 +1860,9 @@
     </property>
     <property name="text">
      <string>E43</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -1757,10 +1884,14 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
      <string>E44</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -1782,10 +1913,14 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
      <string>E46</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -1807,10 +1942,14 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
      <string>E47</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -1821,7 +1960,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>513</y>
+     <y>517</y>
      <width>60</width>
      <height>16</height>
     </rect>
@@ -1848,7 +1987,7 @@
    <property name="geometry">
     <rect>
      <x>516</x>
-     <y>243</y>
+     <y>270</y>
      <width>270</width>
      <height>260</height>
     </rect>
@@ -1872,6 +2011,7 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="inputMask">
@@ -1888,6 +2028,9 @@
     </property>
     <property name="cursorPosition">
      <number>3</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="placeholderText">
      <string/>
@@ -1939,6 +2082,7 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
@@ -1946,6 +2090,9 @@
     </property>
     <property name="maxLength">
      <number>10</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLineEdit" name="s_out_pvi_in_50">
@@ -1964,10 +2111,14 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
      <string>C96</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -1989,6 +2140,7 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="inputMethodHints">
@@ -1996,6 +2148,9 @@
     </property>
     <property name="text">
      <string>C94</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -2017,6 +2172,7 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
@@ -2024,6 +2180,9 @@
     </property>
     <property name="maxLength">
      <number>10</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="clearButtonEnabled">
      <bool>false</bool>
@@ -2069,6 +2228,7 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
@@ -2076,6 +2236,9 @@
     </property>
     <property name="maxLength">
      <number>10</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="clearButtonEnabled">
      <bool>false</bool>
@@ -2193,10 +2356,14 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
      <string>C95</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -2218,6 +2385,7 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
@@ -2225,6 +2393,9 @@
     </property>
     <property name="maxLength">
      <number>10</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLineEdit" name="s_out_pvi_in_75">
@@ -2243,10 +2414,14 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
      <string>C97</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -2268,10 +2443,14 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
      <string>C98</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -2301,7 +2480,6 @@
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-
    <widget class="QLineEdit" name="s_out_pvi_output_95">
     <property name="enabled">
      <bool>true</bool>
@@ -2318,10 +2496,14 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
      <string>E98</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -2343,6 +2525,7 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="inputMethodHints">
@@ -2350,6 +2533,9 @@
     </property>
     <property name="text">
      <string>E94</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -2371,10 +2557,14 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
      <string>E96</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -2420,10 +2610,14 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
      <string>E95</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -2445,10 +2639,14 @@
      <font>
       <family>Segoe UI</family>
       <pointsize>11</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
      <string>E97</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>false</bool>
@@ -2459,7 +2657,7 @@
    <property name="geometry">
     <rect>
      <x>535</x>
-     <y>513</y>
+     <y>517</y>
      <width>131</width>
      <height>16</height>
     </rect>
@@ -2483,7 +2681,7 @@
    <property name="geometry">
     <rect>
      <x>679</x>
-     <y>553</y>
+     <y>562</y>
      <width>100</width>
      <height>30</height>
     </rect>
@@ -2505,7 +2703,7 @@
    <property name="geometry">
     <rect>
      <x>72</x>
-     <y>509</y>
+     <y>513</y>
      <width>170</width>
      <height>26</height>
     </rect>
@@ -2515,6 +2713,7 @@
      <family>Segoe UI</family>
      <pointsize>11</pointsize>
      <weight>50</weight>
+     <italic>false</italic>
      <bold>false</bold>
     </font>
    </property>
@@ -2524,12 +2723,15 @@
    <property name="maxLength">
     <number>12</number>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
   <widget class="QLineEdit" name="s_adopted">
    <property name="geometry">
     <rect>
      <x>340</x>
-     <y>509</y>
+     <y>513</y>
      <width>170</width>
      <height>26</height>
     </rect>
@@ -2539,6 +2741,7 @@
      <family>Segoe UI</family>
      <pointsize>11</pointsize>
      <weight>50</weight>
+     <italic>false</italic>
      <bold>false</bold>
     </font>
    </property>
@@ -2548,12 +2751,15 @@
    <property name="maxLength">
     <number>12</number>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
   <widget class="QLineEdit" name="s_date_calibration">
    <property name="geometry">
     <rect>
      <x>668</x>
-     <y>510</y>
+     <y>514</y>
      <width>110</width>
      <height>26</height>
     </rect>
@@ -2563,6 +2769,7 @@
      <family>Segoe UI</family>
      <pointsize>11</pointsize>
      <weight>50</weight>
+     <italic>false</italic>
      <bold>false</bold>
     </font>
    </property>
@@ -2571,6 +2778,64 @@
    </property>
    <property name="maxLength">
     <number>12</number>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_s_help">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>6</y>
+     <width>781</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>DejaVu Sans</family>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: green</string>
+   </property>
+   <property name="text">
+    <string>Для добавления одного параметра в несколько ячеек введите адреса ячеек через пробел</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>22</y>
+     <width>781</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_2">
+   <property name="geometry">
+    <rect>
+     <x>8</x>
+     <y>542</y>
+     <width>781</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
    </property>
   </widget>
  </widget>

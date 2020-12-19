@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
 import sys, os, configparser
-import settingsp
 
 from subprocess import Popen
 from decimal import Decimal
 
 from main import Ui_MainWindow
+from settingsp import WindowSettings
+
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtGui import QRegExpValidator
 
@@ -152,7 +153,7 @@ class Window(QtWidgets.QMainWindow):
         self.ui.action_save_config.triggered.connect(self.save_config_file)
 
         # Настройки программы
-        self.ui.action_settings.triggered.connect(self.settings)
+        self.ui.action_settings.triggered.connect(self.open_settings)
 
         # Загрузка файла конфигурации прибора
         self.ui.action_load_config.triggered.connect(self.load_config_file)
@@ -819,13 +820,10 @@ class Window(QtWidgets.QMainWindow):
         except configparser.NoSectionError:
             pass
 
-    def settings(self):
-        s_app = QtWidgets.QApplication([])
-        s_application = settingsp.WindowSettings()
-        s_application.setWindowTitle("Настройки")
-        s_application.show()
-
-        sys.exit(s_app.exec())
+    def open_settings(self):
+        self.settings_app = WindowSettings()
+        self.settings_app.setWindowTitle("Настройки")
+        self.settings_app.show()
 
     def cal_clear(self):
         """ Очищает виджеты """
@@ -883,10 +881,11 @@ class Window(QtWidgets.QMainWindow):
             pass
 
 
-app = QtWidgets.QApplication([])
-application = Window()
-application.setWindowTitle("Создание протокола калибровки ИРТ 5920Н, 5940М")
-application.setFixedSize(800, 670)
-application.show()
+if __name__ == "__main__":
+    app = QtWidgets.QApplication([])
+    application = Window()
+    application.setWindowTitle("Создание протокола калибровки ИРТ 5920Н, 5940М")
+    application.setFixedSize(800, 670)
+    application.show()
 
-sys.exit(app.exec())
+    sys.exit(app.exec())
