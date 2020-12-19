@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 
 import sys, os, configparser
+import settingsp
+
 from subprocess import Popen
 from decimal import Decimal
 
 from main import Ui_MainWindow
-from PyQt5 import QtWidgets, QtCore, QtGui
-from PyQt5.QtWidgets import QTableWidgetItem
+from PyQt5 import QtWidgets, QtCore
+from PyQt5.QtGui import QRegExpValidator
 
 
 class Window(QtWidgets.QMainWindow):
@@ -47,9 +49,9 @@ class Window(QtWidgets.QMainWindow):
         self.ui.lineEdit_out_pvi_value_95.setValidator(self.validat_in_out())
 
         # Валидация полей Условия
-        self.ui.lineEdit_t.setValidator(self.valdat_24())
-        self.ui.lineEdit_f.setValidator(self.valdat_24())
-        self.ui.lineEdit_p.setValidator(self.valdat_24())
+        self.ui.lineEdit_t.setValidator(self.validat_conditions())
+        self.ui.lineEdit_f.setValidator(self.validat_conditions())
+        self.ui.lineEdit_p.setValidator(self.validat_conditions())
 
         # Замена ',' -> '.'
         widgets_repl = (self.ui.lineEdit_t, self.ui.lineEdit_f, self.ui.lineEdit_p,
@@ -64,7 +66,7 @@ class Window(QtWidgets.QMainWindow):
                         self.ui.lineEdit_out_pvi_value_75, self.ui.lineEdit_out_pvi_value_95)
 
         for wr in widgets_repl:
-                self.repl(wr)
+            self.repl(wr)
 
         # Дата сегодня
         self.ui.dateEdit_date_calibration.setDate(QtCore.QDate.currentDate())
@@ -149,6 +151,9 @@ class Window(QtWidgets.QMainWindow):
         self.ui.pushButton_save_config.clicked.connect(self.save_config_file)
         self.ui.action_save_config.triggered.connect(self.save_config_file)
 
+        # Настройки программы
+        self.ui.action_settings.triggered.connect(self.settings)
+
         # Загрузка файла конфигурации прибора
         self.ui.action_load_config.triggered.connect(self.load_config_file)
 
@@ -208,15 +213,18 @@ class Window(QtWidgets.QMainWindow):
 
     def validat_param(self):
         """ Валидация полей Вход, Выход, Шкала ПВИ параметров прибора """
-        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,6}(?:[\.,]\d{,3})?$"))
+        return QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,6}(?:[\.,]\d{,3})?$"))
 
     def validat_in_out(self):
         """ Валиддация показаний Выход ИРТ, Выход ПВИ """
-        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,5}(?:[\.,]\d{,3})?$"))
+        return QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,5}(?:[\.,]\d{,3})?$"))
 
     def valdat_24(self):
         """ Валидация полей Выход 24В """
-        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,3}(?:[\.,]\d{,3})?$"))
+        return QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,2}(?:[\.,]\d{,3})?$"))
+
+    def validat_conditions(self):
+        return QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,3}(?:[\.,]\d{,2})?$"))
 
     def comboBox_load(self, col=0):
         """ Заполнение ComboBox из tableWidget """
@@ -486,7 +494,7 @@ class Window(QtWidgets.QMainWindow):
     def acceptance_conditions_p(self):
         # атмосферное давление
         p = 0 if self.ui.lineEdit_p.text() == '' else float(self.ui.lineEdit_p.text())
-        if 84.0<= p <= 106.7:
+        if 84.0 <= p <= 106.7:
             color = u"color: black"
         else:
             color = u"color: red"
@@ -541,8 +549,6 @@ class Window(QtWidgets.QMainWindow):
             else:
                 color = u"color: black"
 
-            print(round(abs(irt_value) - abs(irt_output), 5), acceptance_error)
-
             if percent == 5:
                 self.ui.lineEdit_out_irt_value_5.setStyleSheet(color)
             if percent == 25:
@@ -579,8 +585,6 @@ class Window(QtWidgets.QMainWindow):
                 color = u"color: red"
             else:
                 color = u"color: black"
-
-            print(round(abs(pvi_value) - abs(pvi_output), 5), acceptance_error)
 
             if percent == 5:
                 self.ui.lineEdit_out_pvi_value_5.setStyleSheet(color)
@@ -633,7 +637,7 @@ class Window(QtWidgets.QMainWindow):
                 param = config.items(column_name)
 
                 for row in range(0, len(param)):
-                    table.setItem(row, column, QTableWidgetItem(param[row][1]))
+                    table.setItem(row, column, QtWidgets.QTableWidgetItem(param[row][1]))
         except Exception as exeption:
             QtWidgets.QMessageBox.critical(self, "Ошибка",
                                            f"Не удалось загрузить параметры из файла <parameters.ini>.Ошибка - {type(exeption).__name__}",
@@ -815,6 +819,14 @@ class Window(QtWidgets.QMainWindow):
         except configparser.NoSectionError:
             pass
 
+    def settings(self):
+        s_app = QtWidgets.QApplication([])
+        s_application = settingsp.WindowSettings()
+        s_application.setWindowTitle("Настройки")
+        s_application.show()
+
+        sys.exit(s_app.exec())
+
     def cal_clear(self):
         """ Очищает виджеты """
         w = self.ui
@@ -852,7 +864,7 @@ class Window(QtWidgets.QMainWindow):
                                            QtWidgets.QMessageBox.Ok)
 
     def ui_help(self):
-        os.startfile(f"{os.path.abspath(os.curdir)}\Documents\Pasport_IRT_5920.pdf")
+        os.startfile(f"{os.path.abspath(os.curdir)}\doc\Pasport_IRT_5920.pdf")
 
     def about(self):
         QtWidgets.QMessageBox.aboutQt(application, title="О программе")

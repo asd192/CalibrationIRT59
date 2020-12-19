@@ -115,6 +115,9 @@
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
+       <property name="buddy">
+        <cstring>lineEdit_parametr_number</cstring>
+       </property>
       </widget>
       <widget class="QLabel" name="label_in_signal">
        <property name="geometry">
@@ -774,6 +777,9 @@
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="buddy">
+        <cstring>lineEdit_pvi_scale_start</cstring>
        </property>
       </widget>
       <widget class="QLabel" name="label_pvi_out">
@@ -2659,7 +2665,7 @@
         <set>Qt::AlignCenter</set>
        </property>
        <property name="buddy">
-        <cstring>comboBox_calibr_name</cstring>
+        <cstring>lineEdit_t</cstring>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_t">
@@ -2721,7 +2727,7 @@
         <set>Qt::AlignCenter</set>
        </property>
        <property name="buddy">
-        <cstring>comboBox_calibr_name</cstring>
+        <cstring>lineEdit_f</cstring>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_f">
@@ -2783,7 +2789,7 @@
         <set>Qt::AlignCenter</set>
        </property>
        <property name="buddy">
-        <cstring>comboBox_calibr_name</cstring>
+        <cstring>lineEdit_p</cstring>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_p">
@@ -2823,7 +2829,7 @@
     </widget>
     <widget class="QWidget" name="tab_param">
      <attribute name="title">
-      <string> Настройки </string>
+      <string>   Данные   </string>
      </attribute>
      <widget class="QTableWidget" name="tableWidget_param">
       <property name="geometry">
@@ -2934,7 +2940,7 @@
       <x>269</x>
       <y>130</y>
       <width>242</width>
-      <height>159</height>
+      <height>188</height>
      </rect>
     </property>
     <property name="title">
@@ -2943,6 +2949,8 @@
     <addaction name="action_empty"/>
     <addaction name="action_load_config"/>
     <addaction name="action_save_config"/>
+    <addaction name="separator"/>
+    <addaction name="action_settings"/>
     <addaction name="separator"/>
     <addaction name="action_exit"/>
    </widget>
@@ -3070,6 +3078,17 @@
   <action name="action_save_config">
    <property name="text">
     <string>Сохранить конфигурацию</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="action_settings">
+   <property name="text">
+    <string>Настройки</string>
    </property>
    <property name="font">
     <font>
