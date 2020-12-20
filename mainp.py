@@ -1,15 +1,9 @@
-# -*- coding: utf-8 -*-
+import sys, os, configparser, decimal, subprocess
 
-import sys, os, configparser
-
-from subprocess import Popen
-from decimal import Decimal
+from PyQt5 import QtWidgets, QtCore, QtGui
 
 from main import Ui_MainWindow
 from settingsp import WindowSettings
-
-from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtGui import QRegExpValidator
 
 
 class Window(QtWidgets.QMainWindow):
@@ -214,18 +208,18 @@ class Window(QtWidgets.QMainWindow):
 
     def validat_param(self):
         """ Валидация полей Вход, Выход, Шкала ПВИ параметров прибора """
-        return QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,6}(?:[\.,]\d{,3})?$"))
+        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,6}(?:[\.,]\d{,3})?$"))
 
     def validat_in_out(self):
         """ Валиддация показаний Выход ИРТ, Выход ПВИ """
-        return QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,5}(?:[\.,]\d{,3})?$"))
+        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,5}(?:[\.,]\d{,3})?$"))
 
     def valdat_24(self):
         """ Валидация полей Выход 24В """
-        return QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,2}(?:[\.,]\d{,3})?$"))
+        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,2}(?:[\.,]\d{,3})?$"))
 
     def validat_conditions(self):
-        return QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,3}(?:[\.,]\d{,2})?$"))
+        return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,3}(?:[\.,]\d{,2})?$"))
 
     def comboBox_load(self, col=0):
         """ Заполнение ComboBox из tableWidget """
@@ -286,7 +280,7 @@ class Window(QtWidgets.QMainWindow):
         try:
             num = num
             if float(num) or float(num) == 0:
-                return Decimal(num)
+                return decimal.Decimal(num)
         except:
             pass
 
@@ -824,6 +818,7 @@ class Window(QtWidgets.QMainWindow):
         self.settings_app = WindowSettings()
         self.settings_app.setWindowTitle("Настройки")
         self.settings_app.show()
+        # self.settings_app.exec_()  # модальное
 
     def cal_clear(self):
         """ Очищает виджеты """
@@ -855,7 +850,7 @@ class Window(QtWidgets.QMainWindow):
     def help_error(self):
         try:
             path = "C:\Program Files\Microsoft Office\Office16\outlook.exe"
-            Popen([path, "/c", "ipm.note", "/m", "help@ya.ru"])
+            subprocess.Popen([path, "/c", "ipm.note", "/m", "help@ya.ru"])
         except Exception as exeption:
             QtWidgets.QMessageBox.critical(self, "Ошибка",
                                            f"Не могу найти почтовую программу. Ошибка - {type(exeption).__name__}",

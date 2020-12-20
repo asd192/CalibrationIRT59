@@ -1,5 +1,5 @@
-import os, shutil
-import openpyxl
+import os, openpyxl, shutil
+
 
 def create_clbr():
     if os.path.exists("Шаблон_CalibrationIRT59xx.xlsx") == False:
@@ -7,7 +7,7 @@ def create_clbr():
     else:
         shutil.copy("Шаблон_CalibrationIRT59xx.xlsx", "_temporary.xlsx")
 
-        wb = openpyxl.load_workbook("_temporary.xlsx").active
+        wb = openpyxl.load_workbook("_temporary.xlsx")
         ws = wb.active
 
         ws['C3'] = 42
