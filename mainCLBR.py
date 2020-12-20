@@ -1,9 +1,9 @@
-import sys, os, configparser, decimal, subprocess
+import sys, os, configparser, decimal, subprocess, shutil, openpyxl
 
 from PyQt5 import QtWidgets, QtCore, QtGui
 
 from main import Ui_MainWindow
-from slset import ClbrSettings
+from slsett import ClbrSettings
 
 
 class ClbrMain(QtWidgets.QMainWindow):
@@ -145,6 +145,9 @@ class ClbrMain(QtWidgets.QMainWindow):
         # Сохранение файла конфигурации прибора
         self.ui.pushButton_save_config.clicked.connect(self.save_config_file)
         self.ui.action_save_config.triggered.connect(self.save_config_file)
+
+        # Создание протокола
+        self.ui.pushButton_create.clicked.connect(self.create_protocol)
 
         # Настройки программы
         self.ui.action_settings.triggered.connect(self.open_settings)
@@ -846,6 +849,21 @@ class ClbrMain(QtWidgets.QMainWindow):
         w.comboBox_adopted.setItemText(0, '')
 
         w.checkBox_pvi.setChecked(False)
+
+    def create_protocol(self):
+        if os.path.exists("Шаблон_CalibrationIRT59xx.xlsx") == False:
+            return False
+        else:
+            shutil.copy("Шаблон_CalibrationIRT59xx.xlsx", "_temporary.xlsx")
+
+            wb = openpyxl.load_workbook("_temporary.xlsx")
+            ws = wb.active
+
+            ws['C3'] = 42
+
+            wb.save("_temporary.xlsx")
+
+            # os.remove("_temporary.xlsx")
 
     def help_error(self):
         try:

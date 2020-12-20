@@ -235,7 +235,7 @@
      </font>
     </property>
     <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Начало шкалы на вход измерителього прибора.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Начало шкалы на вход измерителього прибора&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="inputMethodHints">
      <set>Qt::ImhNone</set>
@@ -272,7 +272,7 @@
      </font>
     </property>
     <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Конец шкалы на вход измерителього прибора.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Конец шкалы на вход измерителього прибора&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="inputMethodHints">
      <set>Qt::ImhNone</set>
@@ -312,7 +312,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Начало шкалы измерительного прибора.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Начало шкалы измерительного прибора&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="inputMethodHints">
      <set>Qt::ImhNone</set>
@@ -352,7 +352,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Конец шкалы измерительного прибора.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Конец шкалы измерительного прибора&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="inputMethodHints">
      <set>Qt::ImhNone</set>
@@ -389,7 +389,7 @@
      </font>
     </property>
     <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Начало шкалы преобразователья выходного сигнала(ПВИ).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Начало шкалы преобразователья выходного сигнала(ПВИ)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="inputMethodHints">
      <set>Qt::ImhNone</set>
@@ -426,7 +426,7 @@
      </font>
     </property>
     <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Конец шкалы преобразователья выходного сигнала(ПВИ).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Конец шкалы преобразователья выходного сигнала(ПВИ)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="inputMethodHints">
      <set>Qt::ImhNone</set>
@@ -541,7 +541,7 @@
      </font>
     </property>
     <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Номер измерительного прибора.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Номер измерительного прибора&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="maxLength">
      <number>12</number>
@@ -569,7 +569,7 @@
      </font>
     </property>
     <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Позиция измерительного прибора(место установки).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Позиция измерительного прибора(место установки)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -594,7 +594,7 @@
      </font>
     </property>
     <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Тип измерительного прибора.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Тип измерительного прибора&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="maxLength">
      <number>12</number>
@@ -622,7 +622,7 @@
      </font>
     </property>
     <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Год выпуска измерительного прибора.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Год выпуска измерительного прибора&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -653,7 +653,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Проверка основной погрешности измерительного  канала ИРТ. Входной сигнал.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Поступающий сигнал на вход прибора. Например, 0-5 мА.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Поступающий сигнал на вход прибора. Например, 0-5 мА&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="inputMethodHints">
      <set>Qt::ImhNone</set>
@@ -693,7 +693,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Проверка основной погрешности измерительного  канала ИРТ. Выходной сигнал.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Тип выходного сигнала(мм, см, кгс/см2 и т.п.).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Тип выходного сигнала(мм, см, кгс/см2 и т.п.)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="inputMethodHints">
      <set>Qt::ImhNone</set>
@@ -730,7 +730,7 @@
      </font>
     </property>
     <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Тип выхода преобразователья выходного сигнала(ПВИ).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Тип выхода преобразователья выходного сигнала(ПВИ)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="inputMethodHints">
      <set>Qt::ImhNone</set>
@@ -815,7 +815,7 @@
      </font>
     </property>
     <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Температура окружающего воздуха, °С.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Температура окружающего воздуха, °С&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="inputMethodHints">
      <set>Qt::ImhNone</set>
@@ -878,7 +878,7 @@
      </font>
     </property>
     <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Относительная влажность воздуха, %.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Относительная влажность воздуха, %&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="inputMethodHints">
      <set>Qt::ImhNone</set>
@@ -941,7 +941,7 @@
      </font>
     </property>
     <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Атмосферное давление, кПа (мм рт.ст).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Атмосферное давление, кПа (мм рт.ст)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="inputMethodHints">
      <set>Qt::ImhNone</set>
@@ -1023,7 +1023,7 @@
      </font>
     </property>
     <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Тип калибратора(модель).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Тип калибратора(модель)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="maxLength">
      <number>12</number>
@@ -1051,7 +1051,7 @@
      </font>
     </property>
     <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Номер калибратора.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Номер калибратора&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="maxLength">
      <number>12</number>
@@ -2622,7 +2622,7 @@
     </font>
    </property>
    <property name="whatsThis">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ф.И.О. калибровавшего измерительный прибор.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ф.И.О. калибровавшего измерительный прибор&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="maxLength">
     <number>12</number>
@@ -2650,7 +2650,7 @@
     </font>
    </property>
    <property name="whatsThis">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ф.И.О. калибровщика.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ф.И.О. калибровщика&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="maxLength">
     <number>12</number>
@@ -2678,7 +2678,7 @@
     </font>
    </property>
    <property name="whatsThis">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Дата калибровки.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Дата калибровки&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="maxLength">
     <number>12</number>
