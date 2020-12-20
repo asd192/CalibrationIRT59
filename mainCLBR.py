@@ -3,12 +3,12 @@ import sys, os, configparser, decimal, subprocess
 from PyQt5 import QtWidgets, QtCore, QtGui
 
 from main import Ui_MainWindow
-from settingsp import WindowSettings
+from slset import ClbrSettings
 
 
-class Window(QtWidgets.QMainWindow):
+class ClbrMain(QtWidgets.QMainWindow):
     def __init__(self):
-        super(Window, self).__init__()
+        super(ClbrMain, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
@@ -815,7 +815,7 @@ class Window(QtWidgets.QMainWindow):
             pass
 
     def open_settings(self):
-        self.settings_app = WindowSettings()
+        self.settings_app = ClbrSettings()
         self.settings_app.setWindowTitle("Настройки")
         self.settings_app.show()
         # self.settings_app.exec_()  # модальное
@@ -878,7 +878,7 @@ class Window(QtWidgets.QMainWindow):
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
-    application = Window()
+    application = ClbrMain()
     application.setWindowTitle("Создание протокола калибровки ИРТ 5920Н, 5940М")
     application.setFixedSize(800, 670)
     application.show()
