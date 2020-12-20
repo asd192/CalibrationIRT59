@@ -890,22 +890,35 @@ class ClbrMain(QtWidgets.QMainWindow):
                     '2': self.ui.lineEdit_t.text(),
                     '3': self.ui.lineEdit_f.text(),
                     '4': self.ui.lineEdit_p.text(),
+
                     '5': self.ui.comboBox_parametr_type.currentText(),
                     '6': self.ui.lineEdit_parametr_number.text(),
                     '7': self.ui.comboBox_parametr_year.currentText(),
                     '8': self.ui.lineEdit_parametr_position.text(),
+
+                    '9': self.ui.comboBox_in_signal_type.currentText(),
+                    '10': self.ui.lineEdit_in_start_value.text(),
+                    '11': self.ui.lineEdit_in_end_value.text(),
+
+                    '12': self.ui.comboBox_out_signal_type.currentText(),
+                    '13': self.ui.lineEdit_out_start_value.text(),
+                    '14': self.ui.lineEdit_out_end_value.text(),
+
+                    '15': self.ui.lineEdit_pvi_scale_start.text(),
+                    '16': self.ui.lineEdit_pvi_scale_end.text(),
+                    '17': self.ui.comboBox_pvi_out.currentText(),
+
                 }
-
-                for key, values in cells_dict.items():
-                    for value in values:
-                        # print(key, value, cells.get(section, key))
-                        # ws[cells.get(section, key)] = values
-                        # # print(cells.get(section, key))
-                        # print(f"key - {key}, cell - {cellx}")
-                        # # ws[cell] = values
+                columns = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+                for key, value in cells_dict.items():
+                    # print(key, values, cells.get(section, key).split())
+                    for cell_p in cells.get(section, key).split():
+                        # ws[cell_p] = value # не пишет в объединенные ячейки
+                        ws.cell(int(cell_p[1:]), int(columns.index(cell_p[0])), value)
 
 
-                wb.save("protocols/_temporary.xlsx")
+
+            wb.save("protocols/_temporary.xlsx")
 
             # os.remove("_temporary.xlsx")
 

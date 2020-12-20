@@ -241,7 +241,7 @@
      <set>Qt::ImhNone</set>
     </property>
     <property name="maxLength">
-     <number>6</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -278,7 +278,7 @@
      <set>Qt::ImhNone</set>
     </property>
     <property name="maxLength">
-     <number>6</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -318,7 +318,7 @@
      <set>Qt::ImhNone</set>
     </property>
     <property name="maxLength">
-     <number>6</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -358,7 +358,7 @@
      <set>Qt::ImhNone</set>
     </property>
     <property name="maxLength">
-     <number>6</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -395,7 +395,7 @@
      <set>Qt::ImhNone</set>
     </property>
     <property name="maxLength">
-     <number>6</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -432,7 +432,7 @@
      <set>Qt::ImhNone</set>
     </property>
     <property name="maxLength">
-     <number>6</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -544,7 +544,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Номер измерительного прибора&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="maxLength">
-     <number>12</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -570,6 +570,9 @@
     </property>
     <property name="whatsThis">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Позиция измерительного прибора(место установки)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="maxLength">
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -597,7 +600,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Тип измерительного прибора&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="maxLength">
-     <number>12</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -623,6 +626,9 @@
     </property>
     <property name="whatsThis">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Год выпуска измерительного прибора&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="maxLength">
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -659,7 +665,7 @@
      <set>Qt::ImhNone</set>
     </property>
     <property name="maxLength">
-     <number>6</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -699,7 +705,7 @@
      <set>Qt::ImhNone</set>
     </property>
     <property name="maxLength">
-     <number>6</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -736,7 +742,7 @@
      <set>Qt::ImhNone</set>
     </property>
     <property name="maxLength">
-     <number>6</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -821,7 +827,7 @@
      <set>Qt::ImhNone</set>
     </property>
     <property name="maxLength">
-     <number>6</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -884,7 +890,7 @@
      <set>Qt::ImhNone</set>
     </property>
     <property name="maxLength">
-     <number>6</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -947,7 +953,7 @@
      <set>Qt::ImhNone</set>
     </property>
     <property name="maxLength">
-     <number>6</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -1026,7 +1032,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Тип калибратора(модель)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="maxLength">
-     <number>12</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -1054,7 +1060,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Номер калибратора&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="maxLength">
-     <number>12</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -1164,6 +1170,9 @@
       <italic>false</italic>
      </font>
     </property>
+    <property name="maxLength">
+     <number>100</number>
+    </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
@@ -1212,7 +1221,7 @@
      </font>
     </property>
     <property name="maxLength">
-     <number>7</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -1261,6 +1270,9 @@
       <italic>false</italic>
      </font>
     </property>
+    <property name="maxLength">
+     <number>100</number>
+    </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
@@ -1285,7 +1297,7 @@
      </font>
     </property>
     <property name="maxLength">
-     <number>7</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -1327,7 +1339,7 @@
      <string/>
     </property>
     <property name="maxLength">
-     <number>10</number>
+     <number>100</number>
     </property>
     <property name="frame">
      <bool>true</bool>
@@ -1389,7 +1401,7 @@
      </font>
     </property>
     <property name="maxLength">
-     <number>10</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -1413,6 +1425,9 @@
       <pointsize>11</pointsize>
       <italic>false</italic>
      </font>
+    </property>
+    <property name="maxLength">
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -1443,6 +1458,9 @@
     <property name="inputMethodHints">
      <set>Qt::ImhNone</set>
     </property>
+    <property name="maxLength">
+     <number>100</number>
+    </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
@@ -1467,7 +1485,7 @@
      </font>
     </property>
     <property name="maxLength">
-     <number>10</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -1517,7 +1535,7 @@
      </font>
     </property>
     <property name="maxLength">
-     <number>10</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -1641,6 +1659,9 @@
       <italic>false</italic>
      </font>
     </property>
+    <property name="maxLength">
+     <number>100</number>
+    </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
@@ -1665,7 +1686,7 @@
      </font>
     </property>
     <property name="maxLength">
-     <number>10</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -1689,6 +1710,9 @@
       <pointsize>11</pointsize>
       <italic>false</italic>
      </font>
+    </property>
+    <property name="maxLength">
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -1715,6 +1739,9 @@
       <pointsize>11</pointsize>
       <italic>false</italic>
      </font>
+    </property>
+    <property name="maxLength">
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -1790,6 +1817,9 @@
       <italic>false</italic>
      </font>
     </property>
+    <property name="maxLength">
+     <number>100</number>
+    </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
@@ -1819,6 +1849,9 @@
     <property name="inputMethodHints">
      <set>Qt::ImhNone</set>
     </property>
+    <property name="maxLength">
+     <number>100</number>
+    </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
@@ -1844,6 +1877,9 @@
       <pointsize>11</pointsize>
       <italic>false</italic>
      </font>
+    </property>
+    <property name="maxLength">
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -1871,6 +1907,9 @@
       <italic>false</italic>
      </font>
     </property>
+    <property name="maxLength">
+     <number>100</number>
+    </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
@@ -1896,6 +1935,9 @@
       <pointsize>11</pointsize>
       <italic>false</italic>
      </font>
+    </property>
+    <property name="maxLength">
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -1967,7 +2009,7 @@
      <string/>
     </property>
     <property name="maxLength">
-     <number>10</number>
+     <number>100</number>
     </property>
     <property name="frame">
      <bool>true</bool>
@@ -2032,7 +2074,7 @@
      </font>
     </property>
     <property name="maxLength">
-     <number>10</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -2056,6 +2098,9 @@
       <pointsize>11</pointsize>
       <italic>false</italic>
      </font>
+    </property>
+    <property name="maxLength">
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -2086,6 +2131,9 @@
     <property name="inputMethodHints">
      <set>Qt::ImhNone</set>
     </property>
+    <property name="maxLength">
+     <number>100</number>
+    </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
@@ -2113,7 +2161,7 @@
      </font>
     </property>
     <property name="maxLength">
-     <number>10</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -2166,7 +2214,7 @@
      </font>
     </property>
     <property name="maxLength">
-     <number>10</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -2290,6 +2338,9 @@
       <italic>false</italic>
      </font>
     </property>
+    <property name="maxLength">
+     <number>100</number>
+    </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
@@ -2317,7 +2368,7 @@
      </font>
     </property>
     <property name="maxLength">
-     <number>10</number>
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -2341,6 +2392,9 @@
       <pointsize>11</pointsize>
       <italic>false</italic>
      </font>
+    </property>
+    <property name="maxLength">
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -2367,6 +2421,9 @@
       <pointsize>11</pointsize>
       <italic>false</italic>
      </font>
+    </property>
+    <property name="maxLength">
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -2418,6 +2475,9 @@
       <italic>false</italic>
      </font>
     </property>
+    <property name="maxLength">
+     <number>100</number>
+    </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
@@ -2447,6 +2507,9 @@
     <property name="inputMethodHints">
      <set>Qt::ImhNone</set>
     </property>
+    <property name="maxLength">
+     <number>100</number>
+    </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
@@ -2472,6 +2535,9 @@
       <pointsize>11</pointsize>
       <italic>false</italic>
      </font>
+    </property>
+    <property name="maxLength">
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -2523,6 +2589,9 @@
       <italic>false</italic>
      </font>
     </property>
+    <property name="maxLength">
+     <number>100</number>
+    </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
@@ -2548,6 +2617,9 @@
       <pointsize>11</pointsize>
       <italic>false</italic>
      </font>
+    </property>
+    <property name="maxLength">
+     <number>100</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -2625,7 +2697,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ф.И.О. калибровавшего измерительный прибор&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="maxLength">
-    <number>12</number>
+    <number>100</number>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -2653,7 +2725,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ф.И.О. калибровщика&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="maxLength">
-    <number>12</number>
+    <number>100</number>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -2681,7 +2753,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Дата калибровки&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="maxLength">
-    <number>12</number>
+    <number>100</number>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
