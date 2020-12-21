@@ -852,16 +852,60 @@ class ClbrMain(QtWidgets.QMainWindow):
 
     def create_protocol(self):
         if os.path.exists("Шаблон_CalibrationIRT59xx.xlsx") == False:
-            return False
+            QtWidgets.QMessageBox.critical(self, "Ошибка",
+                                           "Отсутствует файл шаблона - Шаблон_CalibrationIRT59xx.xlsx",
+                                           QtWidgets.QMessageBox.Ok)
         else:
-            shutil.copy("Шаблон_CalibrationIRT59xx.xlsx", "_temporary.xlsx")
+            shutil.copy("Шаблон_CalibrationIRT59xx.xlsx", "protocols/_temporary.xlsx")
 
-            wb = openpyxl.load_workbook("_temporary.xlsx")
+            wb = openpyxl.load_workbook("protocols/_temporary.xlsx")
             ws = wb.active
 
-            ws['C3'] = 42
+            cells = configparser.ConfigParser()
+            cells.read("parameters.ini", encoding="UTF-8")
 
-            wb.save("_temporary.xlsx")
+            if not cells.has_section('Выходные ячейки'):
+                dialog = QtWidgets.QMessageBox.question(application, "Настройки ячеек",
+                                                        "Отсутствуют настройки ячеек. Открыть настройки?",
+                                                        buttons=QtWidgets.QMessageBox.No | QtWidgets.QMessageBox.Yes,
+                                                        defaultButton=QtWidgets.QMessageBox.Yes)
+                if dialog == 65536:
+                    pass
+                if dialog == 16384:
+                    self.open_settings()
+
+            else:
+                section = 'Выходные ячейки'
+
+                calibr_name, calibr_number = '', ''
+                try:
+                    calibr_name = self.ui.comboBox_calibr_name.currentText().split()[0]
+                    calibr_number = self.ui.comboBox_calibr_name.currentText().split()[1]
+                except:
+                    pass
+
+                cells_dict = {
+                    '0': calibr_name,
+                    '1': calibr_number,
+                    '2': self.ui.lineEdit_t.text(),
+                    '3': self.ui.lineEdit_f.text(),
+                    '4': self.ui.lineEdit_p.text(),
+                    '5': self.ui.comboBox_parametr_type.currentText(),
+                    '6': self.ui.lineEdit_parametr_number.text(),
+                    '7': self.ui.comboBox_parametr_year.currentText(),
+                    '8': self.ui.lineEdit_parametr_position.text(),
+                }
+
+                for key, values in cells_dict.items():
+                    for value in values.split():
+                        print(key, value, cells.get(section, key))
+                        # ws[cells.get(section, key)] = values
+                        # # print(cells.get(section, key))
+                        # print(f"key - {key}, cell - {cellx}")
+                        # # ws[cell] = values
+
+
+                wb.save("protocols/_temporary.xlsx")
 
             # os.remove("_temporary.xlsx")
 
