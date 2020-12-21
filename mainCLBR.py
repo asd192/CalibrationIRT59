@@ -909,7 +909,7 @@ class ClbrMain(QtWidgets.QMainWindow):
                     '17': self.ui.comboBox_pvi_out.currentText(),
 
                 }
-                columns = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+                columns = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ'
                 for key, value in cells_dict.items():
                     # print(key, values, cells.get(section, key).split())
                     for cell_p in cells.get(section, key).split():
@@ -919,6 +919,7 @@ class ClbrMain(QtWidgets.QMainWindow):
 
 
             wb.save("protocols/_temporary.xlsx")
+            print("Сохранено")
 
             # os.remove("_temporary.xlsx")
 
