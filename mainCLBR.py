@@ -897,8 +897,8 @@ class ClbrMain(QtWidgets.QMainWindow):
                 }
 
                 for key, values in cells_dict.items():
-                    for value in values.split():
-                        print(key, value, cells.get(section, key))
+                    for value in values:
+                        # print(key, value, cells.get(section, key))
                         # ws[cells.get(section, key)] = values
                         # # print(cells.get(section, key))
                         # print(f"key - {key}, cell - {cellx}")
