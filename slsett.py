@@ -80,12 +80,11 @@ class ClbrSettings(QtWidgets.QDialog):
 
     def load_sett(self):
         try:
+            dict_sett = self.dict_sett()
+
             settings = configparser.ConfigParser()
             settings.read("parameters.ini", encoding="utf-8")
-
             section = "Выходные ячейки"
-            sett_values = settings.items(section)
-            dict_sett = self.dict_sett()
 
             for key in dict_sett.keys():
                 dict_sett[key].setText(settings.get(section, key))

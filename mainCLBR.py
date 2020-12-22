@@ -912,59 +912,60 @@ class ClbrMain(QtWidgets.QMainWindow):
                         'pvi_scale_end': self.ui.lineEdit_pvi_scale_end.text(),
                         'pvi_scale_out': self.ui.comboBox_pvi_out.currentText(),
 
-                        'out_irt_value_5': self.st.lineEdit_out_irt_value_5,
-                        'out_irt_value_25': self.st.lineEdit_out_irt_value_25,
-                        'out_irt_value_50': self.st.lineEdit_out_irt_value_50,
-                        'out_irt_value_75': self.st.lineEdit_out_irt_value_75,
-                        'out_irt_value_95': self.st.lineEdit_out_irt_value_95,
-                        'out_irt_output_5': self.st.lineEdit_out_irt_output_5,
-                        'out_irt_output_25': self.st.lineEdit_out_irt_output_25,
-                        'out_irt_output_50': self.st.lineEdit_out_irt_output_50,
-                        'out_irt_output_75': self.st.lineEdit_out_irt_output_75,
-                        'out_irt_output_95': self.st.lineEdit_out_irt_output_95,
-                        'out_irt_in_5': self.st.lineEdit_out_irt_in_5,
-                        'out_irt_in_25': self.st.lineEdit_out_irt_in_25,
-                        'out_irt_in_50': self.st.lineEdit_out_irt_in_50,
-                        'out_irt_in_75': self.st.lineEdit_out_irt_in_75,
-                        'out_irt_in_95': self.st.lineEdit_out_irt_in_95,
+                        'out_irt_value_5': self.ui.lineEdit_out_irt_value_5.text(),
+                        'out_irt_value_25': self.ui.lineEdit_out_irt_value_25.text(),
+                        'out_irt_value_50': self.ui.lineEdit_out_irt_value_50.text(),
+                        'out_irt_value_75': self.ui.lineEdit_out_irt_value_75.text(),
+                        'out_irt_value_95': self.ui.lineEdit_out_irt_value_95.text(),
+                        'out_irt_output_5': self.ui.lineEdit_out_irt_output_5.text(),
+                        'out_irt_output_25': self.ui.lineEdit_out_irt_output_25.text(),
+                        'out_irt_output_50': self.ui.lineEdit_out_irt_output_50.text(),
+                        'out_irt_output_75': self.ui.lineEdit_out_irt_output_75.text(),
+                        'out_irt_output_95': self.ui.lineEdit_out_irt_output_95.text(),
+                        'out_irt_in_5': self.ui.lineEdit_out_irt_in_5.text(),
+                        'out_irt_in_25': self.ui.lineEdit_out_irt_in_25.text(),
+                        'out_irt_in_50': self.ui.lineEdit_out_irt_in_50.text(),
+                        'out_irt_in_75': self.ui.lineEdit_out_irt_in_75.text(),
+                        'out_irt_in_95': self.ui.lineEdit_out_irt_in_95.text(),
 
-                        'out_24_value': self.st.lineEdit_out_24_value,
-                        'out_24_value_820': self.st.lineEdit_out_24_value_820,
-                        'out_24_in': self.st.lineEdit_out_24_in,
-                        'out_24_in_820': self.st.lineEdit_out_24_in_820,
+                        'out_24_value': self.ui.lineEdit_out_24_value_0.text(),
+                        'out_24_value_820': self.ui.lineEdit_out_24_value_820.text(),
+                        'out_24_in': self.ui.lineEdit_out_24_in_0.text(),
+                        'out_24_in_820': self.ui.lineEdit_out_24_in_820.text(),
 
-                        'out_pvi_value_5': self.st.lineEdit_out_pvi_value_5,
-                        'out_pvi_value_25': self.st.lineEdit_out_pvi_value_25,
-                        'out_pvi_value_50': self.st.lineEdit_out_pvi_value_50,
-                        'out_pvi_value_75': self.st.lineEdit_out_pvi_value_75,
-                        'out_pvi_value_95': self.st.lineEdit_out_pvi_value_95,
-                        'out_pvi_output_5': self.st.lineEdit_out_pvi_output_5,
-                        'out_pvi_output_25': self.st.lineEdit_out_pvi_output_25,
-                        'out_pvi_output_50': self.st.lineEdit_out_pvi_output_50,
-                        'out_pvi_output_75': self.st.lineEdit_out_pvi_output_75,
-                        'out_pvi_output_95': self.st.lineEdit_out_pvi_output_95,
-                        'out_pvi_in_5': self.st.lineEdit_out_pvi_in_5,
-                        'out_pvi_in_25': self.st.lineEdit_out_pvi_in_25,
-                        'out_pvi_in_50': self.st.lineEdit_out_pvi_in_50,
-                        'out_pvi_in_75': self.st.lineEdit_out_pvi_in_75,
-                        'out_pvi_in_95': self.st.lineEdit_out_pvi_in_95,
+                        'out_pvi_value_5': self.ui.lineEdit_out_pvi_value_5.text(),
+                        'out_pvi_value_25': self.ui.lineEdit_out_pvi_value_25.text(),
+                        'out_pvi_value_50': self.ui.lineEdit_out_pvi_value_50.text(),
+                        'out_pvi_value_75': self.ui.lineEdit_out_pvi_value_75.text(),
+                        'out_pvi_value_95': self.ui.lineEdit_out_pvi_value_95.text(),
+                        'out_pvi_output_5': self.ui.lineEdit_out_pvi_output_5.text(),
+                        'out_pvi_output_25': self.ui.lineEdit_out_pvi_output_25.text(),
+                        'out_pvi_output_50': self.ui.lineEdit_out_pvi_output_50.text(),
+                        'out_pvi_output_75': self.ui.lineEdit_out_pvi_output_75.text(),
+                        'out_pvi_output_95': self.ui.lineEdit_out_pvi_output_95.text(),
+                        'out_pvi_in_5': self.ui.lineEdit_out_pvi_in_5.text(),
+                        'out_pvi_in_25': self.ui.lineEdit_out_pvi_in_25.text(),
+                        'out_pvi_in_50': self.ui.lineEdit_out_pvi_in_50.text(),
+                        'out_pvi_in_75': self.ui.lineEdit_out_pvi_in_75.text(),
+                        'out_pvi_in_95': self.ui.lineEdit_out_pvi_in_95.text(),
 
-                        'passed': self.st.s_passed,
-                        'adopted': self.st.s_adopted,
-                        'date_calibration': self.st.s_date_calibration,
+                        'passed': self.ui.comboBox_passed.currentText(),
+                        'adopted': self.ui.comboBox_adopted.currentText(),
+                        'date_calibration': self.ui.dateEdit_date_calibration.dateTime().toString('dd.MM.yyyy'),
                     }
 
                     columns = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ'
                     for key, value in cells_dict.items():
                         for cell_p in cells.get(section, key).split():
                             # ws[cell_p] = value # не пишет в объединенные ячейки
+                            # print(key, value, cell_p)
                             value = '-' if value == '' else value
                             ws.cell(int(cell_p[1:]), int(columns.index(cell_p[0])), value)
 
                 wb.save("protocols/_temporary.xlsx")
                 print("Сохранено")
 
-                # os.remove("_temporary.xlsx")
+                os.remove("_temporary.xlsx")
             except Exception as exeption:
                 QtWidgets.QMessageBox.critical(self, "Ошибка",
                                                f"Не удалось Создать протокол. Ошибка - {type(exeption).__name__}",

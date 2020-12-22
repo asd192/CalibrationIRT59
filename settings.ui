@@ -1363,9 +1363,9 @@
    <widget class="QLabel" name="label_s_out_irt_5">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>8</x>
       <y>55</y>
-      <width>25</width>
+      <width>30</width>
       <height>30</height>
      </rect>
     </property>
@@ -1497,9 +1497,9 @@
    <widget class="QLabel" name="label_s_out_irt_95">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>8</x>
       <y>195</y>
-      <width>25</width>
+      <width>30</width>
       <height>30</height>
      </rect>
     </property>
@@ -1571,9 +1571,9 @@
    <widget class="QLabel" name="label_s_out_irt_25">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>8</x>
       <y>90</y>
-      <width>25</width>
+      <width>30</width>
       <height>30</height>
      </rect>
     </property>
@@ -1595,9 +1595,9 @@
    <widget class="QLabel" name="label_s_out_irt_50">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>8</x>
       <y>125</y>
-      <width>25</width>
+      <width>30</width>
       <height>30</height>
      </rect>
     </property>
@@ -1753,9 +1753,9 @@
    <widget class="QLabel" name="label_s_out_irt_75">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>8</x>
       <y>160</y>
-      <width>25</width>
+      <width>30</width>
       <height>30</height>
      </rect>
     </property>
@@ -2033,9 +2033,9 @@
    <widget class="QLabel" name="label_s_out_pvi_5">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>8</x>
       <y>55</y>
-      <width>25</width>
+      <width>30</width>
       <height>30</height>
      </rect>
     </property>
@@ -2173,9 +2173,9 @@
    <widget class="QLabel" name="label_s_out_pvi_95">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>8</x>
       <y>195</y>
-      <width>25</width>
+      <width>30</width>
       <height>30</height>
      </rect>
     </property>
@@ -2250,9 +2250,9 @@
    <widget class="QLabel" name="label_s_out_pvi_25">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>8</x>
       <y>90</y>
-      <width>25</width>
+      <width>30</width>
       <height>30</height>
      </rect>
     </property>
@@ -2274,9 +2274,9 @@
    <widget class="QLabel" name="label_s_out_pvi_50">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>8</x>
       <y>125</y>
-      <width>25</width>
+      <width>30</width>
       <height>30</height>
      </rect>
     </property>
@@ -2435,9 +2435,9 @@
    <widget class="QLabel" name="label_s_out_pvi_75">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>8</x>
       <y>160</y>
-      <width>25</width>
+      <width>30</width>
       <height>30</height>
      </rect>
     </property>
