@@ -524,7 +524,7 @@ class ClbrMain(QtWidgets.QMainWindow):
         self.ui.lineEdit_out_irt_value_95.setStyleSheet(self.acceptance_error_irt(Ai, Ad))
 
     def acceptance_error_irt(self, irt_value, percent):
-        """ Рассчет допусков ИРТ """
+        """ Расчет допусков ИРТ """
         acceptance_error = self.acceptance_irt(True)
 
         try:
@@ -561,7 +561,7 @@ class ClbrMain(QtWidgets.QMainWindow):
             pass
 
     def acceptance_error_pvi(self, pvi_value, percent):
-        """ Рассчет допусков ПВИ """
+        """ Расчет допусков ПВИ """
         acceptance_error = self.out_pvi_out(True)
 
         try:
@@ -641,7 +641,7 @@ class ClbrMain(QtWidgets.QMainWindow):
                                            f"Не удалось загрузить параметры из файла <parameters.ini>.Ошибка - {type(exeption).__name__}",
                                            QtWidgets.QMessageBox.Ok)
 
-    def save_param(self):
+    def save_param(self): # FIXME сломалось
         """ Сохранение параметров """
         table = self.ui.tableWidget_param
         config = configparser.ConfigParser()
@@ -653,20 +653,20 @@ class ClbrMain(QtWidgets.QMainWindow):
             for row in range(0, table.rowCount()):
                 try:
                     value = table.item(row, column).text()
-                    config.set(column_name, str(row), value)
                 except:
-                    pass
+                    value = ''
+                config.set(column_name, str(row), value)
 
-        try:
-            with open("parameters.ini", "w", "utf8") as config_file:
-                config.write(config_file)
+        # try:
+        with open("parameters.ini", "w", "utf-8") as config_file:
+            config.write(config_file)
             QtWidgets.QMessageBox.information(self, "Параметры сохранены",
                                               "Необходимо перезагрузить программу для обновления параметров.",
                                               QtWidgets.QMessageBox.Ok)
-        except Exception as exeption:
-            QtWidgets.QMessageBox.critical(self, "Ошибка записи",
-                                           f"Не удалось сохранить параметры. Ошибка - {type(exeption).__name__}",
-                                           QtWidgets.QMessageBox.Ok)
+        # except Exception as exeption:
+        #     QtWidgets.QMessageBox.critical(self, "Ошибка записи",
+        #                                    f"Не удалось сохранить параметры. Ошибка - {type(exeption).__name__}",
+        #                                    QtWidgets.QMessageBox.Ok)
 
     def save_config_file(self):
         """ Сохраняет файл конфигурации прибора """
@@ -819,12 +819,13 @@ class ClbrMain(QtWidgets.QMainWindow):
 
     def open_settings(self):
         self.settings_app = ClbrSettings()
-        self.settings_app.setWindowTitle("Настройки")
+        self.settings_app.setWindowTitle("Clbr59xx - Настройки")
+        self.settings_app.setFixedSize(800, 600)
         self.settings_app.show()
         # self.settings_app.exec_()  # модальное
 
     def cal_clear(self):
-        """ Очищает виджеты """
+        """ Очищает редактируемые виджеты """
         w = self.ui
 
         widgets = (w.lineEdit_parametr_number, w.lineEdit_parametr_position, w.lineEdit_in_start_value,
@@ -851,21 +852,24 @@ class ClbrMain(QtWidgets.QMainWindow):
         w.checkBox_pvi.setChecked(False)
 
     def create_protocol(self):
-        if os.path.exists("Шаблон_CalibrationIRT59xx.xlsx") == False:
+        position = f"{self.ui.lineEdit_parametr_position.text()}.xlsx"
+        position_name = f"protocols/{position}"
+
+        if os.path.exists("Template_CalibrationIRT59xx.xlsx") == False:
             QtWidgets.QMessageBox.critical(self, "Ошибка",
-                                           "Отсутствует файл шаблона - Шаблон_CalibrationIRT59xx.xlsx",
+                                           "Отсутствует файл шаблона - Template_CalibrationIRT59xx.xlsx",
                                            QtWidgets.QMessageBox.Ok)
         else:
             try:
-                shutil.copy("Шаблон_CalibrationIRT59xx.xlsx", "protocols/_temporary.xlsx")
+                shutil.copy("Template_CalibrationIRT59xx.xlsx", position_name)
             except PermissionError:
                 QtWidgets.QMessageBox.critical(self, "Ошибка",
-                                               "Не могу открыть _temporary.xlsx для записи, возможно файл открыт в \
+                                               f"Не могу открыть {position} для записи, возможно файл открыт в \
                                                другой программе",
                                                QtWidgets.QMessageBox.Ok)
 
             try:
-                wb = openpyxl.load_workbook("protocols/_temporary.xlsx")
+                wb = openpyxl.load_workbook(position_name)
                 ws = wb.active
 
                 cells = configparser.ConfigParser()
@@ -957,15 +961,14 @@ class ClbrMain(QtWidgets.QMainWindow):
                     columns = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ'
                     for key, value in cells_dict.items():
                         for cell_p in cells.get(section, key).split():
-                            # ws[cell_p] = value # не пишет в объединенные ячейки
-                            # print(key, value, cell_p)
-                            value = '-' if value == '' else value
+                            # ws[cell_p] = value # без костылей не пишет в объединенные ячейки
+                            value = '—' if value == '' else value
                             ws.cell(int(cell_p[1:]), int(columns.index(cell_p[0])), value)
 
-                wb.save("protocols/_temporary.xlsx")
-                print("Сохранено")
+                wb.save(position_name)
 
-                os.remove("_temporary.xlsx")
+                os.startfile(f"{os.path.abspath(os.curdir)}/{position_name}")
+
             except Exception as exeption:
                 QtWidgets.QMessageBox.critical(self, "Ошибка",
                                                f"Не удалось Создать протокол. Ошибка - {type(exeption).__name__}",
@@ -1003,7 +1006,7 @@ class ClbrMain(QtWidgets.QMainWindow):
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
     application = ClbrMain()
-    application.setWindowTitle("Создание протокола калибровки ИРТ 5920Н, 5940М")
+    application.setWindowTitle(" Clbr59xx - Создание протокола калибровки")
     application.setFixedSize(800, 670)
     application.show()
 
