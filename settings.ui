@@ -606,7 +606,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="s_parametr_yeaar">
+   <widget class="QLineEdit" name="s_parametr_year">
     <property name="geometry">
      <rect>
       <x>477</x>
@@ -2823,7 +2823,7 @@
   <tabstop>s_p</tabstop>
   <tabstop>s_parametr_type</tabstop>
   <tabstop>s_parametr_number</tabstop>
-  <tabstop>s_parametr_yeaar</tabstop>
+  <tabstop>s_parametr_year</tabstop>
   <tabstop>s_parametr_position</tabstop>
   <tabstop>s_in_signal</tabstop>
   <tabstop>s_in_signal_start</tabstop>

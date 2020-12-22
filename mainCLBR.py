@@ -856,72 +856,119 @@ class ClbrMain(QtWidgets.QMainWindow):
                                            "Отсутствует файл шаблона - Шаблон_CalibrationIRT59xx.xlsx",
                                            QtWidgets.QMessageBox.Ok)
         else:
-            shutil.copy("Шаблон_CalibrationIRT59xx.xlsx", "protocols/_temporary.xlsx")
+            try:
+                shutil.copy("Шаблон_CalibrationIRT59xx.xlsx", "protocols/_temporary.xlsx")
+            except PermissionError:
+                QtWidgets.QMessageBox.critical(self, "Ошибка",
+                                               "Не могу открыть _temporary.xlsx для записи, возможно файл открыт в \
+                                               другой программе",
+                                               QtWidgets.QMessageBox.Ok)
 
-            wb = openpyxl.load_workbook("protocols/_temporary.xlsx")
-            ws = wb.active
+            try:
+                wb = openpyxl.load_workbook("protocols/_temporary.xlsx")
+                ws = wb.active
 
-            cells = configparser.ConfigParser()
-            cells.read("parameters.ini", encoding="UTF-8")
+                cells = configparser.ConfigParser()
+                cells.read("parameters.ini", encoding="UTF-8")
 
-            if not cells.has_section('Выходные ячейки'):
-                dialog = QtWidgets.QMessageBox.question(application, "Настройки ячеек",
-                                                        "Отсутствуют настройки ячеек. Открыть настройки?",
-                                                        buttons=QtWidgets.QMessageBox.No | QtWidgets.QMessageBox.Yes,
-                                                        defaultButton=QtWidgets.QMessageBox.Yes)
-                if dialog == 65536:
-                    pass
-                if dialog == 16384:
-                    self.open_settings()
+                if not cells.has_section('Выходные ячейки'):
+                    dialog = QtWidgets.QMessageBox.question(application, "Настройки ячеек",
+                                                            "Отсутствуют настройки ячеек. Открыть настройки?",
+                                                            buttons=QtWidgets.QMessageBox.No | QtWidgets.QMessageBox.Yes,
+                                                            defaultButton=QtWidgets.QMessageBox.Yes)
+                    if dialog == 65536:
+                        pass
+                    if dialog == 16384:
+                        self.open_settings()
 
-            else:
-                section = 'Выходные ячейки'
+                else:
+                    section = 'Выходные ячейки'
 
-                calibr_name, calibr_number = '', ''
-                try:
-                    calibr_name = self.ui.comboBox_calibr_name.currentText().split()[0]
-                    calibr_number = self.ui.comboBox_calibr_name.currentText().split()[1]
-                except:
-                    pass
+                    calibr_name, calibr_number = '', ''
+                    try:
+                        calibr_name = self.ui.comboBox_calibr_name.currentText().split()[0]
+                        calibr_number = self.ui.comboBox_calibr_name.currentText().split()[1]
+                    except:
+                        pass
 
-                cells_dict = {
-                    '0': calibr_name,
-                    '1': calibr_number,
-                    '2': self.ui.lineEdit_t.text(),
-                    '3': self.ui.lineEdit_f.text(),
-                    '4': self.ui.lineEdit_p.text(),
+                    cells_dict = {
+                        'calibr_type': calibr_name,
+                        'calibr_number': calibr_number,
+                        't': self.ui.lineEdit_t.text(),
+                        'f': self.ui.lineEdit_f.text(),
+                        'p': self.ui.lineEdit_p.text(),
 
-                    '5': self.ui.comboBox_parametr_type.currentText(),
-                    '6': self.ui.lineEdit_parametr_number.text(),
-                    '7': self.ui.comboBox_parametr_year.currentText(),
-                    '8': self.ui.lineEdit_parametr_position.text(),
+                        'parametr_type': self.ui.comboBox_parametr_type.currentText(),
+                        'parametr_number': self.ui.lineEdit_parametr_number.text(),
+                        'parametr_year': self.ui.comboBox_parametr_year.currentText(),
+                        'parametr_position': self.ui.lineEdit_parametr_position.text(),
+                        'in_signal': self.ui.comboBox_in_signal_type.currentText(),
+                        'in_signal_start': self.ui.lineEdit_in_start_value.text(),
+                        'in_signal_end': self.ui.lineEdit_in_end_value.text(),
+                        'out_signal': self.ui.comboBox_out_signal_type.currentText(),
+                        'out_signal_start': self.ui.lineEdit_out_start_value.text(),
+                        'out_signal_end': self.ui.lineEdit_out_end_value.text(),
+                        'pvi_scale_start': self.ui.lineEdit_pvi_scale_start.text(),
+                        'pvi_scale_end': self.ui.lineEdit_pvi_scale_end.text(),
+                        'pvi_scale_out': self.ui.comboBox_pvi_out.currentText(),
 
-                    '9': self.ui.comboBox_in_signal_type.currentText(),
-                    '10': self.ui.lineEdit_in_start_value.text(),
-                    '11': self.ui.lineEdit_in_end_value.text(),
+                        'out_irt_value_5': self.st.lineEdit_out_irt_value_5,
+                        'out_irt_value_25': self.st.lineEdit_out_irt_value_25,
+                        'out_irt_value_50': self.st.lineEdit_out_irt_value_50,
+                        'out_irt_value_75': self.st.lineEdit_out_irt_value_75,
+                        'out_irt_value_95': self.st.lineEdit_out_irt_value_95,
+                        'out_irt_output_5': self.st.lineEdit_out_irt_output_5,
+                        'out_irt_output_25': self.st.lineEdit_out_irt_output_25,
+                        'out_irt_output_50': self.st.lineEdit_out_irt_output_50,
+                        'out_irt_output_75': self.st.lineEdit_out_irt_output_75,
+                        'out_irt_output_95': self.st.lineEdit_out_irt_output_95,
+                        'out_irt_in_5': self.st.lineEdit_out_irt_in_5,
+                        'out_irt_in_25': self.st.lineEdit_out_irt_in_25,
+                        'out_irt_in_50': self.st.lineEdit_out_irt_in_50,
+                        'out_irt_in_75': self.st.lineEdit_out_irt_in_75,
+                        'out_irt_in_95': self.st.lineEdit_out_irt_in_95,
 
-                    '12': self.ui.comboBox_out_signal_type.currentText(),
-                    '13': self.ui.lineEdit_out_start_value.text(),
-                    '14': self.ui.lineEdit_out_end_value.text(),
+                        'out_24_value': self.st.lineEdit_out_24_value,
+                        'out_24_value_820': self.st.lineEdit_out_24_value_820,
+                        'out_24_in': self.st.lineEdit_out_24_in,
+                        'out_24_in_820': self.st.lineEdit_out_24_in_820,
 
-                    '15': self.ui.lineEdit_pvi_scale_start.text(),
-                    '16': self.ui.lineEdit_pvi_scale_end.text(),
-                    '17': self.ui.comboBox_pvi_out.currentText(),
+                        'out_pvi_value_5': self.st.lineEdit_out_pvi_value_5,
+                        'out_pvi_value_25': self.st.lineEdit_out_pvi_value_25,
+                        'out_pvi_value_50': self.st.lineEdit_out_pvi_value_50,
+                        'out_pvi_value_75': self.st.lineEdit_out_pvi_value_75,
+                        'out_pvi_value_95': self.st.lineEdit_out_pvi_value_95,
+                        'out_pvi_output_5': self.st.lineEdit_out_pvi_output_5,
+                        'out_pvi_output_25': self.st.lineEdit_out_pvi_output_25,
+                        'out_pvi_output_50': self.st.lineEdit_out_pvi_output_50,
+                        'out_pvi_output_75': self.st.lineEdit_out_pvi_output_75,
+                        'out_pvi_output_95': self.st.lineEdit_out_pvi_output_95,
+                        'out_pvi_in_5': self.st.lineEdit_out_pvi_in_5,
+                        'out_pvi_in_25': self.st.lineEdit_out_pvi_in_25,
+                        'out_pvi_in_50': self.st.lineEdit_out_pvi_in_50,
+                        'out_pvi_in_75': self.st.lineEdit_out_pvi_in_75,
+                        'out_pvi_in_95': self.st.lineEdit_out_pvi_in_95,
 
-                }
-                columns = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-                for key, value in cells_dict.items():
-                    # print(key, values, cells.get(section, key).split())
-                    for cell_p in cells.get(section, key).split():
-                        # ws[cell_p] = value # не пишет в объединенные ячейки
-                        ws.cell(int(cell_p[1:]), int(columns.index(cell_p[0])), value)
+                        'passed': self.st.s_passed,
+                        'adopted': self.st.s_adopted,
+                        'date_calibration': self.st.s_date_calibration,
+                    }
 
+                    columns = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+                    for key, value in cells_dict.items():
+                        for cell_p in cells.get(section, key).split():
+                            # ws[cell_p] = value # не пишет в объединенные ячейки
+                            value = '-' if value == '' else value
+                            ws.cell(int(cell_p[1:]), int(columns.index(cell_p[0])), value)
 
+                wb.save("protocols/_temporary.xlsx")
+                print("Сохранено")
 
-            wb.save("protocols/_temporary.xlsx")
-            print("Сохранено")
-
-            # os.remove("_temporary.xlsx")
+                # os.remove("_temporary.xlsx")
+            except Exception as exeption:
+                QtWidgets.QMessageBox.critical(self, "Ошибка",
+                                               f"Не удалось Создать протокол. Ошибка - {type(exeption).__name__}",
+                                               QtWidgets.QMessageBox.Ok)
 
     def help_error(self):
         try:

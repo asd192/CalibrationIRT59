@@ -15,80 +15,80 @@ class ClbrSettings(QtWidgets.QDialog):
 
     def dict_sett(self):
         sett_p = {
-            '0': self.st.s_calibr_type,
-            '1': self.st.s_calibr_number,
-            '2': self.st.s_t,
-            '3': self.st.s_f,
-            '4': self.st.s_p,
-            '5': self.st.s_parametr_type,
-            '6': self.st.s_parametr_number,
-            '7': self.st.s_parametr_yeaar,
-            '8': self.st.s_parametr_position,
-            '9': self.st.s_in_signal,
-            '10': self.st.s_in_signal_start,
-            '11': self.st.s_in_signal_end,
-            '12': self.st.s_out_signal,
-            '13': self.st.s_out_signal_start,
-            '14': self.st.s_out_signal_end,
-            '15': self.st.s_pvi_scale_start,
-            '16': self.st.s_pvi_scale_end,
-            '17': self.st.s_pvi_scale_out,
-            '18': self.st.s_calibr_type,
-            '19': self.st.s_calibr_type,
+            'calibr_type': self.st.s_calibr_type,
+            'calibr_number': self.st.s_calibr_number,
+            't': self.st.s_t,
+            'f': self.st.s_f,
+            'p': self.st.s_p,
 
-            '20': self.st.s_passed,
-            '21': self.st.s_adopted,
-            '22': self.st.s_date_calibration,
+            'parametr_type': self.st.s_parametr_type,
+            'parametr_number': self.st.s_parametr_number,
+            'parametr_year': self.st.s_parametr_year,
+            'parametr_position': self.st.s_parametr_position,
+            'in_signal': self.st.s_in_signal,
+            'in_signal_start': self.st.s_in_signal_start,
+            'in_signal_end': self.st.s_in_signal_end,
+            'out_signal': self.st.s_out_signal,
+            'out_signal_start': self.st.s_out_signal_start,
+            'out_signal_end': self.st.s_out_signal_end,
+            'pvi_scale_start': self.st.s_pvi_scale_start,
+            'pvi_scale_end': self.st.s_pvi_scale_end,
+            'pvi_scale_out': self.st.s_pvi_scale_out,
 
-            '23': self.st.s_out_irt_value_5,
-            '24': self.st.s_out_irt_value_25,
-            '25': self.st.s_out_irt_value_50,
-            '26': self.st.s_out_irt_value_75,
-            '27': self.st.s_out_irt_value_95,
-            '28': self.st.s_out_irt_output_5,
-            '29': self.st.s_out_irt_output_25,
-            '30': self.st.s_out_irt_output_50,
-            '31': self.st.s_out_irt_output_75,
-            '32': self.st.s_out_irt_output_95,
-            '33': self.st.s_out_irt_in_5,
-            '34': self.st.s_out_irt_in_25,
-            '35': self.st.s_out_irt_in_50,
-            '36': self.st.s_out_irt_in_75,
-            '37': self.st.s_out_irt_in_95,
+            'out_irt_value_5': self.st.s_out_irt_value_5,
+            'out_irt_value_25': self.st.s_out_irt_value_25,
+            'out_irt_value_50': self.st.s_out_irt_value_50,
+            'out_irt_value_75': self.st.s_out_irt_value_75,
+            'out_irt_value_95': self.st.s_out_irt_value_95,
+            'out_irt_output_5': self.st.s_out_irt_output_5,
+            'out_irt_output_25': self.st.s_out_irt_output_25,
+            'out_irt_output_50': self.st.s_out_irt_output_50,
+            'out_irt_output_75': self.st.s_out_irt_output_75,
+            'out_irt_output_95': self.st.s_out_irt_output_95,
+            'out_irt_in_5': self.st.s_out_irt_in_5,
+            'out_irt_in_25': self.st.s_out_irt_in_25,
+            'out_irt_in_50': self.st.s_out_irt_in_50,
+            'out_irt_in_75': self.st.s_out_irt_in_75,
+            'out_irt_in_95': self.st.s_out_irt_in_95,
 
-            '38': self.st.s_out_24_value,
-            '39': self.st.s_out_24_value_820,
-            '40': self.st.s_out_24_in,
-            '41': self.st.s_out_24_in_820,
+            'out_24_value': self.st.s_out_24_value,
+            'out_24_value_820': self.st.s_out_24_value_820,
+            'out_24_in': self.st.s_out_24_in,
+            'out_24_in_820': self.st.s_out_24_in_820,
 
-            '42': self.st.s_out_pvi_value_5,
-            '43': self.st.s_out_pvi_value_25,
-            '44': self.st.s_out_pvi_value_50,
-            '45': self.st.s_out_pvi_value_75,
-            '46': self.st.s_out_pvi_value_95,
-            '47': self.st.s_out_pvi_output_5,
-            '48': self.st.s_out_pvi_output_25,
-            '49': self.st.s_out_pvi_output_50,
-            '50': self.st.s_out_pvi_output_75,
-            '51': self.st.s_out_pvi_output_95,
-            '52': self.st.s_out_pvi_in_5,
-            '53': self.st.s_out_pvi_in_25,
-            '54': self.st.s_out_pvi_in_50,
-            '55': self.st.s_out_pvi_in_75,
-            '56': self.st.s_out_pvi_in_95,
+            'out_pvi_value_5': self.st.s_out_pvi_value_5,
+            'out_pvi_value_25': self.st.s_out_pvi_value_25,
+            'out_pvi_value_50': self.st.s_out_pvi_value_50,
+            'out_pvi_value_75': self.st.s_out_pvi_value_75,
+            'out_pvi_value_95': self.st.s_out_pvi_value_95,
+            'out_pvi_output_5': self.st.s_out_pvi_output_5,
+            'out_pvi_output_25': self.st.s_out_pvi_output_25,
+            'out_pvi_output_50': self.st.s_out_pvi_output_50,
+            'out_pvi_output_75': self.st.s_out_pvi_output_75,
+            'out_pvi_output_95': self.st.s_out_pvi_output_95,
+            'out_pvi_in_5': self.st.s_out_pvi_in_5,
+            'out_pvi_in_25': self.st.s_out_pvi_in_25,
+            'out_pvi_in_50': self.st.s_out_pvi_in_50,
+            'out_pvi_in_75': self.st.s_out_pvi_in_75,
+            'out_pvi_in_95': self.st.s_out_pvi_in_95,
+
+            'passed': self.st.s_passed,
+            'adopted': self.st.s_adopted,
+            'date_calibration': self.st.s_date_calibration,
         }
         return sett_p
 
     def load_sett(self):
-        settings = configparser.ConfigParser()
         try:
+            settings = configparser.ConfigParser()
             settings.read("parameters.ini", encoding="utf-8")
 
-            sett_values = settings.items("Выходные ячейки")
+            section = "Выходные ячейки"
+            sett_values = settings.items(section)
             dict_sett = self.dict_sett()
 
-            for i in range(len(dict_sett)):
-                dict_sett[str(i)].setText(sett_values[i][1])
+            for key in dict_sett.keys():
+                dict_sett[key].setText(settings.get(section, key))
 
         except Exception as exeption:
             QtWidgets.QMessageBox.critical(self, "Ошибка",
