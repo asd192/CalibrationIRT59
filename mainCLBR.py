@@ -7,6 +7,11 @@ from slsett import ClbrSettings
 
 
 class ClbrMain(QtWidgets.QMainWindow):
+    # допуски для *.xlsx
+    permissible_inaccuracy_irt = '0'
+    permissible_inaccuracy_pvi = '0'
+    permissible_inaccuracy_24v = '0,48'
+
     def __init__(self):
         super(ClbrMain, self).__init__()
         self.ui = Ui_MainWindow()
@@ -281,7 +286,6 @@ class ClbrMain(QtWidgets.QMainWindow):
     def is_number(self, num):
         """ Преобразует в Decimal """
         try:
-            num = num
             if float(num) or float(num) == 0:
                 return decimal.Decimal(num)
         except:
@@ -416,6 +420,9 @@ class ClbrMain(QtWidgets.QMainWindow):
 
         self.ui.label_acceptance_error_pvi.setText(accept)
 
+        global permissible_inaccuracy_pvi
+        permissible_inaccuracy_pvi = K
+
         if acceptance_error:
             return round(K, 3)
 
@@ -467,6 +474,8 @@ class ClbrMain(QtWidgets.QMainWindow):
         in_signal_text = f"Допуск ±({_K} + {one_unit_last_number})% -> {acceptance}{signal_type}"
         self.ui.label_acceptance_error_irt.setText(in_signal_text)
 
+        global permissible_inaccuracy_irt
+        permissible_inaccuracy_irt = acceptance
         # Если запрошен допуск
         if acceptance_error:
             return acceptance
@@ -641,7 +650,7 @@ class ClbrMain(QtWidgets.QMainWindow):
                                            f"Не удалось загрузить параметры из файла <parameters.ini>.Ошибка - {type(exeption).__name__}",
                                            QtWidgets.QMessageBox.Ok)
 
-    def save_param(self): # FIXME сломалось
+    def save_param(self):
         """ Сохранение параметров """
         table = self.ui.tableWidget_param
         config = configparser.ConfigParser()
@@ -657,16 +666,16 @@ class ClbrMain(QtWidgets.QMainWindow):
                     value = ''
                 config.set(column_name, str(row), value)
 
-        # try:
-        with open("parameters.ini", "w", "utf-8") as config_file:
-            config.write(config_file)
-            QtWidgets.QMessageBox.information(self, "Параметры сохранены",
-                                              "Необходимо перезагрузить программу для обновления параметров.",
-                                              QtWidgets.QMessageBox.Ok)
-        # except Exception as exeption:
-        #     QtWidgets.QMessageBox.critical(self, "Ошибка записи",
-        #                                    f"Не удалось сохранить параметры. Ошибка - {type(exeption).__name__}",
-        #                                    QtWidgets.QMessageBox.Ok)
+        try:
+            with open("parameters.ini", "w", "utf-8") as config_file:
+                config.write(config_file)
+                QtWidgets.QMessageBox.information(self, "Параметры сохранены",
+                                                  "Необходимо перезагрузить программу для обновления параметров.",
+                                                  QtWidgets.QMessageBox.Ok)
+        except Exception as exeption:
+            QtWidgets.QMessageBox.critical(self, "Ошибка записи",
+                                           f"Не удалось сохранить параметры. Ошибка - {type(exeption).__name__}",
+                                           QtWidgets.QMessageBox.Ok)
 
     def save_config_file(self):
         """ Сохраняет файл конфигурации прибора """
@@ -852,8 +861,8 @@ class ClbrMain(QtWidgets.QMainWindow):
         w.checkBox_pvi.setChecked(False)
 
     def create_protocol(self):
-        position = f"{self.ui.lineEdit_parametr_position.text()}.xlsx"
-        position_name = f"protocols/{position}"
+        file_position = f"{self.ui.lineEdit_parametr_position.text()}.xlsx"
+        position_name = f"protocols/{file_position}"
 
         if os.path.exists("Template_CalibrationIRT59xx.xlsx") == False:
             QtWidgets.QMessageBox.critical(self, "Ошибка",
@@ -864,7 +873,7 @@ class ClbrMain(QtWidgets.QMainWindow):
                 shutil.copy("Template_CalibrationIRT59xx.xlsx", position_name)
             except PermissionError:
                 QtWidgets.QMessageBox.critical(self, "Ошибка",
-                                               f"Не могу открыть {position} для записи, возможно файл открыт в \
+                                               f"Не могу открыть {file_position} для записи, возможно файл открыт в \
                                                другой программе",
                                                QtWidgets.QMessageBox.Ok)
 
@@ -895,7 +904,8 @@ class ClbrMain(QtWidgets.QMainWindow):
                     except:
                         pass
 
-                    cells_dict = {
+                    # передача без округления - условия и параметры прибора
+                    cells_dict_txt = {
                         'calibr_type': calibr_name,
                         'calibr_number': calibr_number,
                         't': self.ui.lineEdit_t.text(),
@@ -916,6 +926,13 @@ class ClbrMain(QtWidgets.QMainWindow):
                         'pvi_scale_end': self.ui.lineEdit_pvi_scale_end.text(),
                         'pvi_scale_out': self.ui.comboBox_pvi_out.currentText(),
 
+                        'passed': self.ui.comboBox_passed.currentText(),
+                        'adopted': self.ui.comboBox_adopted.currentText(),
+                        'date_calibration': self.ui.dateEdit_date_calibration.dateTime().toString('dd.MM.yyyy'),
+                    }
+
+                    # передача с округлением, поля участвующие в расчетах
+                    cells_dict_num = {
                         'out_irt_value_5': self.ui.lineEdit_out_irt_value_5.text(),
                         'out_irt_value_25': self.ui.lineEdit_out_irt_value_25.text(),
                         'out_irt_value_50': self.ui.lineEdit_out_irt_value_50.text(),
@@ -952,18 +969,36 @@ class ClbrMain(QtWidgets.QMainWindow):
                         'out_pvi_in_50': self.ui.lineEdit_out_pvi_in_50.text(),
                         'out_pvi_in_75': self.ui.lineEdit_out_pvi_in_75.text(),
                         'out_pvi_in_95': self.ui.lineEdit_out_pvi_in_95.text(),
-
-                        'passed': self.ui.comboBox_passed.currentText(),
-                        'adopted': self.ui.comboBox_adopted.currentText(),
-                        'date_calibration': self.ui.dateEdit_date_calibration.dateTime().toString('dd.MM.yyyy'),
                     }
 
-                    columns = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-                    for key, value in cells_dict.items():
+                    columns = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ'  # столбцы, ws['A'] = value не работает для объединенных ячеек
+
+                    # без округления
+                    for key, value in cells_dict_txt.items():
                         for cell_p in cells.get(section, key).split():
-                            # ws[cell_p] = value # без костылей не пишет в объединенные ячейки
-                            value = '—' if value == '' else value
+                            if value == '':
+                                value = '—'
+
                             ws.cell(int(cell_p[1:]), int(columns.index(cell_p[0])), value)
+
+                    # с округлением
+                    for key, value in cells_dict_num.items():
+                        for cell_p in cells.get(section, key).split():
+                            if value == '':
+                                value = '—'
+                            else:
+                                try:
+                                    value = f"{float(value):0>.3f}".replace(".", ",")
+                                except:
+                                    pass
+
+                            ws.cell(int(cell_p[1:]), int(columns.index(cell_p[0])), value)
+
+                ### TODO забить в интерфейс настроек!!!
+                ws.cell(1, 15, '0,48')
+                ws.cell(1, 16, permissible_inaccuracy_irt)
+                ws.cell(1, 17, permissible_inaccuracy_pvi)
+                ### TODO
 
                 wb.save(position_name)
 
