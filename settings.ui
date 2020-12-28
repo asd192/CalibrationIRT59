@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>620</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1071,7 +1071,7 @@
    <property name="geometry">
     <rect>
      <x>278</x>
-     <y>517</y>
+     <y>539</y>
      <width>60</width>
      <height>16</height>
     </rect>
@@ -1301,6 +1301,61 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="s_acceptance_error_24">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>124</y>
+      <width>70</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>11</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ф.И.О. калибровавшего измерительный прибор&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="maxLength">
+     <number>100</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_s_acceptance_error_24">
+    <property name="geometry">
+     <rect>
+      <x>48</x>
+      <y>124</y>
+      <width>70</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>DejaVu Sans</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;* - одна единица последнего разряда, выраженная в процентах от диапазона измерений&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="text">
+     <string>Допуск:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
   </widget>
@@ -1946,12 +2001,67 @@
      <bool>false</bool>
     </property>
    </widget>
+   <widget class="QLineEdit" name="s_acceptance_error_irt">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>231</y>
+      <width>70</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>11</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ф.И.О. калибровавшего измерительный прибор&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="maxLength">
+     <number>100</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_s_acceptance_error_irt">
+    <property name="geometry">
+     <rect>
+      <x>117</x>
+      <y>230</y>
+      <width>70</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>DejaVu Sans</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;* - одна единица последнего разряда, выраженная в процентах от диапазона измерений&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="text">
+     <string>Допуск:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
   </widget>
   <widget class="QLabel" name="label_s_passed">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>517</y>
+     <y>539</y>
      <width>60</width>
      <height>16</height>
     </rect>
@@ -2628,12 +2738,67 @@
      <bool>false</bool>
     </property>
    </widget>
+   <widget class="QLineEdit" name="s_acceptance_error_pvi">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>231</y>
+      <width>70</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>11</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ф.И.О. калибровавшего измерительный прибор&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="maxLength">
+     <number>100</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_s_acceptance_error_pvi">
+    <property name="geometry">
+     <rect>
+      <x>117</x>
+      <y>230</y>
+      <width>70</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>DejaVu Sans</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;* - одна единица последнего разряда, выраженная в процентах от диапазона измерений&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="text">
+     <string>Допуск:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
   </widget>
   <widget class="QLabel" name="label_s_date_calibration">
    <property name="geometry">
     <rect>
      <x>535</x>
-     <y>517</y>
+     <y>539</y>
      <width>131</width>
      <height>16</height>
     </rect>
@@ -2657,7 +2822,7 @@
    <property name="geometry">
     <rect>
      <x>679</x>
-     <y>562</y>
+     <y>584</y>
      <width>100</width>
      <height>30</height>
     </rect>
@@ -2679,7 +2844,7 @@
    <property name="geometry">
     <rect>
      <x>72</x>
-     <y>513</y>
+     <y>535</y>
      <width>170</width>
      <height>26</height>
     </rect>
@@ -2707,7 +2872,7 @@
    <property name="geometry">
     <rect>
      <x>340</x>
-     <y>513</y>
+     <y>535</y>
      <width>170</width>
      <height>26</height>
     </rect>
@@ -2735,7 +2900,7 @@
    <property name="geometry">
     <rect>
      <x>668</x>
-     <y>514</y>
+     <y>536</y>
      <width>110</width>
      <height>26</height>
     </rect>
@@ -2805,7 +2970,7 @@
    <property name="geometry">
     <rect>
      <x>8</x>
-     <y>542</y>
+     <y>564</y>
      <width>781</width>
      <height>20</height>
     </rect>

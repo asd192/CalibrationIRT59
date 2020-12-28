@@ -50,11 +50,13 @@ class ClbrSettings(QtWidgets.QDialog):
             'out_irt_in_50': self.st.s_out_irt_in_50,
             'out_irt_in_75': self.st.s_out_irt_in_75,
             'out_irt_in_95': self.st.s_out_irt_in_95,
+            'acceptance_error_irt': self.st.s_acceptance_error_irt,
 
             'out_24_value': self.st.s_out_24_value,
             'out_24_value_820': self.st.s_out_24_value_820,
             'out_24_in': self.st.s_out_24_in,
             'out_24_in_820': self.st.s_out_24_in_820,
+            'acceptance_error_24': self.st.s_acceptance_error_24,
 
             'out_pvi_value_5': self.st.s_out_pvi_value_5,
             'out_pvi_value_25': self.st.s_out_pvi_value_25,
@@ -71,6 +73,7 @@ class ClbrSettings(QtWidgets.QDialog):
             'out_pvi_in_50': self.st.s_out_pvi_in_50,
             'out_pvi_in_75': self.st.s_out_pvi_in_75,
             'out_pvi_in_95': self.st.s_out_pvi_in_95,
+            'acceptance_error_pvi': self.st.s_acceptance_error_pvi,
 
             'passed': self.st.s_passed,
             'adopted': self.st.s_adopted,
