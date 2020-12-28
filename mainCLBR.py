@@ -12,7 +12,7 @@ class ClbrMain(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        # допуски для *.xlsx
+        # Допуски для *.xlsx
         self.permissible_inaccuracy_irt = '0'
         self.permissible_inaccuracy_pvi = '0'
         self.permissible_inaccuracy_24v = '0,48'
