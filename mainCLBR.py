@@ -7,12 +7,12 @@ from slsett import ClbrSettings
 
 
 class ClbrMain(QtWidgets.QMainWindow):
-    # допуски для *.xlsx
     def __init__(self):
         super(ClbrMain, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        # допуски для *.xlsx
         self.permissible_inaccuracy_irt = '0'
         self.permissible_inaccuracy_pvi = '0'
         self.permissible_inaccuracy_24v = '0,48'
