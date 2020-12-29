@@ -15,7 +15,7 @@ class ClbrMain(QtWidgets.QMainWindow):
         # Допуски для *.xlsx
         self.permissible_inaccuracy_irt = '0'
         self.permissible_inaccuracy_pvi = '0'
-        self.permissible_inaccuracy_24v = '0,48'
+        self.permissible_inaccuracy_24v = '0,480'
 
         # Загрузка параметров
         self.load_param()
@@ -283,14 +283,6 @@ class ClbrMain(QtWidgets.QMainWindow):
             self.ui.comboBox_pvi_out.setEnabled(False)
             self.ui.label_pvi_out_r.setEnabled(False)
 
-    def is_number(self, num):
-        """ Преобразует в Decimal """
-        try:
-            if float(num) or float(num) == 0:
-                return decimal.Decimal(num)
-        except:
-            pass
-
     def out_irt_in(self):
         """ Расчет требуемых входных """
         values = ['']
@@ -396,21 +388,22 @@ class ClbrMain(QtWidgets.QMainWindow):
 
         # Допуск ПВИ
         K = 0.2  # допускаемая основная погрешность
+        K_percent = 0
         try:
-            irt_start = float(self.ui.lineEdit_in_start_value.text())
-            irt_end = float(self.ui.lineEdit_in_end_value.text())
+            irt_start = float(self.ui.lineEdit_pvi_scale_start.text())
+            irt_end = float(self.ui.lineEdit_pvi_scale_end.text())
 
-            pvi_start = float(self.ui.lineEdit_pvi_scale_start.text())
-            pvi_end = float(self.ui.lineEdit_pvi_scale_end.text())
-
-            _K = 0.2  # погрешность
-            k = round((irt_end - irt_start) / (pvi_end - pvi_start),
-                      3)  # коэффициент, равный отношению диапазона измерений к диапазону преобразования ПВИ
-            Y = self.acceptance_irt(True)  # предел основной приведенной погрешности ПВИ
-
-            K_percent = round(k * Y + _K, 3)
             pvi_start = float(self.ui.comboBox_pvi_out.currentText().split("-")[0])
             pvi_end = float(self.ui.comboBox_pvi_out.currentText().split("-")[1])
+
+            # _K - погрешность
+            _K = 0.2
+            # k - коэффициент, равный отношению диапазона измерений к диапазону преобразования ПВИ
+            k = round((pvi_end - pvi_start) / (irt_end - irt_start), 3)
+            # Y - предел основной приведенной погрешности ПВИ
+            Y = self.acceptance_irt(True)
+
+            K_percent = round(k * Y + _K, 3)
 
             K = abs(round(K_percent / 100 * (pvi_start - pvi_end), 3))
 
@@ -419,16 +412,23 @@ class ClbrMain(QtWidgets.QMainWindow):
             accept = f"Допуск ±(k γ0+0.2)%"
 
         self.ui.label_acceptance_error_pvi.setText(accept)
-
-        self.permissible_inaccuracy_pvi = K
+        self.permissible_inaccuracy_pvi = K_percent
 
         if acceptance_error:
             return round(K, 3)
 
+    def convert_decimal(self, num: str) -> decimal:
+        """ Преобразует в Decimal для определения единицы последнего разряда """
+        try:
+            if float(num) or float(num) == 0:
+                return decimal.Decimal(num)
+        except:
+            pass
+
     def acceptance_irt(self, acceptance_error=False):
         """ Устанавливает допуск ИРТ """
-        out_start = self.is_number(self.ui.lineEdit_out_start_value.text())
-        out_end = self.is_number(self.ui.lineEdit_out_end_value.text())
+        out_start = self.convert_decimal(self.ui.lineEdit_out_start_value.text())
+        out_end = self.convert_decimal(self.ui.lineEdit_out_end_value.text())
 
         one_unit_last_number = 0
         try:
@@ -473,7 +473,7 @@ class ClbrMain(QtWidgets.QMainWindow):
         in_signal_text = f"Допуск ±({_K} + {one_unit_last_number})% -> {acceptance}{signal_type}"
         self.ui.label_acceptance_error_irt.setText(in_signal_text)
 
-        self.permissible_inaccuracy_irt = acceptance
+        self.permissible_inaccuracy_irt = _K + one_unit_last_number
         # Если запрошен допуск
         if acceptance_error:
             return acceptance
@@ -929,8 +929,8 @@ class ClbrMain(QtWidgets.QMainWindow):
                         'date_calibration': self.ui.dateEdit_date_calibration.dateTime().toString('dd.MM.yyyy'),
 
                         'acceptance_error_irt': self.permissible_inaccuracy_irt,
-                        'acceptance_error_24': self.permissible_inaccuracy_pvi,
-                        'acceptance_error_pvi': self.permissible_inaccuracy_24v,
+                        'acceptance_error_24': self.permissible_inaccuracy_24v,
+                        'acceptance_error_pvi': self.permissible_inaccuracy_pvi,
                     }
 
                     # передача с округлением, поля участвующие в расчетах
@@ -981,7 +981,7 @@ class ClbrMain(QtWidgets.QMainWindow):
                             if value == '':
                                 value = '—'
 
-                            ws.cell(int(cell_p[1:]), int(columns.index(cell_p[0])), value)
+                            ws.cell(int(cell_p[1:]), int(columns.index(cell_p[0])), str(value).replace(".", ","))
 
                     # с округлением
                     for key, value in cells_dict_num.items():
