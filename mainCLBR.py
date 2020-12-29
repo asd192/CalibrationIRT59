@@ -1,3 +1,5 @@
+# FIXME сломалось создание пустого протокола
+
 import sys, os, configparser, decimal, subprocess, shutil, openpyxl
 
 from PyQt5 import QtWidgets, QtCore, QtGui
