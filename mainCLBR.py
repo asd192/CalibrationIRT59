@@ -917,7 +917,11 @@ class ClbrMain(QtWidgets.QMainWindow):
             self.create_protocol()
 
     def create_protocol(self):
-        file_position = f"{self.ui.lineEdit_parametr_position.text()}.xlsx"
+        position = self.ui.lineEdit_parametr_position.text()
+        if position == '':
+            position = 'blank'
+
+        file_position = f"{position}.xlsx"
         position_name = f"protocols/{file_position}"
 
         if os.path.exists("Template_CalibrationIRT59xx.xlsx") == False:
@@ -1039,7 +1043,7 @@ class ClbrMain(QtWidgets.QMainWindow):
                             if value == '':
                                 value = '—'
 
-                            ws.cell(int(cell_p[1:]), int(columns.index(cell_p[0])), str(value).replace(".", ","))
+                            ws.cell(int(cell_p[1:]), int(columns.index(cell_p[0])), str(value))
 
                     # с округлением
                     for key, value in cells_dict_num.items():
