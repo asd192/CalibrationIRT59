@@ -1,3 +1,5 @@
+# TODO добавить вывод заключения результатов калибровки
+
 import sys, os, configparser, decimal, subprocess, shutil, openpyxl
 
 from PyQt5 import QtWidgets, QtCore, QtGui
@@ -33,7 +35,7 @@ class ClbrMain(QtWidgets.QMainWindow):
         # Допуски для *.xlsx
         self.permissible_inaccuracy_irt = '0'
         self.permissible_inaccuracy_pvi = '0'
-        self.permissible_inaccuracy_24v = '0,480'
+        self.permissible_inaccuracy_24v = '2'
 
         # Загрузка параметров
         self.load_param()
@@ -491,8 +493,9 @@ class ClbrMain(QtWidgets.QMainWindow):
         in_signal_text = f"Допуск ±({_K} + {one_unit_last_number})% -> {acceptance}{signal_type}"
         self.ui.label_acceptance_error_irt.setText(in_signal_text)
 
-        self.permissible_inaccuracy_irt = _K + one_unit_last_number
-        # Если запрошен допуск
+        self.permissible_inaccuracy_irt = K
+
+        # если запрошен допуск
         if acceptance_error:
             return acceptance
 
@@ -989,10 +992,6 @@ class ClbrMain(QtWidgets.QMainWindow):
                         'passed': self.ui.comboBox_passed.currentText(),
                         'adopted': self.ui.comboBox_adopted.currentText(),
                         'date_calibration': self.ui.dateEdit_date_calibration.dateTime().toString('dd.MM.yyyy'),
-
-                        'acceptance_error_irt': self.permissible_inaccuracy_irt,
-                        'acceptance_error_24': self.permissible_inaccuracy_24v,
-                        'acceptance_error_pvi': self.permissible_inaccuracy_pvi,
                     }
 
                     # передача с округлением, поля участвующие в расчетах
@@ -1033,6 +1032,10 @@ class ClbrMain(QtWidgets.QMainWindow):
                         'out_pvi_in_50': self.ui.lineEdit_out_pvi_in_50.text(),
                         'out_pvi_in_75': self.ui.lineEdit_out_pvi_in_75.text(),
                         'out_pvi_in_95': self.ui.lineEdit_out_pvi_in_95.text(),
+
+                        'acceptance_error_irt': self.permissible_inaccuracy_irt,
+                        'acceptance_error_24': self.permissible_inaccuracy_24v,
+                        'acceptance_error_pvi': self.permissible_inaccuracy_pvi,
                     }
 
                     columns = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ'  # столбцы, ws['A'] = value не работает для объединенных ячеек
