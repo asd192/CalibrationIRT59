@@ -1,14 +1,30 @@
-# FIXME сломалось создание пустого протокола
-
 import sys, os, configparser, decimal, subprocess, shutil, openpyxl
 
 from PyQt5 import QtWidgets, QtCore, QtGui
 
 from main import Ui_MainWindow
-from slsett import ClbrSettings
+from slSettings import ClbrSettings
 
 
 class ClbrMain(QtWidgets.QMainWindow):
+    verification_error = {
+        'acceptance_conditions_t': True,
+        'acceptance_conditions_f': True,
+        'acceptance_conditions_p': True,
+        'acceptance_error_24_0': True,
+        'acceptance_error_24_820': True,
+        'acceptance_error_irt_5': True,
+        'acceptance_error_irt_25': True,
+        'acceptance_error_irt_50': True,
+        'acceptance_error_irt_75': True,
+        'acceptance_error_irt_95': True,
+        'acceptance_error_pvi_5': True,
+        'acceptance_error_pvi_25': True,
+        'acceptance_error_pvi_50': True,
+        'acceptance_error_pvi_75': True,
+        'acceptance_error_pvi_95': True,
+    }
+
     def __init__(self):
         super(ClbrMain, self).__init__()
         self.ui = Ui_MainWindow()
@@ -154,7 +170,7 @@ class ClbrMain(QtWidgets.QMainWindow):
         self.ui.action_save_config.triggered.connect(self.save_config_file)
 
         # Создание протокола
-        self.ui.pushButton_create.clicked.connect(self.create_protocol)
+        self.ui.pushButton_create.clicked.connect(self.create_protocol_verify)
 
         # Настройки программы
         self.ui.action_settings.triggered.connect(self.open_settings)
@@ -485,8 +501,10 @@ class ClbrMain(QtWidgets.QMainWindow):
         t = 0 if self.ui.lineEdit_t.text() == '' else float(self.ui.lineEdit_t.text())
         if 15 <= t <= 25:
             color = u"color: black"
+            ClbrMain.verification_error['acceptance_conditions_t'] = True
         else:
             color = u"color: red"
+            ClbrMain.verification_error['acceptance_conditions_t'] = False
         self.ui.lineEdit_t.setStyleSheet(color)
 
     def acceptance_conditions_f(self):
@@ -494,8 +512,10 @@ class ClbrMain(QtWidgets.QMainWindow):
         f = 0 if self.ui.lineEdit_f.text() == '' else float(self.ui.lineEdit_f.text())
         if 30 <= f <= 80:
             color = u"color: black"
+            ClbrMain.verification_error['acceptance_conditions_f'] = True
         else:
             color = u"color: red"
+            ClbrMain.verification_error['acceptance_conditions_f'] = False
         self.ui.lineEdit_f.setStyleSheet(color)
 
     def acceptance_conditions_p(self):
@@ -503,8 +523,10 @@ class ClbrMain(QtWidgets.QMainWindow):
         p = 0 if self.ui.lineEdit_p.text() == '' else float(self.ui.lineEdit_p.text())
         if 84.0 <= p <= 106.7:
             color = u"color: black"
+            ClbrMain.verification_error['acceptance_conditions_p'] = True
         else:
             color = u"color: red"
+            ClbrMain.verification_error['acceptance_conditions_p'] = False
         self.ui.lineEdit_p.setStyleSheet(color)
 
     def error_irt_5(self):
@@ -553,19 +575,26 @@ class ClbrMain(QtWidgets.QMainWindow):
 
             if round(abs(irt_value - irt_output), 5) > acceptance_error:
                 color = u"color: red"
+                acceptance = False
             else:
                 color = u"color: black"
+                acceptance = True
 
             if percent == 5:
                 self.ui.lineEdit_out_irt_value_5.setStyleSheet(color)
+                ClbrMain.verification_error['acceptance_error_irt_5'] = acceptance
             if percent == 25:
                 self.ui.lineEdit_out_irt_value_25.setStyleSheet(color)
+                ClbrMain.verification_error['acceptance_error_irt_25'] = acceptance
             if percent == 50:
                 self.ui.lineEdit_out_irt_value_50.setStyleSheet(color)
+                ClbrMain.verification_error['acceptance_error_irt_50'] = acceptance
             if percent == 75:
                 self.ui.lineEdit_out_irt_value_75.setStyleSheet(color)
+                ClbrMain.verification_error['acceptance_error_irt_75'] = acceptance
             if percent == 95:
                 self.ui.lineEdit_out_irt_value_95.setStyleSheet(color)
+                ClbrMain.verification_error['acceptance_error_irt_95'] = acceptance
         except ValueError:
             pass
 
@@ -590,19 +619,26 @@ class ClbrMain(QtWidgets.QMainWindow):
 
             if round(abs(pvi_value - pvi_output), 5) > acceptance_error:
                 color = u"color: red"
+                acceptance = False
             else:
                 color = u"color: black"
+                acceptance = True
 
             if percent == 5:
                 self.ui.lineEdit_out_pvi_value_5.setStyleSheet(color)
+                ClbrMain.verification_error['acceptance_error_pvi_5'] = acceptance
             if percent == 25:
                 self.ui.lineEdit_out_pvi_value_25.setStyleSheet(color)
+                ClbrMain.verification_error['acceptance_error_pvi_25'] = acceptance
             if percent == 50:
                 self.ui.lineEdit_out_pvi_value_50.setStyleSheet(color)
+                ClbrMain.verification_error['acceptance_error_pvi_50'] = acceptance
             if percent == 75:
                 self.ui.lineEdit_out_pvi_value_75.setStyleSheet(color)
+                ClbrMain.verification_error['acceptance_error_pvi_75'] = acceptance
             if percent == 95:
                 self.ui.lineEdit_out_pvi_value_95.setStyleSheet(color)
+                ClbrMain.verification_error['acceptance_error_pvi_95'] = acceptance
         except ValueError:
             pass
 
@@ -612,10 +648,13 @@ class ClbrMain(QtWidgets.QMainWindow):
             Ad = float(self.ui.lineEdit_out_24_in_0.text())
             if abs(round(Ad - Ai, 3)) > 0.48:
                 color = u"color: red"
+                acceptance = False
             else:
                 color = u"color: black"
+                acceptance = True
 
             self.ui.lineEdit_out_24_value_0.setStyleSheet(color)
+            ClbrMain.verification_error['acceptance_error_24_0'] = acceptance
         except:
             pass
 
@@ -625,10 +664,13 @@ class ClbrMain(QtWidgets.QMainWindow):
             Ad = float(self.ui.lineEdit_out_24_in_820.text().replace(",", "."))
             if abs(round(Ad - Ai, 3)) > 0.48:
                 color = u"color: red"
+                acceptance = False
             else:
                 color = u"color: black"
+                acceptance = True
 
             self.ui.lineEdit_out_24_value_820.setStyleSheet(color)
+            ClbrMain.verification_error['acceptance_error_24_820'] = acceptance
         except:
             pass
 
@@ -859,6 +901,20 @@ class ClbrMain(QtWidgets.QMainWindow):
         w.comboBox_adopted.setItemText(0, '')
 
         w.checkBox_pvi.setChecked(False)
+
+    def create_protocol_verify(self):
+        """ Проверка на наличие отклонений от допусков, перед созданием книги протокола. """
+        if False in ClbrMain.verification_error.values():
+            dialog = QtWidgets.QMessageBox.question(application, "Отклонения в допусках",
+                                                    "Обнаружены отклонения от допусков. Продолжить?",
+                                                    buttons=QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
+                                                    defaultButton=QtWidgets.QMessageBox.Yes)
+            if dialog == 65536:
+                pass
+            elif dialog == 16384:
+                self.create_protocol()
+        else:
+            self.create_protocol()
 
     def create_protocol(self):
         file_position = f"{self.ui.lineEdit_parametr_position.text()}.xlsx"
