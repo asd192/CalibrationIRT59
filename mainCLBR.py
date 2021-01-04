@@ -32,6 +32,8 @@ class ClbrMain(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        self.ui.progressBar.hide()
+
         # Допуски для *.xlsx
         self.permissible_inaccuracy_irt = '0'
         self.permissible_inaccuracy_pvi = '0'
@@ -919,7 +921,14 @@ class ClbrMain(QtWidgets.QMainWindow):
         else:
             self.create_protocol()
 
+    def progress(self, value, format):
+        self.ui.progressBar.setValue(value)
+        self.ui.progressBar.setFormat(format)
+
     def create_protocol(self):
+        self.ui.progressBar.show()
+        self.progress(0, "Начинаю формирование протокола")
+
         position = self.ui.lineEdit_parametr_position.text()
         if position == '':
             position = 'blank'
@@ -927,12 +936,14 @@ class ClbrMain(QtWidgets.QMainWindow):
         file_position = f"{position}.xlsx"
         position_name = f"protocols/{file_position}"
 
+        self.progress(5, "Проверяю наличие файла шаблона")
         if os.path.exists("Template_CalibrationIRT59xx.xlsx") == False:
             QtWidgets.QMessageBox.critical(self, "Ошибка",
                                            "Отсутствует файл шаблона - Template_CalibrationIRT59xx.xlsx",
                                            QtWidgets.QMessageBox.Ok)
         else:
             try:
+                self.progress(10, "Копирую файл шаблона")
                 shutil.copy("Template_CalibrationIRT59xx.xlsx", position_name)
             except PermissionError:
                 QtWidgets.QMessageBox.critical(self, "Ошибка",
@@ -941,12 +952,14 @@ class ClbrMain(QtWidgets.QMainWindow):
                                                QtWidgets.QMessageBox.Ok)
 
             try:
+                self.progress(20, "Загружаю книгу")
                 wb = openpyxl.load_workbook(position_name)
                 ws = wb.active
 
                 cells = configparser.ConfigParser()
                 cells.read("parameters.ini", encoding="UTF-8")
 
+                self.progress(25, "Проверяю секции выходных ячеек")
                 if not cells.has_section('Выходные ячейки'):
                     dialog = QtWidgets.QMessageBox.question(application, "Настройки ячеек",
                                                             "Отсутствуют настройки ячеек. Открыть настройки?",
@@ -958,6 +971,7 @@ class ClbrMain(QtWidgets.QMainWindow):
                         self.open_settings()
 
                 else:
+                    self.progress(45, "Загружаю значения")
                     section = 'Выходные ячейки'
 
                     calibr_name, calibr_number = '', ''
@@ -1040,7 +1054,8 @@ class ClbrMain(QtWidgets.QMainWindow):
 
                     columns = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ'  # столбцы, ws['A'] = value не работает для объединенных ячеек
 
-                    # без округления
+                    self.progress(65, "Записываю значения в книгу")
+                    # без округления cells_dict_txt
                     for key, value in cells_dict_txt.items():
                         for cell_p in cells.get(section, key).split():
                             if value == '':
@@ -1048,7 +1063,7 @@ class ClbrMain(QtWidgets.QMainWindow):
 
                             ws.cell(int(cell_p[1:]), int(columns.index(cell_p[0])), str(value))
 
-                    # с округлением
+                    # с округлением cells_dict_num
                     for key, value in cells_dict_num.items():
                         for cell_p in cells.get(section, key).split():
                             if value == '':
@@ -1061,9 +1076,16 @@ class ClbrMain(QtWidgets.QMainWindow):
 
                             ws.cell(int(cell_p[1:]), int(columns.index(cell_p[0])), value)
 
+                self.progress(85, "Сохраняю книгу")
                 wb.save(position_name)
 
+
+                self.progress(95, f"Открываю протоколкалибровки")
                 os.startfile(f"{os.path.abspath(os.curdir)}/{position_name}")
+
+                parametr_position = cells_dict_txt["parametr_position"]
+                self.progress(100, f"Протокол калибровки {parametr_position} готов")
+                self.ui.progressBar.hide()
 
             except Exception as exeption:
                 QtWidgets.QMessageBox.critical(self, "Ошибка",
