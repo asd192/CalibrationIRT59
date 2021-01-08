@@ -1,4 +1,5 @@
 # TODO добавить вывод заключения результатов калибровки
+# FIXME без ПВИ ложное срабатывание при проверке допусков
 
 import sys, os, configparser, decimal, subprocess, shutil, openpyxl
 
@@ -27,17 +28,17 @@ class ClbrMain(QtWidgets.QMainWindow):
         'acceptance_error_pvi_95': True,
     }
 
+    # Допуски для *.xlsx
+    permissible_inaccuracy_irt = '0'
+    permissible_inaccuracy_pvi = '0'
+    permissible_inaccuracy_24v = '2'
+
     def __init__(self):
         super(ClbrMain, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
         self.ui.progressBar.hide()
-
-        # Допуски для *.xlsx
-        self.permissible_inaccuracy_irt = '0'
-        self.permissible_inaccuracy_pvi = '0'
-        self.permissible_inaccuracy_24v = '2'
 
         # Загрузка параметров
         self.load_param()
@@ -434,7 +435,7 @@ class ClbrMain(QtWidgets.QMainWindow):
             accept = f"Допуск ±(k γ0+0.2)%"
 
         self.ui.label_acceptance_error_pvi.setText(accept)
-        self.permissible_inaccuracy_pvi = K_percent
+        ClbrMain.permissible_inaccuracy_pvi = K_percent
 
         if acceptance_error:
             return round(K, 3)
@@ -495,7 +496,7 @@ class ClbrMain(QtWidgets.QMainWindow):
         in_signal_text = f"Допуск ±({_K} + {one_unit_last_number})% -> {acceptance}{signal_type}"
         self.ui.label_acceptance_error_irt.setText(in_signal_text)
 
-        self.permissible_inaccuracy_irt = K
+        ClbrMain.permissible_inaccuracy_irt = K
 
         # если запрошен допуск
         if acceptance_error:
@@ -1047,9 +1048,9 @@ class ClbrMain(QtWidgets.QMainWindow):
                         'out_pvi_in_75': self.ui.lineEdit_out_pvi_in_75.text(),
                         'out_pvi_in_95': self.ui.lineEdit_out_pvi_in_95.text(),
 
-                        'acceptance_error_irt': self.permissible_inaccuracy_irt,
-                        'acceptance_error_24': self.permissible_inaccuracy_24v,
-                        'acceptance_error_pvi': self.permissible_inaccuracy_pvi,
+                        'acceptance_error_irt': ClbrMain.permissible_inaccuracy_irt,
+                        'acceptance_error_24': ClbrMain.permissible_inaccuracy_24v,
+                        'acceptance_error_pvi': ClbrMain.permissible_inaccuracy_pvi,
                     }
 
                     columns = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ'  # столбцы, ws['A'] = value не работает для объединенных ячеек
