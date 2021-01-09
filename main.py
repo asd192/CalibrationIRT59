@@ -1119,7 +1119,7 @@ class Ui_MainWindow(object):
         self.progressBar.setGeometry(QtCore.QRect(4, 605, 790, 15))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
-        font.setPointSize(10)
+        font.setPointSize(9)
         self.progressBar.setFont(font)
         self.progressBar.setProperty("value", 0)
         self.progressBar.setAlignment(QtCore.Qt.AlignCenter)
