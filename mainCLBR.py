@@ -1,8 +1,11 @@
 # FIXME без ПВИ ложное срабатывание при проверке допусков
+# TODO валидация полей настроек(разделитель - пробелы)
 
 import sys, os, configparser, decimal, subprocess, shutil, openpyxl
 
 from PyQt5 import QtWidgets, QtCore, QtGui
+
+from webbrowser import open_new as wbopen_new
 
 from main import Ui_MainWindow
 from slSettings import ClbrSettings
@@ -717,7 +720,7 @@ class ClbrMain(QtWidgets.QMainWindow):
             with open("parameters.ini", "w", "utf-8") as config_file:
                 config.write(config_file)
                 QtWidgets.QMessageBox.information(self, "Параметры сохранены",
-                                                  "Необходимо перезагрузить программу для обновления параметров.",
+                                                  "Необходимо перезапустить программу для обновления параметров.",
                                                   QtWidgets.QMessageBox.Ok)
         except Exception as exeption:
             QtWidgets.QMessageBox.critical(self, "Ошибка записи",
@@ -1086,16 +1089,29 @@ class ClbrMain(QtWidgets.QMainWindow):
 
                             ws.cell(int(cell_p[1:]), int(columns.index(cell_p[0])), value)
 
-                self.progress(85, "Сохраняю книгу")
-                wb.save(position_name)
+                    self.progress(85, "Сохраняю книгу")
+                    wb.save(position_name)
 
+                    self.progress(95, f"Открываю протокол калибровки")
+                    file_path = f"{os.path.abspath(os.curdir)}/{position_name}"
 
-                self.progress(95, f"Открываю протоколкалибровки")
-                os.startfile(f"{os.path.abspath(os.curdir)}/{position_name}")
+                    if sys.platform == "win32":
+                        os.startfile(file_path)
+                    else:
+                        dialog = QtWidgets.QMessageBox.question(application, str(position_name),
+                                                                f"Протокол {file_position} создан в директории \
+                                                                {os.path.abspath(os.curdir)}/protocols.\n\n \
+    Открыть <Office online> на сайте microsoft.com в браузере по умолчанию?",
+                                                                buttons=QtWidgets.QMessageBox.No | QtWidgets.QMessageBox.Yes,
+                                                                defaultButton=QtWidgets.QMessageBox.Yes)
+                        if dialog == 65536:
+                            pass
+                        if dialog == 16384:
+                            wbopen_new("https://www.office.com/?flight=unauthrefresh&auth=1")
 
-                parametr_position = cells_dict_txt["parametr_position"]
-                self.progress(100, f"Протокол калибровки {parametr_position} готов")
-                self.ui.progressBar.hide()
+                    parametr_position = cells_dict_txt["parametr_position"]
+                    self.progress(100, f"Протокол калибровки {parametr_position} готов")
+                    self.ui.progressBar.hide()
 
             except Exception as exeption:
                 QtWidgets.QMessageBox.critical(self, "Ошибка",
