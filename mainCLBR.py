@@ -268,25 +268,19 @@ class ClbrMain(QtWidgets.QMainWindow):
             except:
                 pass
 
+        field_comboBox = None
         if col == 0:
-            for n, i in enumerate(container):
-                self.ui.comboBox_calibr_name.addItem("")
-                self.ui.comboBox_calibr_name.setItemText(n, _translate("MainWindow", i))
+            field_comboBox = self.ui.comboBox_calibr_name
+        if col == 1:
+            field_comboBox = self.ui.comboBox_out_signal_type
+        if col == 2:
+            field_comboBox = self.ui.comboBox_passed
+        if col == 3:
+            field_comboBox = self.ui.comboBox_adopted
 
-        elif col == 1:
-            for n, i in enumerate(container):
-                self.ui.comboBox_out_signal_type.addItem("")
-                self.ui.comboBox_out_signal_type.setItemText(n, _translate("MainWindow", i))
-
-        elif col == 2:
-            for n, i in enumerate(container):
-                self.ui.comboBox_passed.addItem("")
-                self.ui.comboBox_passed.setItemText(n, _translate("MainWindow", i))
-
-        elif col == 3:
-            for n, i in enumerate(container):
-                self.ui.comboBox_adopted.addItem("")
-                self.ui.comboBox_adopted.setItemText(n, _translate("MainWindow", i))
+        for n, i in enumerate(container):
+            field_comboBox.addItem("")
+            field_comboBox.setItemText(n, _translate("MainWindow", i))
 
         container.clear()
 
