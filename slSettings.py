@@ -1,8 +1,14 @@
+"""
+Окно настроек выходных ячеек
+"""
+
 import configparser
 from PyQt5 import QtWidgets
 
 from settings import Ui_settings
 
+from PyQt5.QtGui import QRegExpValidator
+from PyQt5.QtCore import QRegExp
 
 class ClbrSettings(QtWidgets.QDialog):
     def __init__(self):
@@ -12,6 +18,13 @@ class ClbrSettings(QtWidgets.QDialog):
 
         self.load_sett()
         self.sl.save_settings.clicked.connect(self.save_sett)
+
+        self.validat_param()
+
+    def validat_param(self):
+        """ Валидация полей(латинские, цифры, пробел) """
+        for field in self.dict_sett().values():
+            field.setValidator(QRegExpValidator(QRegExp("^[a-zA-Z0-9 ]+$")))
 
     def dict_sett(self):
         sett_p = {

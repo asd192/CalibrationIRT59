@@ -1,11 +1,12 @@
-# FIXME без ПВИ ложное срабатывание при проверке допусков
-# TODO валидация полей настроек(разделитель - пробелы)
+"""
+Главное окно программы
+"""
 
 import sys, os, configparser, decimal, subprocess, shutil, openpyxl
 
 from PyQt5 import QtWidgets, QtCore, QtGui
 
-from webbrowser import open_new as wbopen_new
+from webbrowser import open_new as wb_open_new
 
 from main import Ui_MainWindow
 from slSettings import ClbrSettings
@@ -696,12 +697,17 @@ class ClbrMain(QtWidgets.QMainWindow):
 
     def save_param(self):
         """ Сохранение параметров """
-        table = self.ui.tableWidget_param
-        config = configparser.ConfigParser()
+        file_parameters = "parameters.ini"
 
+        config = configparser.ConfigParser()
+        config.read(file_parameters, encoding="utf-8")
+
+        table = self.ui.tableWidget_param
         for column in range(0, table.columnCount()):
             column_name = table.horizontalHeaderItem(column).text()
-            config.add_section(column_name)
+
+            if config.has_section(column_name) == False:
+                config.add_section(column_name)
 
             for row in range(0, table.rowCount()):
                 try:
@@ -711,7 +717,7 @@ class ClbrMain(QtWidgets.QMainWindow):
                 config.set(column_name, str(row), value)
 
         try:
-            with open("parameters.ini", "w", "utf-8") as config_file:
+            with open(file_parameters, "w", encoding="utf-8") as config_file:
                 config.write(config_file)
                 QtWidgets.QMessageBox.information(self, "Параметры сохранены",
                                                   "Необходимо перезапустить программу для обновления параметров.",
@@ -1101,7 +1107,7 @@ class ClbrMain(QtWidgets.QMainWindow):
                         if dialog == 65536:
                             pass
                         if dialog == 16384:
-                            wbopen_new("https://www.office.com/?flight=unauthrefresh&auth=1")
+                            wb_open_new("https://www.office.com/?flight=unauthrefresh&auth=1")
 
                     parametr_position = cells_dict_txt["parametr_position"]
                     self.progress(100, f"Протокол калибровки {parametr_position} готов")
