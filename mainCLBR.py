@@ -1,8 +1,10 @@
+# TODO testing() дописать.
+
 """
 Главное окно программы
 """
 
-import sys, os, configparser, decimal, subprocess, shutil, openpyxl
+import sys, os, configparser, decimal, subprocess, shutil, openpyxl, random
 
 from PyQt5 import QtWidgets, QtCore, QtGui
 
@@ -199,6 +201,9 @@ class ClbrMain(QtWidgets.QMainWindow):
         # Выход из программы
         self.ui.action_exit.triggered.connect(self.exit)
 
+        # Тестовый режим (заполняет поля случайными значениями) Ctrl + T
+        self.ui.action_testing.triggered.connect(self.testing)
+
     def repl(self, p):
         p.textChanged.connect(lambda v=p.text(): p.setText(v.replace(",", ".")))
 
@@ -255,7 +260,7 @@ class ClbrMain(QtWidgets.QMainWindow):
     def validat_conditions(self):
         return QtGui.QRegExpValidator(QtCore.QRegExp("^[+-]?\d{,3}(?:[\.,]\d{,2})?$"))
 
-    def comboBox_load(self, col=0):
+    def comboBox_load(self, col):
         """ Заполнение ComboBox из tableWidget """
         _translate = QtCore.QCoreApplication.translate
 
@@ -434,6 +439,7 @@ class ClbrMain(QtWidgets.QMainWindow):
         self.ui.label_acceptance_error_pvi.setText(accept)
         ClbrMain.permissible_inaccuracy_pvi = K_percent
 
+        # если запрошен допуск ПВИ
         if acceptance_error:
             return round(K, 3)
 
@@ -495,7 +501,7 @@ class ClbrMain(QtWidgets.QMainWindow):
 
         ClbrMain.permissible_inaccuracy_irt = K
 
-        # если запрошен допуск
+        # если запрошен допуск ИРТ
         if acceptance_error:
             return acceptance
 
@@ -820,66 +826,74 @@ class ClbrMain(QtWidgets.QMainWindow):
                                                          filter="All (*);;clbr59 (*.clbr59)",
                                                          initialFilter="clbr59 (*.clbr59)", )
 
+            exemplary = "Средство калибровки"
+            environment = "Условия калибровки"
+            parameters = "Параметры прибора"
+            out_irt = "Выход ИРТ"
+            out_24 = "Выход 24В"
+            out_pvi = "Выход ПВИ"
+            participants = "Сдал/Принял/Дата"
+
             config = configparser.ConfigParser()
             config.read(file[0], encoding="UTF-8")
 
             _translate = QtCore.QCoreApplication.translate
 
             self.ui.comboBox_calibr_name.setItemText(0, _translate("MainWindow",
-                                                                   config.get("Средство калибровки", "калибратор")))
+                                                                   config.get(exemplary, "калибратор")))
 
-            self.ui.lineEdit_t.setText(config.get("Условия калибровки", "Температура"))
-            self.ui.lineEdit_f.setText(config.get("Условия калибровки", "Влажность"))
-            self.ui.lineEdit_p.setText(config.get("Условия калибровки", "Давление"))
+            self.ui.lineEdit_t.setText(config.get(environment, "Температура"))
+            self.ui.lineEdit_f.setText(config.get(environment, "Влажность"))
+            self.ui.lineEdit_p.setText(config.get(environment, "Давление"))
 
             self.ui.comboBox_parametr_type.setItemText(0,
-                                                       _translate("MainWindow", config.get("Параметры прибора", "тип")))
-            self.ui.lineEdit_parametr_number.setText(config.get("Параметры прибора", "номер"))
+                                                       _translate("MainWindow", config.get(parameters, "тип")))
+            self.ui.lineEdit_parametr_number.setText(config.get(parameters, "номер"))
             self.ui.comboBox_parametr_year.setItemText(0, _translate("MainWindow",
-                                                                     config.get("Параметры прибора", "год выпуска")))
-            self.ui.lineEdit_parametr_position.setText(config.get("Параметры прибора", "позиция"))
+                                                                     config.get(parameters, "год выпуска")))
+            self.ui.lineEdit_parametr_position.setText(config.get(parameters, "позиция"))
             self.ui.comboBox_in_signal_type.setItemText(0, _translate("MainWindow",
-                                                                      config.get("Параметры прибора", "тип входа")))
-            self.ui.lineEdit_in_start_value.setText(config.get("Параметры прибора", "вход начало шкалы"))
-            self.ui.lineEdit_in_end_value.setText(config.get("Параметры прибора", "вход конец шкалы"))
+                                                                      config.get(parameters, "тип входа")))
+            self.ui.lineEdit_in_start_value.setText(config.get(parameters, "вход начало шкалы"))
+            self.ui.lineEdit_in_end_value.setText(config.get(parameters, "вход конец шкалы"))
             self.ui.comboBox_out_signal_type.setItemText(0, _translate("MainWindow",
-                                                                       config.get("Параметры прибора", "тип выхода")))
-            self.ui.lineEdit_out_start_value.setText(config.get("Параметры прибора", "выход начало шкалы"))
-            self.ui.lineEdit_out_end_value.setText(config.get("Параметры прибора", "выход конец шкалы"))
-            if config.get("Параметры прибора", "наличие пви") == 'True':
+                                                                       config.get(parameters, "тип выхода")))
+            self.ui.lineEdit_out_start_value.setText(config.get(parameters, "выход начало шкалы"))
+            self.ui.lineEdit_out_end_value.setText(config.get(parameters, "выход конец шкалы"))
+            if config.get(parameters, "наличие пви") == 'True':
                 self.ui.checkBox_pvi.setChecked(True)
             else:
                 self.ui.checkBox_pvi.setChecked(False)
-            self.ui.lineEdit_pvi_scale_start.setText(config.get("Параметры прибора", "пви начало шкалы"))
-            self.ui.lineEdit_pvi_scale_end.setText(config.get("Параметры прибора", "пви конец шкалы"))
+            self.ui.lineEdit_pvi_scale_start.setText(config.get(parameters, "пви начало шкалы"))
+            self.ui.lineEdit_pvi_scale_end.setText(config.get(parameters, "пви конец шкалы"))
             self.ui.comboBox_pvi_out.setItemText(0, _translate("MainWindow",
-                                                               config.get("Параметры прибора", "пви тип выхода")))
+                                                               config.get(parameters, "пви тип выхода")))
 
-            self.ui.lineEdit_out_irt_value_5.setText(config.get("Выход ИРТ", "показания 5"))
-            self.ui.lineEdit_out_irt_value_25.setText(config.get("Выход ИРТ", "показания 25"))
-            self.ui.lineEdit_out_irt_value_50.setText(config.get("Выход ИРТ", "показания 50"))
-            self.ui.lineEdit_out_irt_value_75.setText(config.get("Выход ИРТ", "показания 75"))
-            self.ui.lineEdit_out_irt_value_95.setText(config.get("Выход ИРТ", "показания 95"))
+            self.ui.lineEdit_out_irt_value_5.setText(config.get(out_irt, "показания 5"))
+            self.ui.lineEdit_out_irt_value_25.setText(config.get(out_irt, "показания 25"))
+            self.ui.lineEdit_out_irt_value_50.setText(config.get(out_irt, "показания 50"))
+            self.ui.lineEdit_out_irt_value_75.setText(config.get(out_irt, "показания 75"))
+            self.ui.lineEdit_out_irt_value_95.setText(config.get(out_irt, "показания 95"))
 
-            self.ui.lineEdit_out_24_value_0.setText(config.get("Выход 24В", "выход r0"))
-            self.ui.lineEdit_out_24_value_820.setText(config.get("Выход 24В", "выход r820"))
+            self.ui.lineEdit_out_24_value_0.setText(config.get(out_24, "выход r0"))
+            self.ui.lineEdit_out_24_value_820.setText(config.get(out_24, "выход r820"))
 
-            self.ui.lineEdit_out_pvi_value_5.setText(config.get("Выход ПВИ", "показания 5"))
-            self.ui.lineEdit_out_pvi_value_25.setText(config.get("Выход ПВИ", "показания 25"))
-            self.ui.lineEdit_out_pvi_value_50.setText(config.get("Выход ПВИ", "показания 50"))
-            self.ui.lineEdit_out_pvi_value_75.setText(config.get("Выход ПВИ", "показания 75"))
-            self.ui.lineEdit_out_pvi_value_95.setText(config.get("Выход ПВИ", "показания 95"))
+            self.ui.lineEdit_out_pvi_value_5.setText(config.get(out_pvi, "показания 5"))
+            self.ui.lineEdit_out_pvi_value_25.setText(config.get(out_pvi, "показания 25"))
+            self.ui.lineEdit_out_pvi_value_50.setText(config.get(out_pvi, "показания 50"))
+            self.ui.lineEdit_out_pvi_value_75.setText(config.get(out_pvi, "показания 75"))
+            self.ui.lineEdit_out_pvi_value_95.setText(config.get(out_pvi, "показания 95"))
 
-            self.ui.lineEdit_out_pvi_output_5.setText(config.get("Выход ПВИ", "выход 5"))
-            self.ui.lineEdit_out_pvi_output_25.setText(config.get("Выход ПВИ", "выход 25"))
-            self.ui.lineEdit_out_pvi_output_50.setText(config.get("Выход ПВИ", "выход 50"))
-            self.ui.lineEdit_out_pvi_output_75.setText(config.get("Выход ПВИ", "выход 75"))
-            self.ui.lineEdit_out_pvi_output_95.setText(config.get("Выход ПВИ", "выход 95"))
+            self.ui.lineEdit_out_pvi_output_5.setText(config.get(out_pvi, "выход 5"))
+            self.ui.lineEdit_out_pvi_output_25.setText(config.get(out_pvi, "выход 25"))
+            self.ui.lineEdit_out_pvi_output_50.setText(config.get(out_pvi, "выход 50"))
+            self.ui.lineEdit_out_pvi_output_75.setText(config.get(out_pvi, "выход 75"))
+            self.ui.lineEdit_out_pvi_output_95.setText(config.get(out_pvi, "выход 95"))
 
-            self.ui.comboBox_passed.setItemText(0, _translate("MainWindow", config.get("Сдал/Принял/Дата", "сдал")))
-            self.ui.comboBox_adopted.setItemText(0, _translate("MainWindow", config.get("Сдал/Принял/Дата", "принял")))
+            self.ui.comboBox_passed.setItemText(0, _translate("MainWindow", config.get(participants, "сдал")))
+            self.ui.comboBox_adopted.setItemText(0, _translate("MainWindow", config.get(participants, "принял")))
 
-            date_c = tuple(map(int, config.get("Сдал/Принял/Дата", "дата калибровки(ДД.ММ.ГГГГ)").split('.')))
+            date_c = tuple(map(int, config.get(participants, "дата калибровки(ДД.ММ.ГГГГ)").split('.')))
             self.ui.dateEdit_date_calibration.setDate(QtCore.QDate(date_c[0], date_c[1], date_c[2]))
         except configparser.NoSectionError:
             pass
@@ -1146,6 +1160,14 @@ class ClbrMain(QtWidgets.QMainWindow):
         if dialog == 4194304:
             pass
 
+    def testing(self):
+        """ Заполнение полей случайными значениями, в пределах допуска """
+        accept_irt = self.acceptance_irt(True)
+        accept_24v = 0.48
+        accept_pvi = self.out_pvi_out(True)
+
+        # TODO дописать
+        self.ui.lineEdit_out_irt_value_5.setText("!!!")
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])

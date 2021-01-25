@@ -421,6 +421,9 @@
        <property name="currentIndex">
         <number>0</number>
        </property>
+       <property name="maxVisibleItems">
+        <number>3</number>
+       </property>
        <item>
         <property name="text">
          <string/>
@@ -1926,6 +1929,9 @@
        <property name="currentIndex">
         <number>-1</number>
        </property>
+       <property name="maxVisibleItems">
+        <number>3</number>
+       </property>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_out_pvi">
@@ -2553,6 +2559,9 @@
         <height>25</height>
        </rect>
       </property>
+      <property name="maxVisibleItems">
+       <number>5</number>
+      </property>
      </widget>
      <widget class="QLabel" name="label_adopted">
       <property name="geometry">
@@ -2616,6 +2625,9 @@
         <width>170</width>
         <height>25</height>
        </rect>
+      </property>
+      <property name="maxVisibleItems">
+       <number>5</number>
       </property>
      </widget>
      <widget class="QGroupBox" name="groupBox_environmental_conditions">
@@ -2992,6 +3004,7 @@
     <property name="title">
      <string>Помощь</string>
     </property>
+    <addaction name="action_testing"/>
     <addaction name="action_error"/>
     <addaction name="action_help"/>
     <addaction name="separator"/>
@@ -3123,6 +3136,17 @@
      <family>Segoe UI</family>
      <pointsize>11</pointsize>
     </font>
+   </property>
+  </action>
+  <action name="action_testing">
+   <property name="text">
+    <string>Заполнить поля</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
    </property>
   </action>
  </widget>
