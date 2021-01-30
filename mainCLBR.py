@@ -1,5 +1,3 @@
-# TODO testing() дописать.
-
 """
 Главное окно программы
 """
@@ -201,8 +199,8 @@ class ClbrMain(QtWidgets.QMainWindow):
         # Выход из программы
         self.ui.action_exit.triggered.connect(self.exit)
 
-        # Тестовый режим (заполняет поля случайными значениями) Ctrl + T
-        self.ui.action_testing.triggered.connect(self.testing)
+        # Тестовый режим (заполняет поля позитивными значениями) Ctrl + T
+        self.ui.action_testing.triggered.connect(self.positive_testing)
 
     def repl(self, p):
         p.textChanged.connect(lambda v=p.text(): p.setText(v.replace(",", ".")))
@@ -1160,14 +1158,59 @@ class ClbrMain(QtWidgets.QMainWindow):
         if dialog == 4194304:
             pass
 
-    def testing(self):
+    def positive_testing(self):
         """ Заполнение полей случайными значениями, в пределах допуска """
-        accept_irt = self.acceptance_irt(True)
-        accept_24v = 0.48
-        accept_pvi = self.out_pvi_out(True)
+        accept_irt = self.acceptance_irt(True) # запрос допуска ИРТ
+        accept_pvi = self.out_pvi_out(True) # запрос допуска ПВИ
 
-        # TODO дописать
-        self.ui.lineEdit_out_irt_value_5.setText("!!!")
+        try:
+            # ИРТ
+            irt_5 = float(self.ui.lineEdit_out_irt_output_5.text())
+            irt_25 = float(self.ui.lineEdit_out_irt_output_25.text())
+            irt_50 = float(self.ui.lineEdit_out_irt_output_50.text())
+            irt_75 = float(self.ui.lineEdit_out_irt_output_75.text())
+            irt_95 = float(self.ui.lineEdit_out_irt_output_95.text())
+
+            irt_random_5 = str(round(random.uniform(irt_5 - accept_irt * 0.2, irt_5 + accept_irt * 0.15), 3))
+            irt_random_25 = str(round(random.uniform(irt_25 - accept_irt * 0.1, irt_25), 3))
+            irt_random_50 = str(round(random.uniform(irt_50 - accept_irt * 0.95, irt_50 + accept_irt * 0.1), 3))
+            irt_random_75 = str(round(random.uniform(irt_75 - accept_irt * 0.11, irt_75 + accept_irt * 0.14), 3))
+            irt_random_95 = str(round(random.uniform(irt_95 + accept_irt * 0.2, irt_95), 3))
+
+            self.ui.lineEdit_out_irt_value_5.setText(irt_random_5)
+            self.ui.lineEdit_out_irt_value_25.setText(irt_random_25)
+            self.ui.lineEdit_out_irt_value_50.setText(irt_random_50)
+            self.ui.lineEdit_out_irt_value_75.setText(irt_random_75)
+            self.ui.lineEdit_out_irt_value_95.setText(irt_random_95)
+
+            # 24В
+            v24_r0_random = round(random.uniform(24.0, 24.479), 3)
+            v24_r820_random = round(random.uniform(23.9, v24_r0_random), 3)
+
+            self.ui.lineEdit_out_24_value_0.setText(str(v24_r0_random))
+            self.ui.lineEdit_out_24_value_820.setText(str(v24_r820_random))
+
+            # ПВИ
+            pvi_5 = float(self.ui.lineEdit_out_pvi_output_5.text())
+            pvi_25 = float(self.ui.lineEdit_out_pvi_output_25.text())
+            pvi_50 = float(self.ui.lineEdit_out_pvi_output_50.text())
+            pvi_75 = float(self.ui.lineEdit_out_pvi_output_75.text())
+            pvi_95 = float(self.ui.lineEdit_out_pvi_output_95.text())
+
+            pvi_random_5 = str(round(random.uniform(pvi_5 - accept_pvi * 0.23, pvi_5 + accept_pvi * 0.25), 3))
+            pvi_random_25 = str(round(random.uniform(pvi_25 - accept_pvi * 0.2, pvi_25), 3))
+            pvi_random_50 = str(round(random.uniform(pvi_50 - accept_pvi * 0.14, pvi_50 + accept_pvi * 0.17), 3))
+            pvi_random_75 = str(round(random.uniform(pvi_75 - accept_pvi * 0.18, pvi_75 + accept_pvi * 0.14), 3))
+            pvi_random_95 = str(round(random.uniform(pvi_95 + accept_pvi * 0.2, pvi_95), 3))
+
+            self.ui.lineEdit_out_pvi_value_5.setText(pvi_random_5)
+            self.ui.lineEdit_out_pvi_value_25.setText(pvi_random_25)
+            self.ui.lineEdit_out_pvi_value_50.setText(pvi_random_50)
+            self.ui.lineEdit_out_pvi_value_75.setText(pvi_random_75)
+            self.ui.lineEdit_out_pvi_value_95.setText(pvi_random_95)
+        except ValueError:
+            pass
+
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
