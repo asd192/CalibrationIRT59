@@ -28,8 +28,7 @@
 python 3.6, windows vista.
 
 <h3>Установка</h3>
-Скачать архив.
-<a href="https://disk.yandex.ru/d/Pd98i-78EYUhjg">WinRAR-SFX(Clbr59xx)</a>
+Скачать <a href="https://disk.yandex.ru/d/Pd98i-78EYUhjg">WinRAR-SFX(Clbr59xx)</a>.
 Установить.
 
 
