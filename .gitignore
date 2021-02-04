@@ -2,5 +2,5 @@
 /~$Шаблон_CalibrationIRT59xx.xlsm
 /~$Шаблон_CalibrationIRT59xx.xlsx
 /mainCLBR.spec
-dist
-build
+dist/
+build/
