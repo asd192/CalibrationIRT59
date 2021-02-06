@@ -2,10 +2,9 @@
 Главное окно программы
 """
 
-import sys, os, configparser, decimal, subprocess, shutil, openpyxl, random
+import  configparser, decimal, openpyxl, os, random, shutil, subprocess, sys
 
-from PyQt5 import QtWidgets, QtCore, QtGui
-
+from PyQt5 import  QtCore, QtGui, QtWidgets
 from webbrowser import open_new as wb_open_new
 
 from main import Ui_MainWindow
@@ -31,7 +30,7 @@ class ClbrMain(QtWidgets.QMainWindow):
         'acceptance_error_pvi_95': True,
     }
 
-    # Допуски для *.xlsx
+    # Допуски для записи в *.xlsx
     permissible_inaccuracy_irt = '0'
     permissible_inaccuracy_pvi = '0'
     permissible_inaccuracy_24v = '2'
