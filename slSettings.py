@@ -3,12 +3,13 @@
 """
 
 import configparser
+
 from PyQt5 import QtWidgets
+from PyQt5.QtGui import QRegExpValidator
+from PyQt5.QtCore import QRegExp
 
 from settings import Ui_settings
 
-from PyQt5.QtGui import QRegExpValidator
-from PyQt5.QtCore import QRegExp
 
 class ClbrSettings(QtWidgets.QDialog):
     def __init__(self):
