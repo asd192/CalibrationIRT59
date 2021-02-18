@@ -1086,7 +1086,7 @@ class ClbrMain(QtWidgets.QMainWindow):
                             if value == '':
                                 value = '—'
 
-                            ws.cell(int(cell_p[1:]), int(columns.index(cell_p[0])), str(value))
+                            ws.cell(int(cell_p[1:]), int(columns.index(cell_p[0])), str(value.replace(".", ",")))
 
                     # с округлением cells_dict_num
                     for key, value in cells_dict_num.items():
@@ -1126,6 +1126,7 @@ class ClbrMain(QtWidgets.QMainWindow):
                     self.ui.progressBar.hide()
 
             except Exception as exeption:
+                self.ui.progressBar.hide()
                 QtWidgets.QMessageBox.critical(self, "Ошибка",
                                                f"Не удалось Создать протокол. Ошибка - {type(exeption).__name__}",
                                                QtWidgets.QMessageBox.Ok)
