@@ -5,8 +5,8 @@
 import configparser
 
 from PyQt5 import QtWidgets
-from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtCore import QRegExp
+from PyQt5.QtGui import QRegExpValidator
 
 from settings import Ui_settings
 

@@ -1019,8 +1019,6 @@ class ClbrMain(QtWidgets.QMainWindow):
                         'in_signal_start': self.ui.lineEdit_in_start_value.text(),
                         'in_signal_end': self.ui.lineEdit_in_end_value.text(),
                         'out_signal': self.ui.comboBox_out_signal_type.currentText(),
-                        'out_signal_start': self.ui.lineEdit_out_start_value.text(),
-                        'out_signal_end': self.ui.lineEdit_out_end_value.text(),
                         'pvi_scale_start': self.ui.lineEdit_pvi_scale_start.text(),
                         'pvi_scale_end': self.ui.lineEdit_pvi_scale_end.text(),
                         'pvi_scale_out': self.ui.comboBox_pvi_out.currentText(),
@@ -1074,6 +1072,9 @@ class ClbrMain(QtWidgets.QMainWindow):
                         'acceptance_error_irt': ClbrMain.permissible_inaccuracy_irt,
                         'acceptance_error_24': ClbrMain.permissible_inaccuracy_24v,
                         'acceptance_error_pvi': ClbrMain.permissible_inaccuracy_pvi,
+
+                        'out_signal_start': self.ui.lineEdit_out_start_value.text(),
+                        'out_signal_end': self.ui.lineEdit_out_end_value.text(),
                     }
 
                     columns = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ'  # столбцы, ws['A'] = value не работает для объединенных ячеек
@@ -1085,7 +1086,7 @@ class ClbrMain(QtWidgets.QMainWindow):
                             if value == '':
                                 value = '—'
 
-                            ws.cell(int(cell_p[1:]), int(columns.index(cell_p[0])), str(value.replace(".", ",")))
+                            ws.cell(int(cell_p[1:]), int(columns.index(cell_p[0])), str(value))
 
                     # с округлением cells_dict_num
                     for key, value in cells_dict_num.items():
