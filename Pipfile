@@ -9,6 +9,7 @@ pyqt5-stubs = "==5.14.2.2"
 openpyxl = "*"
 cx-freeze = "*"
 pyinstaller = "*"
+flake8 = "*"
 
 [dev-packages]
 

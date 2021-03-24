@@ -2,10 +2,17 @@
 Главное окно программы
 """
 
-import  configparser, decimal, openpyxl, os, random, shutil, subprocess, sys
-
-from PyQt5 import  QtCore, QtGui, QtWidgets
+import configparser
+import decimal
+import os
+import random
+import shutil
+import subprocess
+import sys
 from webbrowser import open_new as wb_open_new
+
+import openpyxl
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 from main import Ui_MainWindow
 from slSettings import ClbrSettings
@@ -79,16 +86,18 @@ class ClbrMain(QtWidgets.QMainWindow):
         self.ui.lineEdit_p.setValidator(self.validat_conditions())
 
         # Замена ',' -> '.'
-        widgets_repl = (self.ui.lineEdit_t, self.ui.lineEdit_f, self.ui.lineEdit_p,
-                        self.ui.lineEdit_in_start_value, self.ui.lineEdit_in_end_value,
-                        self.ui.lineEdit_out_start_value, self.ui.lineEdit_out_end_value,
-                        self.ui.lineEdit_pvi_scale_start, self.ui.lineEdit_pvi_scale_end,
-                        self.ui.lineEdit_out_irt_value_5, self.ui.lineEdit_out_irt_value_25,
-                        self.ui.lineEdit_out_irt_value_50, self.ui.lineEdit_out_irt_value_75,
-                        self.ui.lineEdit_out_irt_value_95, self.ui.lineEdit_out_24_value_0,
-                        self.ui.lineEdit_out_24_value_820, self.ui.lineEdit_out_pvi_value_5,
-                        self.ui.lineEdit_out_pvi_value_25, self.ui.lineEdit_out_pvi_value_50,
-                        self.ui.lineEdit_out_pvi_value_75, self.ui.lineEdit_out_pvi_value_95)
+        widgets_repl = (
+            self.ui.lineEdit_t, self.ui.lineEdit_f, self.ui.lineEdit_p,
+            self.ui.lineEdit_in_start_value, self.ui.lineEdit_in_end_value,
+            self.ui.lineEdit_out_start_value, self.ui.lineEdit_out_end_value,
+            self.ui.lineEdit_pvi_scale_start, self.ui.lineEdit_pvi_scale_end,
+            self.ui.lineEdit_out_irt_value_5, self.ui.lineEdit_out_irt_value_25,
+            self.ui.lineEdit_out_irt_value_50, self.ui.lineEdit_out_irt_value_75,
+            self.ui.lineEdit_out_irt_value_95, self.ui.lineEdit_out_24_value_0,
+            self.ui.lineEdit_out_24_value_820, self.ui.lineEdit_out_pvi_value_5,
+            self.ui.lineEdit_out_pvi_value_25, self.ui.lineEdit_out_pvi_value_50,
+            self.ui.lineEdit_out_pvi_value_75, self.ui.lineEdit_out_pvi_value_95
+        )
 
         for wr in widgets_repl:
             self.repl(wr)
@@ -431,7 +440,7 @@ class ClbrMain(QtWidgets.QMainWindow):
 
             accept = f"Допуск ±({k}*{Y}+{_K})% -> {K}мА"
         except:
-            accept = f"Допуск ±(k γ0+0.2)%"
+            accept = "Допуск ±(k γ0+0.2)%"
 
         self.ui.label_acceptance_error_pvi.setText(accept)
         ClbrMain.permissible_inaccuracy_pvi = K_percent
@@ -709,7 +718,7 @@ class ClbrMain(QtWidgets.QMainWindow):
         for column in range(0, table.columnCount()):
             column_name = table.horizontalHeaderItem(column).text()
 
-            if config.has_section(column_name) == False:
+            if not config.has_section(column_name):
                 config.add_section(column_name)
 
             for row in range(0, table.rowCount()):
@@ -821,7 +830,7 @@ class ClbrMain(QtWidgets.QMainWindow):
                                                          caption="Загрузить файл",
                                                          directory=path,
                                                          filter="All (*);;clbr59 (*.clbr59)",
-                                                         initialFilter="clbr59 (*.clbr59)", )
+                                                         initialFilter="clbr59 (*.clbr59)")
 
             exemplary = "Средство калибровки"
             environment = "Условия калибровки"
@@ -959,7 +968,7 @@ class ClbrMain(QtWidgets.QMainWindow):
         position_name = f"protocols/{file_position}"
 
         self.progress(5, "Проверяю наличие файла шаблона")
-        if os.path.exists("Template_CalibrationIRT59xx.xlsx") == False:
+        if not os.path.exists("Template_CalibrationIRT59xx.xlsx"):
             QtWidgets.QMessageBox.critical(self, "Ошибка",
                                            "Отсутствует файл шаблона - Template_CalibrationIRT59xx.xlsx",
                                            QtWidgets.QMessageBox.Ok)
@@ -1104,7 +1113,7 @@ class ClbrMain(QtWidgets.QMainWindow):
                     self.progress(85, "Сохраняю книгу")
                     wb.save(position_name)
 
-                    self.progress(95, f"Открываю протокол калибровки")
+                    self.progress(95, "Открываю протокол калибровки")
                     file_path = f"{os.path.abspath(os.curdir)}/{position_name}"
 
                     if sys.platform == "win32":
@@ -1161,8 +1170,8 @@ class ClbrMain(QtWidgets.QMainWindow):
 
     def positive_testing(self):
         """ Заполнение полей случайными значениями, в пределах допуска """
-        accept_irt = self.acceptance_irt(True) # запрос допуска ИРТ
-        accept_pvi = self.out_pvi_out(True) # запрос допуска ПВИ
+        accept_irt = self.acceptance_irt(True)  # запрос допуска ИРТ
+        accept_pvi = self.out_pvi_out(True)  # запрос допуска ПВИ
 
         try:
             # ИРТ
