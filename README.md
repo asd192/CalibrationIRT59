@@ -31,7 +31,11 @@ python 3.6, windows vista.
 <h3>Установка</h3>
 <p>Скачать и установить <a href="https://disk.yandex.ru/d/Pd98i-78EYUhjg">WinRAR-SFX(Clbr59xx)</a>  - обновлено 19.02.2021.</p>
 
-![Image alt](https://github.com/asd192/PyQt_CalibrationIRT59/blob/master/doc/2021-05-13_205158.jpg)
+<h3>Скрины</h3>
+
+![Image alt](https://github.com/asd192/PyQt_CalibrationIRT59/blob/master/doc/screen1.jpg)
+![Image alt](https://github.com/asd192/PyQt_CalibrationIRT59/blob/master/doc/screen3.jpg)
+![Image alt](https://github.com/asd192/PyQt_CalibrationIRT59/blob/master/doc/screen2.jpg)
 
 
 
